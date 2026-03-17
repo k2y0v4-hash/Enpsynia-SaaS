@@ -140,14 +140,7 @@ W folderze projektu znajdują się dokumenty opisujące pomysł, analizę i dals
 01 opis pomysłu  
   
 02 kill the idea  
-  
-03 analiza konkurencji  
-  
-04 mvp scoping  
-  
-05 ryzyka  
-  
-06 plan działania  
+
   
 ## Podsumowanie  
   
