@@ -27,42 +27,17 @@ Na podstawie odpowiedzi aplikacja generuje prosty wynik składający się z trze
 
 Najważniejszą wartością aplikacji nie jest sam opis samopoczucia, lecz szybkie przełożenie samoobserwacji na praktyczne działanie. Dzięki temu użytkownik po kilku - kilkudziesięciu sekundach otrzymuje konkretną podpowiedź, co może zrobić tu i teraz.
 
----
-
-## NOWE: Kluczowe Założenia (2026-03-22)
-
-### 1. System kont użytkowników
-
-**Zmiana:** Projekt będzie teraz umożliwiał zakładanie kont użytkowników.
-
-**Uzasadnienie:**
-- Kont = możliwość monetyzacji w przyszłości
-- Kont = dostęp do danych z różnych urządzeń
-- Kont = lepsza retencja i personalizacja
-- Kont = budowanie bazy użytkowników dla przyszłych produktów
-
-**Technologia:** Supabase (Free Tier wystarcza dla ~50k użytkowników)
 
 ---
 
-### 2. Główny cel: Budowanie marki osobistej
+###  Główny cel aplikacji
 
-**Zmiana:** Głównym celem projektu NIE jest monetyzacja użytkowników, lecz budowanie rozpoznawalności marki osobistej "Enpsyneia".
+Głównym celem aplikacji jest wspieranie użytkownika w odzyskiwaniu orientacji we własnym stanie, przerywaniu automatycznych reakcji i podejmowaniu małych, adekwatnych działań na tu i teraz. Na poziomie strategicznym aplikacja ma również pełnić funkcję praktycznego punktu wejścia do projektu Enpsyneia, wzmacniając jego rozpoznawalność i budując długofalową relację użytkownika z tą ideą.
 
-**Uzasadnienie:**
-- Enpsyneia jako koncepcja filozoficzna ma potencjał edukacyjny i contentowy
-- Marka osobista = dźwignia do przyszłych projektów, coaching, prelekcje
-- Wartość projektu = w zasięgu, nie w bezpośrednich przychodach
-
-**Model przychodów (pośredni):**
-- Newsletter (lead magnet z aplikacji)
-- Content marketing (blog, social media)
-- Przyszły coaching/workshops
-- B2B employee wellness (dla firm)
 
 ---
 
-### 3. Mechanizm nawykowy (Anti-Social Media)
+### pobocznie - nowy mechanizm nawykowy (Anti-Social Media)
 
 **Zmiana:** Aplikacja ma stać się NAWYKOWĄ alternatywą dla nawykowego sięgania po media społecznościowe, gry i inne destrukcyjne nawyki.
 
@@ -121,7 +96,6 @@ Dodatkowy problem: Nawykowe sięganie po telefon bez konkretnego celu. Użytkown
 
 - Stworzenie rozpoznawalnej marki w niszy wellness/mindfulness
 - Zbudowanie społeczności wokół koncepcji "enpsynei"
-- Demonstracja kompetencji jako developer/coach
 - Stworzenie fundamentu dla przyszłych projektów i inicjatyw
 
 **CEL #2: Walidacja mechanizmu nawykowego**
@@ -250,9 +224,8 @@ Dodatkowe elementy angażujące:
 
 1. Poranne/wieczorne rutyny
 2. Widget na ekranie głównym
-3. Dark mode
-4. Więcej typów dnia
-5. Personalizacja mikroakcji
+3. Więcej typów dnia
+4. Personalizacja mikroakcji
 
 ---
 
@@ -262,11 +235,11 @@ Dodatkowe elementy angażujące:
 
 | Component | Wybór | Koszt |
 |-----------|-------|-------|
-| Frontend | React + Vercel | $0 |
+| Frontend | React | $0 |
 | Styling | Tailwind CSS + Shadcn UI | $0 |
 | Backend/Auth | Supabase | $0 (Free Tier) |
-| Baza danych | Supabase PostgreSQL | $0 (Free Tier) |
-| Hosting | Vercel | $0 |
+| Baza danych | Supabase  | $0 (Free Tier) |
+| Hosting | 
 
 ### Flow Autentykacji
 
@@ -369,10 +342,3 @@ W przyszłości projekt można rozwinąć o wykres historii wpisów, większą l
 
 Enpsyneia Check In to prosta aplikacja webowa, która pomaga użytkownikowi rozpoznać swój aktualny stan i wybrać jedno małe działanie wspierające równowagę psychofizyczną. Projekt łączy prostotę techniczną z realną użytecznością. Jego wartość nie polega na samym śledzeniu samopoczucia, lecz na szybkim przekładaniu samoobserwacji na praktyczną decyzję.
 
-**NOWE - kluczowe zmiany:**
-
-1. **System kont:** Umożliwia budowanie bazy użytkowników i przyszłą monetyzację
-2. **Brand Building jako cel główny:** Wartość projektu = w rozpoznawalności, nie w bezpośrednich przychodach
-3. **Mechanizm nawykowy:** Aplikacja jako alternatywa dla social media - unikalna propozycja wartości na rynku
-
-Dzięki temu projekt dobrze nadaje się jako projekt zaliczeniowy, ale również jako fundament do budowania marki osobistej i przyszłych inicjatyw w niszy wellness.
