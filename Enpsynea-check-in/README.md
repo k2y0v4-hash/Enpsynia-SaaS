@@ -38,9 +38,7 @@ Głównym celem aplikacji jest pomaganie użytkownikowi w zatrzymaniu automatyzm
 
 15. [auth-implementation-plan.md](./DOCS/auth-implementation-plan.md)
 
-### Dodatkowe README
 
-16. [DOCS/README.md](./DOCS/README.md)
 
 ## Logika produktu
 
