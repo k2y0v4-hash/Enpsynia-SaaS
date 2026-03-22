@@ -1,149 +1,59 @@
-# Enpsyneia Check In  
-  
-## Właściciel projektu  
-  
-Krzysztof Kowalski  
-  
-## Status  
-  
-Projekt koncepcyjny    
-W trakcie analizy i projektowania  
-  
-## Krótki opis  
-  
-Enpsyneia Check In to prosta aplikacja webowa wspierająca codzienną samoobserwację oraz wybór małego działania regulacyjnego adekwatnego do aktualnego stanu użytkownika.  
-  
-Użytkownik wypełnia krótki formularz dotyczący aktualnego funkcjonowania. Na podstawie odpowiedzi aplikacja przypisuje uproszczony typ dnia i proponuje jedną prostą mikroakcję możliwą do wykonania od razu.  
-  
-Celem projektu nie jest diagnoza ani terapia. Aplikacja ma wspierać codzienną autorefleksję, poprawiać kontakt z własnymi potrzebami oraz ułatwiać podejmowanie małych, korzystnych decyzji.  
-  
-## Główny problem  
-  
-W warunkach przeciążenia informacyjnego i nadmiaru bodźców wiele osób traci orientację we własnym stanie i potrzebach. Często nie wiadomo, czy bardziej potrzebny jest ruch, odpoczynek, wyciszenie, samotność, kontakt z innymi czy po prostu jedno małe działanie, od którego można zacząć.  
-  
-Wiele aplikacji skupia się na samym monitorowaniu nastroju. Ten projekt koncentruje się na czymś innym, czyli na rozpoznaniu dominujących potrzeb i zaproponowaniu jednej praktycznej mikroakcji.  
-  
-## Cel projektu  
-  
-Projekt ma pomóc użytkownikowi  
-  
-lepiej zauważyć swój aktualny stan  
-  
-nazwać dominujące potrzeby  
-  
-otrzymać jedną konkretną rekomendację działania  
-  
-budować prosty rytuał codziennego kontaktu ze sobą  
-  
-obserwować powtarzające się wzorce funkcjonowania  
-  
-## Grupa docelowa  
-  
-Projekt jest skierowany do osób, które  
-  
-czują się przebodźcowane lub przeciążone  
-  
-mają trudność z rozpoznaniem, czego w danym momencie potrzebują  
-  
-mają skłonność do nadmiernego analizowania zamiast przechodzenia do działania  
-  
-chcą w prosty sposób poprawić codzienną równowagę i samoregulację  
-  
-## Jak działa aplikacja  
-  
-Użytkownik wypełnia krótki formularz oparty na skali od 1 do 5. Pytania dotyczą między innymi  
-  
-poziomu energii  
-  
-przeciążenia bodźcami  
-  
-potrzeby ruchu lub odpoczynku  
-  
-potrzeby samotności lub kontaktu  
-  
-poczucia sprawczości  
-  
-poziomu utknięcia w analizie  
-  
-Po zapisaniu odpowiedzi aplikacja generuje wynik składający się z trzech elementów  
-  
-krótkiego podsumowania stanu użytkownika  
-  
-przypisania typu dnia  
-  
-jednej głównej mikroakcji  
-  
-## Przykładowe typy dnia  
-  
-dzień działania  
-  
-dzień wyciszenia  
-  
-dzień odbudowy  
-  
-dzień kontaktu  
-  
-dzień przeciążenia  
-  
-## Przykładowe mikroakcje  
-  
-krótki spacer bez telefonu  
-  
-kilka minut ruchu  
-  
-ograniczenie bodźców  
-  
-wykonanie jednej prostej czynności manualnej  
-  
-napisanie do jednej bezpiecznej osoby  
-  
-## Najważniejsze funkcjonalności  
-  
-krótki formularz check in  
-  
-analiza odpowiedzi na podstawie prostych reguł  
-  
-wyświetlenie typu dnia  
-  
-jedna główna rekomendacja działania  
-  
-opcjonalna dodatkowa wskazówka lub ostrzeżenie  
-  
-zapisywanie wcześniejszych wpisów  
-  
-prosta historia wyników  
-  
-możliwość oceny, czy rekomendacja była pomocna  
-  
-## Zakres techniczny  
-  
-Projekt może zostać zrealizowany przy użyciu HTML, CSS i JavaScript.  
-  
-Dane użytkownika mogą być przechowywane lokalnie w przeglądarce za pomocą localStorage. Dzięki temu aplikacja nie wymaga backendu ani zewnętrznej bazy danych, co pozwala zachować prostotę realizacji.  
-  
-## Oryginalność projektu  
-  
-Projekt różni się od typowych aplikacji do śledzenia nastroju tym, że  
-  
-nie skupia się głównie na samym zapisie emocji  
-  
-opiera się na napięciach między potrzebami, a nie tylko na nastroju  
-  
-zamiast raportu daje jedną konkretną mikroakcję do wykonania od razu  
-  
-Dzięki temu projekt jest prosty technicznie, ale posiada wyraźny praktyczny sens.  
-  
-## Struktura dokumentacji  
-  
-W folderze projektu znajdują się dokumenty opisujące pomysł, analizę i dalsze decyzje projektowe.  
-  
-01 opis pomysłu  
-  
-02 kill the idea  
+# Enpsynea Check In
 
-  
-## Podsumowanie  
-  
-Enpsyneia Check In to lekka aplikacja webowa, która pomaga użytkownikowi rozpoznać swój aktualny stan i wybrać jedno małe działanie wspierające równowagę psychofizyczną.  
-  
-Projekt łączy prostotę techniczną z realną użytecznością. Jego wartość polega na szybkim przekładaniu samoobserwacji na praktyczną decyzję.  
+Enpsynea Check In to aplikacja webowa wspierająca codzienną samoobserwację, rozpoznawanie aktualnego stanu oraz wybór małego, adekwatnego działania na tu i teraz.
+
+Projekt rozwijany jest jako praktyczne narzędzie użytkowe oraz punkt wejścia do szerszego projektu Enpsynea.
+
+## Status projektu
+
+Projekt znajduje się na etapie koncepcji, walidacji, definiowania MVP oraz przygotowania architektury i planu wdrożenia.
+
+## Główny cel
+
+Głównym celem aplikacji jest pomaganie użytkownikowi w zatrzymaniu automatyzmu, rozpoznaniu aktualnej potrzeby i wykonaniu jednego małego kroku wspierającego bardziej świadome działanie, a jednocześnie budowanie rozpoznawalności projektu Enpsynea poprzez jego praktyczne zastosowanie.
+
+## Dokumentacja projektu
+
+### Dokumenty główne
+
+1. [01-opis-pomyslu.md](./DOCS/01-opis-pomyslu.md)
+2. [02-icp-persona.md](./DOCS/02-icp-persona.md)
+3. [03-kill-the-idea-report-v2.md](./DOCS/03-kill-the-idea-report-v2.md)
+4. [03-kill-the-idea-report.md](./DOCS/03-kill-the-idea-report.md)
+5. [04-mvp-scoping.md](./DOCS/04-mvp-scoping.md)
+6. [05-architektura.md](./DOCS/05-architektura.md)
+7. [06-plan-implementacji.md](./DOCS/06-plan-implementacji.md)
+
+### Analizy produktowe i strategiczne
+
+8. [07-jtbd-analysis.md](./DOCS/07-jtbd-analysis.md)
+9. [08-user-journey-map.md](./DOCS/08-user-journey-map.md)
+10. [09-brand-building-strategy.md](./DOCS/09-brand-building-strategy.md)
+11. [ICE_Ranking_Report.md](./DOCS/ICE_Ranking_Report.md)
+12. [Resource_Analysis.md](./DOCS/Resource_Analysis.md)
+13. [competitor-audit.md](./DOCS/competitor-audit.md)
+14. [tech-stack-audit.md](./DOCS/tech-stack-audit.md)
+
+### Dokumenty techniczne
+
+15. [auth-implementation-plan.md](./DOCS/auth-implementation-plan.md)
+
+### Dodatkowe README
+
+16. [DOCS/README.md](./DOCS/README.md)
+
+## Logika produktu
+
+Aplikacja ma dawać użytkownikowi wartość możliwie szybko, najlepiej już podczas pierwszego użycia. Pierwszy kontakt z produktem nie powinien wymagać rejestracji. Konto może być dostępne od początku, ale nie jest wymagane przed otrzymaniem pierwszej wartości. Dopiero po wielokrotnym skorzystaniu z aplikacji użytkownik może otrzymać sugestię założenia konta w celu zapisania historii, budowania streaków i dalszego korzystania z dodatkowych funkcji.
+
+## Co ma dawać aplikacja
+
+Aplikacja ma pomagać użytkownikowi w sytuacjach przeciążenia, dezorientacji, utknięcia w analizie lub automatycznego sięgania po rozpraszacze. Zamiast rozbudowanego raportu ma prowadzić do krótkiego rozpoznania aktualnego stanu oraz jednej prostej mikroakcji możliwej do wykonania od razu.
+
+## Kierunek rozwoju
+
+W pierwszej wersji nacisk położony jest na prostotę, szybkość i niski próg wejścia. W dalszym rozwoju możliwe są między innymi historia wpisów i wzorców, konto użytkownika i synchronizacja danych, bardziej refleksyjne wskazówki, elementy wprowadzające do Enpsynea oraz dalsze eksperymenty z budowaniem zdrowszych nawyków.
+
+## Repozytorium
+
+Repozytorium zawiera dokumentację koncepcyjną, strategiczną i techniczną projektu oraz będzie stopniowo rozszerzane o warstwę implementacyjną aplikacji.
