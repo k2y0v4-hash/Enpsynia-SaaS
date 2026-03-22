@@ -2,10 +2,7 @@
 
 ## Status dokumentu
 
-**Wersja zaktualizowana:** 2026-03-22
-**Zmiany:** Dodano założenia dotyczące kont użytkowników, budowania marki osobistej oraz mechanizmu nawykowego wykorzystania aplikacji jako alternatywy dla social media/gier.
 
----
 
 ## Nazwa projektu
 
@@ -86,26 +83,7 @@ Dodatkowy problem: Nawykowe sięganie po telefon bez konkretnego celu. Użytkown
 
 **Rozwiązanie:** Enpsyneia jako anchorski nawyk - zamiast bezmyślnego scrollowania, użytkownik wykonuje szybki check-in i otrzymuje konkretne działanie.
 
----
-
-## Cel projektu
-
-### Cel główny (aktualizacja 2026-03-22)
-
-**CEL #1: Budowanie marki osobistej i rozpoznawalności projektu Enpsyneia**
-
-- Stworzenie rozpoznawalnej marki w niszy wellness/mindfulness
-- Zbudowanie społeczności wokół koncepcji "enpsynei"
-- Stworzenie fundamentu dla przyszłych projektów i inicjatyw
-
-**CEL #2: Walidacja mechanizmu nawykowego**
-
-- Udowodnienie, że aplikacja może zastąpić nawykowe korzystanie z social media
-- Zbudowanie produktu, który użytkownicy otwierają NAWYKOWO zamiast Instagram/TikTok
-
-### Cel pierwotny (bez zmian)
-
-Celem projektu jest stworzenie intuicyjnej aplikacji webowej, która pomaga użytkownikowi lepiej zauważyć swój aktualny stan, nazwać dominujące potrzeby, otrzymać jedną konkretną rekomendację działania, budować prosty rytuał codziennego kontaktu ze sobą oraz obserwować w czasie powtarzające się wzorce funkcjonowania.
+-
 
 ---
 
@@ -256,44 +234,6 @@ Dodatkowe elementy angażujące:
 
 ---
 
-## NOWA Warstwa Biznesowa: Brand Building
-
-### Model wartości (zmiana paradygmatu)
-
-Tradycyjny SaaS: monetyzacja użytkowników (per seat/feature/usage)
-
-**Enpsyneia: monetyzacja uwagi i rozpoznawalności**
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    REVENUE → BRAND                          │
-├─────────────────────────────────────────────────────────────┤
-│  SaaS: Użytkownik płaci za produkt                        │
-│  Enpsyneia: Użytkownik POMAGA rozprzestrzeniać ideę        │
-│                                                             │
-│  Zarabiamy NA Marku, Nie Na Produkt                        │
-└─────────────────────────────────────────────────────────────┘
-```
-
-### Brand Building Metrics (zamiast MRR)
-
-| Metryka | Cel (6 miesięcy) |
-|---------|-------------------|
-| Total Users | 1,000+ |
-| Weekly Active Users | 200+ |
-| Shares/Virality Rate | 10%+ |
-| Social Mentions | 50+ |
-| Email Subscribers | 100+ |
-
-### Przyszłe ścieżki monetyzacji
-
-| Pathway | Opis | Timing |
-|---------|------|--------|
-| Content & Newsletter | Newsletter jako lead magnet | Rok 1-2 |
-| Coaching | Reputacja jako ekspert | Rok 2 |
-| B2B Wellness | Employee wellness benefits | Rok 2-3 |
-| Premium Course | "Enpsyneia Masterclass" | Rok 2 |
-
 ---
 
 ## Oryginalność projektu
@@ -316,7 +256,7 @@ Dzięki temu projekt jest prosty technicznie, ale jednocześnie posiada własny,
 
 Użytkownik zaznacza, że ma niski poziom energii, wysokie przeciążenie bodźcami i niski poziom sprawczości. Aplikacja rozpoznaje dzień przeciążenia i proponuje jedną prostą mikroakcję, na przykład dziesięć minut bez ekranu oraz wykonanie jednej łatwej czynności fizycznej.
 
-W innej sytuacji użytkownik może zaznaczyć średnią energię, niskie przeciążenie i wysoką potrzebę kontaktu. Aplikacja rozpoznaje dzień kontaktu i sugeruje wykonanie krótkiego telefonu lub napisanie do jednej bezpiecznej osoby.
+W innej sytuacji użytkownik może zaznaczyć średnią energię, niskie przeciążenie i wysoką potrzebę kontaktu. Aplikacja rozpoznaje dzień kontaktu i sugeruje wykonanie krótkiego telefonu lub napisanie do jednej przyjaznej osoby.
 
 **NOWE - Przykład mechanizmu nawykowego:**
 
