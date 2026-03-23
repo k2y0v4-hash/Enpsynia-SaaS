@@ -20,7 +20,7 @@ Głównym celem aplikacji jest pomaganie użytkownikowi w zatrzymaniu automatyzm
 2. [02-icp-persona.md](./DOCS/02-icp-persona.md)
 3. [03-kill-the-idea-report-v2.md](./DOCS/03-kill-the-idea-report-v2.md)
 4. [03-kill-the-idea-report.md](./DOCS/03-kill-the-idea-report.md)
-5. [04-mvp-scoping.md](./DOCS/04-mvp-scoping.md)
+5. [04-mvp-scoping-v2.md](./DOCS/04-mvp-scoping-v2.md)
 6. [05-architektura.md](./DOCS/05-architektura.md)
 7. [06-plan-implementacji.md](./DOCS/06-plan-implementacji.md)
 
