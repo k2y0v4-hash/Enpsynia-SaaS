@@ -1,398 +1,232 @@
-# 🎯 User Journey Map: Enpsyneia Check In
+# User Journey Map — Enpsyneia Check In
 
-**Data:** 2026-03-22 (zaktualizowana wersja)
+**Data:** 2026-03-22 (zaktualizowana 2026-04-12)
 **Projekt:** Enpsyneia Check In
-**Właściciel:** Krzysztof Kowalski
-**Etap produkt:** MVP - z kontami użytkowników
+**Etap produktu:** MVP — Etap 1 (localStorage, brak kont)
 
 ---
 
-## ⚠️ KLUCZOWE ZMIANY
+## Definicja sukcesu użytkownika
 
-### Zmiana paradygmatu
+Użytkownik uzna aplikację za wartościową, jeśli w mniej niż 2 minuty od otwarcia otrzyma konkretną mikroakcję dopasowaną do swojego obecnego stanu i od razu będzie wiedział co zrobić.
 
-| Standardowy Etap | Wersja poprzednia | Wersja aktualna |
-|-----------------|-------------------|-----------------|
-| Stage 2: Sign-Up | **NIE ISTNIEJE** - od razu formularz | **ISTNIEJE** - Supabase Auth (Magic Link) |
-| Stage 7: Conversion | **NIE ISTNIEJE** - brak modelu monetyzacji | **NIE ISTNIEJE** - Brand Building |
-| **NOWE: Habit Loop** | **NIE ISTNIEJE** | **ISTNIEJE** - streak counter |
-| **NOWE: Trigger** | Brak | Social media replacement |
-
-**Konsekwencja:** Mierzymy inne metryki:
-- ✅ Engagement (ile razy wraca)
-- ✅ Time-to-first-value (< 2 minuty)
-- ✅ NOWE: Habit Rate (% używających zamiast social media)
-- ✅ Streak retention (ile dni z rzędu)
-- ❌ Conversion rate (nie dotyczy - brand building)
+Hipoteza dodatkowego sukcesu: użytkownik sięga po aplikację zamiast social media. To założenie wymaga weryfikacji na realnych użytkownikach w Etapie 2.
 
 ---
 
-### NOWE: Habit Loop Journey
+## MVP Flow — Etap 1
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    HABIT LOOP JOURNEY                               │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│  TRIGGER: Użytkownik czuje nudę/pustkę                            │
-│       │                                                              │
-│       ▼                                                              │
-│  ┌─────────────────────────────────────────────────────────────┐   │
-│  │ ALTERNATIVE: "Co robię zamiast social media?"               │   │
-│  │                                                              │   │
-│  │ Option A: Instagram/TikTok ──▶ Scroll ──▶ Poczucie winy   │   │
-│  │ Option B: Enpsyneia       ──▶ Check-in ──▶ Działanie       │   │
-│  │                                                              │   │
-│  └─────────────────────────────────────────────────────────────┘   │
-│       │                                                              │
-│       ▼                                                              │
-│  ROUTINE: Check-in (30 sekund)                                     │
-│       │                                                              │
-│       ▼                                                              │
-│  REWARD: Mikroakcja + poczucie spełnienia + streak increment       │
-│       │                                                              │
-│       ▼                                                              │
-│  CONTINUATION: Użytkownik wraca następnym razem                    │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
+### Stage 1: Landing (0–30 sekund)
 
----
-
-### Success Metric (Co to jest "sukces użytkownika"?)
-
-_Użytkownik uzna, że aplikacja jest wartościowa, jeśli:_
-
-→ **W mniej niż 2 minuty od otwarcia otrzyma konkretną mikroakcję, która pasuje do jego obecnego stanu i od razu wie, co ma zrobić**
-
-**NOWE - dodatkowy sukces:**
-
-→ **Użytkownik wybiera aplikację ZAMIAST social media** - to jest główny sukces mechanizmu nawykowego
-
-**Uzasadnienie:** Z JTBD wiemy, że użytkownicy są przeciążeni i mają paraliż decyzyjny. Nie potrzebują analytics - potrzebują jednej jasnej odpowiedzi "co teraz zrobić". Dodatkowo, chcą znaleźć zdrowszą alternatywę dla nawykowego scrollowania.
-
----
-
-## Stage 1: Landing (0-30 sekund) ⭐
-
-**Cel:** Użytkownik w max 10 sekund zrozumie, czy ta aplikacja jest dla niego.
-
-**NOWE - zmieniony messaging:**
+**Cel:** Użytkownik rozumie w 10 sekund czy aplikacja jest dla niego.
 
 **Co widzi:**
-- **Headline:** "Czego teraz najbardziej potrzebujesz?" LUB "Zamiast scrollować - wybierz działanie"
-- **Value Prop (max 2 linie):** "Wypełnij 6 prostych pytań i otrzymaj jedną konkretną mikroakcję na teraz. Dla osób, które chcą przestać nawykowo scrollować."
-- **CTA:** "Sprawdź teraz" / "Rozpocznij check-in" / "Zamiast Instagram - tu"
+- Nagłówek: „Czego teraz najbardziej potrzebujesz?" lub „Zamiast scrollować — wybierz działanie"
+- Value prop (max 2 linie): „Wypełnij 6 prostych pytań i otrzymaj jedną konkretną mikroakcję. W mniej niż 2 minuty."
+- Jeden przycisk CTA: „Rozpocznij check-in"
 
 **Elementy krytyczne:**
-- [x] Headline wyjaśnia, co robi aplikacja (NIE "AI-Powered Wellness")
-- [x] Value prop pokazuje czas: "2 minuty" lub "30 sekund"
-- [x] NOWE: Value prop adresuje problem nawykowego scrollowania
-- [x] CTA jest tylko jeden, bez rozdzielania na "Free" vs "Pro"
-- [x] Brak slidera cookies / regulaminu przed wejściem
+- Nagłówek wyjaśnia co robi aplikacja — nie żargon, nie „AI-Powered Wellness"
+- Value prop pokazuje czas: „2 minuty"
+- Jeden CTA, brak rozgałęzień (brak „Free" vs „Pro", brak logowania)
+- Brak cookies / regulaminu przed wejściem
 
-**Friction Points:**
-- [x] Issue: Zbyt wiele tekstu na landing page
-  - **Solution:** Max 3 linie tekstu, reszta to interakcja
+**Friction:**
+- Za dużo tekstu → max 3 linie, reszta to interakcja
 
-- [x] Issue: Niejasne co aplikacja robi
-  - **Solution:** Headline = pytanie użytkownika ("Czego teraz potrzebuję?") + "zamiast scrollować"
-
-**Aha Moment:** User thinks _"To jest dokładnie to, czego szukam - ktoś mi powie, co mam zrobić, zamiast scrollować godzinę"_
-
-**CTA Button:** [Rozpocznij Check-in] (primary, duży, kontrastowy)
+**Aha Moment:** „To jest dokładnie to — ktoś mi powie co mam zrobić"
 
 ---
 
-## Stage 2: Sign-Up / First Use (0-60 sekund) ⭐ NOWE
+### Stage 2: Check-in — 6 pytań (1–2 minuty)
 
-**Cel:** Użytkownik może używać aplikacji bez konta LUB założyć konto dla lepszego doświadczenia.
-
-**NOWE - opcje:**
-
-**Opcja A: Bez konta (continue as guest)**
-- [ ] Od razu formularz (6 pytań na suwakach)
-- [ ] Minimalna instrukcja: "Przesuń suwak, jak się czujesz teraz"
-- [ ] Progress indicator: "Pytanie 1 z 6"
-
-**Opcja B: Z kontem (Supabase Magic Link)**
-- [ ] "Zaloguj się lub załóż konto" (opcjonalnie)
-- [ ] Wpisz e-mail → wyślij Magic Link
-- [ ] Kliknij link → zalogowany
-- [ ] Historia i streak dostępne na wielu urządzeniach
-
-**WAŻNE:** Konto jest OPCJONALNE - użytkownik może używać bez logowania!
-
-**Friction Points:**
-- [x] Issue: Rejestracja = bariera wejścia
-  - **Solution:** Guest mode = bez konta, konto = dodatkowe korzyści
-
-- [x] Issue: Użytkownik nie wie, czy jego dane są bezpieczne
-  - **Solution:** Mała informacja "Twoje dane są bezpieczne (Supabase)"
-
-**Aha Moment (konto):** User logs in and sees _"Witaj z powrotem! Twój streak: 7 dni"_
-
----
-
-## Stage 3: First Data Input (1-2 minuty) ⭐
-
-**Cel:** Wypełnić 6 pytań i przejść do wyniku.
-
-**Input type:** 6 suwaków (skala 1-5)
-
-**Pytania (w kolejności):**
-1. Poziom energii (1=wyczerpany, 5=pełen energii)
-2. Przeciążenie bodźcami (1=spokojnie, 5=przebodźcowany)
-3. Potrzeba ruchu vs odpocznienia (1=potrzebuję odpocząć, 5=potrzebuję ruchu)
-4. Potrzeba samotności vs kontaktu (1=chcę być sam, 5=chcę być z ludźmi)
-5. Poczucie sprawczości (1=nic nie mogę, 5=mogę wszystko)
-6. Utknięcie w analizie (1=działam, 5=myślę bez końca)
-
-**Elementy krytyczne:**
-- [x] Suwak domyślnie na środku (3) - użytkownik może od razu kliknąć "Dalej"
-- [x] Pytania proste, bez żargonu
-- [x] Progress bar: "3/6" - widać postęp
-- [x] Możliwość zmiany odpowiedzi przed submit
-- [x] Help text pod każdym pytaniem: "Jak to rozumieć?"
-
----
-
-## Stage 4: Processing (2-5 sekund)
-
-**Cel:** Nie frustrować użytkownika czekaniem.
+**Cel:** Użytkownik wypełnia 6 pytań i przechodzi do wyniku.
 
 **Co widzi:**
-- [x] Krótki komunikat: "Analizuję Twoje potrzeby..." (lub ikona)
-- [x] Progress bar lub animacja (nie biały ekran!)
-- [x] Szacunkowy czas: "To potrafi chwilę potrwać" (ale max 5 sekund)
-
----
-
-## Stage 5: First Output (5-20 sekund) ⭐⭐⭐ NAJKRYTYCZNIEJSZY MOMENT
-
-**Cel:** "Wow, to działa! To jest dokładnie to, czego potrzebowałem!"
-
-**Output format:** Karty z wynikiem (nie PDF, nie dashboard)
-
-**NOWE - dodane elementy mechanizmu nawykowego:**
-
-**Co widzi użytkownik:**
-
-**1. Podsumowanie stanu (1 linia):**
-> "Czujesz się przebodźcowany z niską energią"
-
-**2. Typ dnia (bold, duży):**
-> 🌿 DZIEŃ WYCISZENIA
-
-**3. Główna mikroakcja (najważniejsze!):**
-> **Zrób 10 minut przerwy od ekranów.**
->
-> Usiądź w ciszy, zamknij oczy, oddychaj głęboko.
-
-**4. NOWE: Streak counter:**
-> 🔥 Streak: 7 dni z rzędu!
-
-**5. NOWE: "Zastąpiłeś social media" counter:**
-> 💪 Zastąpiłeś Instagram 15x w tym tygodniu!
-
-**6. Opcjonalnie - dodatkowa mikroakcja:**
-> Dodatkowo: Napij się wody.
-
-**7. NOWE: Share buttons:**
-> [ 📤 Udostępnij ] [ 🔄 Wykonaj ponownie ]
+- 6 suwaków (skala 1–5) w kolejności: energy, overload, movement, social, agency, paralysis
+- Etykiety na obu końcach każdego suwaka
+- Progress bar: „Pytanie 3 z 6"
+- Przycisk „Dalej" po każdym pytaniu, „Zobacz wynik" na końcu
 
 **Elementy krytyczne:**
-- [x] Wynik jest czytelny na pierwszy rzut oka (max 3 elementy)
-- [x] Mikroakcja jest KONKRETNA i WYKONALNA (nie "rób coś dla siebie")
-- [x] Jasne, że to jest "na teraz" - nie na jutro, nie na później
-- [x] Opcja "Spróbuj ponownie" jeśli użytkownik źle ocenił stan
-- [x] NOWE: Streak visible - motywuje do powrotu
+- Suwaki domyślnie na środku (3) — można kliknąć „Dalej" bez zmiany
+- Pytania bez żargonu, z krótkim help textem pod każdym
+- Możliwość cofnięcia się do poprzedniego pytania
+- Progress bar widoczny przez cały czas
 
-**Export Options:**
-- [x] NOWE: Share to social media (Twitter, LinkedIn)
-- [x] Możliwość skopiowania tekstu: "Skopiuj rekomendację"
+**Friction:**
+- Suwaki nieczytelne na dotyk → testować na telefonie przed deploy
+- Pytania niejasne → help text jest obowiązkowy
 
-**Aha Moment:** User thinks _"Dokładnie! Teraz wiem, co mam zrobić. 10 minut ciszy - to mogę zrobić. I widzę, że mój streak rośnie!"_
-
-**⏱️ TOTAL TIME FROM LANDING TO AHA:** 90-120 sekund (target: <2 min)
+**Aha Moment:** „To szybsze niż myślałem"
 
 ---
 
-## Stage 6: Second Action (1-3 dni później) ⭐ NOWE
+### Stage 3: Analiza (2–5 sekund)
 
-**Cel:** Zweryfikować, że Aha Moment był rzeczywisty - użytkownik wraca bez zewnętrznego triggera.
+**Cel:** Użytkownik nie frustruje się czekaniem.
 
-**NOWE - trigger nawykowy:**
-
-| Moment | Co się dzieje |
-|--------|---------------|
-| Użytkownik czuje nudę | (trigger) |
-| Odpala telefon | (automatyczne) |
-| Zamiast Instagram → Enpsyneia | (alternative) |
-| 30 sekund check-in | (cue + routine) |
-| Mikroakcja + streak | (reward) |
-
-**Trigger (jak wraca?):**
-- [x] Widget w aplikacji: "Sprawdź jak się czujesz teraz"
-- [x] Historia: widok poprzednich wpisów + streak
-- [x] NOWE: Powiadomienia (opcjonalne - jeśli użytkownik zalogowany)
-- [x] NOWE: Użytkownik musi sam zapamiętać, że aplikacja istnieje jako alternatywa
-
-**Friction Points:**
-- [x] Issue: Użytkownik zapomina o aplikacji
-  - **Solution:** Streak counter = powrót, messaging "zamiast scrollować"
-
-- [x] Issue: Nie ma powodu wracać
-  - **Solution:** Streak pokazuje "7 dni z rzędu!", "Zastąpiłeś 15x social media"
-
-**Aha Moment:** User comes back ON THEIR OWN and thinks _"Znów nie wiem co robić - zamiast Instagram włączę Enpsyneia"_
-
-**Sukces:** 30%+ użytkowników raportuje "używam zamiast social media"
+**Co widzi:**
+- Komunikat: „Analizuję Twoje potrzeby…"
+- Progress bar lub prosta animacja — nie biały ekran
 
 ---
 
-## Stage 7: Habit Loop (ciągły) ⭐⭐⭐ NOWE
+### Stage 4: Wynik (5–20 sekund) ⭐ Najkrytyczniejszy moment
 
-**Cel:** Użytkownik tworzy nawyk - zamiast scrollować, otwiera Enpsyneia.
+**Cel:** Użytkownik natychmiast wie co zrobić.
+
+**Co widzi:**
+1. Podsumowanie stanu (1 linia): „Czujesz się przebodźcowany z niską energią"
+2. Typ dnia (duży, wyróżniony): „🌿 Twój dzień wygląda jak Dzień Wyciszenia"
+3. Mikroakcja (konkretna, natychmiastowa): „Zrób 10 minut przerwy od ekranów. Usiądź w ciszy, zamknij oczy."
+4. Streak counter: „🔥 7 dni z rzędu"
+5. Przycisk: „Wykonaj ponownie"
+
+**Elementy krytyczne:**
+- Wynik czytelny na telefonie bez scrollowania
+- Mikroakcja konkretna i wykonalna teraz — nie „zadbaj o siebie"
+- Jasne że rekomendacja jest na teraz, nie na jutro
+- Typ dnia opisany jako podpowiedź, nie diagnoza
+
+**Friction:**
+- Wynik zbyt ogólny → mikroakcje muszą być napisane przed implementacją, nie generowane ad hoc
+
+**Aha Moment:** „Dokładnie tego potrzebowałem. 10 minut ciszy — to mogę zrobić teraz."
+
+**Całkowity czas: landing → wynik: 90–120 sekund**
+
+---
+
+### Stage 5: Powrót — hipoteza
+
+**Cel:** Zrozumieć, pod jakimi warunkami użytkownik może wrócić bez zewnętrznego triggera.
+
+Powrót użytkownika w Etapie 1 nie jest gwarantowany — nie ma powiadomień, nie ma konta, nie ma emaila. Poniżej opisano warunki, które mogą sprzyjać powrotowi. To są hipotezy, nie gotowy mechanizm.
+
+**Warunki możliwego powrotu:**
+
+| Warunek | Dlaczego może działać | Dlaczego może nie działać |
+|---------|-----------------------|---------------------------|
+| Streak counter był wysoki | Użytkownik nie chce przerywać serii | Bez powiadomienia użytkownik zapomina |
+| Pierwszy wynik był trafny | Pozytywne skojarzenie z aplikacją | Jeden trafny wynik nie buduje nawyku |
+| Użytkownik zapamiętał URL / dodał do ekranu głównego | Niska bariera dostępu | Wymaga świadomego działania przy pierwszej wizycie |
+| Sytuacja triggera powtórzy się | Ten sam kontekst (nuda, dezorientacja) przywołuje skojarzenie | Bez przypomnienia konkuruje z Instagramem otwieranym automatycznie |
+
+**Co mierzymy w Etapie 1:** Day 7 Return Rate (GA4) — jedyna twarda miara powrotu dostępna bez kont.
+
+---
+
+### Stage 6: Habit Loop — hipoteza do walidacji
+
+Aplikacja może stać się nawykową alternatywą dla social media. Poniższy diagram opisuje pożądany mechanizm — nie potwierdzony empirycznie.
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    HABIT LOOP                               │
-├─────────────────────────────────────────────────────────────┤
-│                                                             │
-│  Trigger: Nuda, pustka, "coś zrobię na telefonie"          │
-│       │                                                    │
-│       ▼                                                    │
-│  Decision: Instagram vs Enpsyneia                          │
-│       │                                                    │
-│       ▼                                                    │
-│  Action: Check-in (30 sekund)                              │
-│       │                                                    │
-│       ▼                                                    │
-│  Reward: Mikroakcja + streak + "zastąpiłem social media"  │
-│       │                                                    │
-│       ▼                                                    │
-│  Loop: Następnym razem - pamiętam o Enpsyneia             │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
+CUE               →   ROUTINE            →   REWARD
+Nuda, pustka           Enpsyneia               Mikroakcja
+„coś zrobię            check-in                + streak
+ na telefonie"         (30 sek – 2 min)        + „zrobiłem coś
+                                                 dla siebie"
 ```
 
-**Elementy wspierające nawyk:**
+**Co wspiera hipotezę w Etapie 1:**
 
-| Element | Jak działa |
-|---------|-------------|
-| Streak counter | Widzę ile dni wytrwałem - nie chcę przerwać |
-| "Zastąpiłem Xx" | Widzę ile razy wybrałem aplikację zamiast social media |
-| Share buttons | Dzielę się osiągnięciami - social proof |
-| Quick time | 30 sekund vs 30 minut scrollowania - convenience |
+| Element | Dostępny w Etapie 1 | Rola |
+|---------|---------------------|------|
+| Streak counter | Tak (localStorage) | Motywuje do powrotu — nie traci serii |
+| Szybkość (<2 min) | Tak | Konkuruje czasem z otwarciem Instagrama |
+| Konkretna mikroakcja | Tak | Reward — poczucie że coś zrobiłem |
 
----
+**Czego brakuje w Etapie 1 do pełnej walidacji:**
 
-## Stage 8: Conversion - NIE DOTYCZY (Brand Building)
+| Brakujący element | Dlaczego istotny | Kiedy dostępny |
+|-------------------|-----------------|----------------|
+| Powiadomienia | Bez nich użytkownik musi pamiętać sam | Etap 2 (opcjonalne, przy koncie) |
+| Dane o sesjach | Nie wiemy jak często użytkownik wraca | Etap 2 (Supabase) |
+| Ankieta po 30 dniach | Nie możemy zapytać użytkownika bez emaila | Etap 2 |
 
-**Ten projekt nie ma kont premium lub płatności.**
-
-Brak monetyzacji oznacza:
-- ❌ Nie ma trial-to-paid conversion
-- ❌ Nie ma upgrade flow
-- ❌ Nie ma feature gating
-- ✅ Zamiast: Brand Building - użytkownik poleca aplikację
-
-**To jest celowe dla Brand Building Strategy** - projekt służy budowaniu marki, nie zarabianiu.
+Weryfikacja hipotezy nawykowej odbywa się w Etapie 2.
 
 ---
 
-## 🔴 Summary Metrics
+## Metryki sukcesu
 
-| Metryka | NOWE | Cel | Uwagi |
-|---------|------|-----|-------|
-| Landing → First Input | | >60% | % użytkowników którzy zaczynają wypełniać formularz |
-| First Input → First Output | | >80% | % użytkowników którzy kończą formularz |
-| Time from Landing to AHA | | <2 min | Critical success metric |
-| Aha Moment survey | | >70% "tak, to było użyteczne" | Jeden przycisk po wyniku |
-| Day 7 Return Rate | | >20% | % użytkowników wracających po 7 dniach |
-| **NOWE: Habit Rate** | ✅ | >30% | % użytkowników którzy używają ZAMIAST social media |
-| **NOWE: Streak Retention** | ✅ | >40% | % użytkowników z streak > 7 dni |
-| **NOWE: Social Replacement** | ✅ | >40% | Ankieta: "Używasz zamiast Instagram?" |
+### Etap 1 — mierzalne od pierwszego dnia
 
----
+Metryki możliwe do śledzenia bez kont i backendu, przez GA4 i jeden przycisk feedbacku na ekranie wyniku:
 
-## 🚩 Biggest Friction Point
+| Metryka | Cel | Źródło danych |
+|---------|-----|---------------|
+| Landing → start formularza | > 60% | GA4 event: form_start |
+| Start → wynik (completion) | > 80% | GA4 event: result_shown |
+| Time-to-first-value | < 2 minuty | GA4: czas między pageview a result_shown |
+| Useful rating | > 60% | Przycisk „Czy to pomogło?" na ekranie wyniku |
+| Day 7 Return Rate | > 20% | GA4: returning users po 7 dniach |
 
-**Brak powiadomień = użytkownik zapomina o aplikacji**
+### Nie da się sensownie mierzyć w Etapie 1
 
-**NOWE - rozwiązanie:**
-- Streak counter = powrót do aplikacji
-- Messaging "zamiast scrollować" = trigger
-- Opcjonalne powiadomienia (jeśli konto)
+Poniższe metryki wymagają kont użytkowników lub backendu. Zbieranie ich przez GA4 dałoby dane zbyt niepewne, żeby na nich polegać:
 
----
-
-## ⚡ Quick Wins (zmiany które poprawią konwersję w <4h)
-
-1. **Zmniejsz formularz do 4 pytań** - mniej friction, szybciej do wyniku
-2. **Dodaj etykiety do suwaków** - "1=Zupełnie nie" | "5=Bardzo"
-3. **Dodaj przykłady pod pytaniami** - "energia: 1=ledwo wstajesz"
-4. **Progress bar widoczny cały czas** - "2/6 - jeszcze chwila"
-5. **Dodaj streak counter** - widoczny na wyniku
-6. **Dodaj share buttons** - "pochwal się streakem"
+| Metryka | Dlaczego niedostępna | Kiedy możliwa |
+|---------|----------------------|---------------|
+| Habit Rate (użycie zamiast social media) | Wymaga ankiety powiązanej z kontem | Etap 2 |
+| Streak Retention (streak > 7 dni) | localStorage czyszczone przez Safari, brak ciągłości między urządzeniami | Etap 2 |
+| Powroty per użytkownik | GA4 nie rozróżnia niezalogowanych użytkowników niezawodnie | Etap 2 |
+| Social Replacement Rate | Wymaga ankiety po 30 dniach użycia | Etap 2 |
 
 ---
 
-## 🔄 Co należy zmienić przed implementacją
+## Biggest Friction Point
 
-| Problem | NOWE | Rekomendacja |
-|---------|------|--------------|
-| Brak monetyzacji | ✅ Cel = Brand Building | Nie wymaga zmian |
-| 6 pytań to za dużo | | Zredukuj do 4 pytań core |
-| Brak powiadomień | ✅ Opcjonalne dla kont | Dodaj w v2 |
-| Nie wiadomo, czy dane są bezpieczne | ✅ Supabase | Dodaj informację |
-| NOWE: Brak mechanizmu nawykowego | ✅ | Dodaj streak counter |
+**Brak powiadomień = użytkownik zapomina o aplikacji.**
+
+W Etapie 1 nie ma mechanizmu przypominającego. Jedyne co działa pasywnie to streak counter — użytkownik który wraca sam, widzi że nie chce przerywać serii. Nie rozwiązuje to problemu zimnego powrotu po pierwszej wizycie.
+
+Mitygacja dostępna w Etapie 1: jasny messaging na landing page i ekranie wyniku — „dodaj do ekranu głównego".
+
+Pełne rozwiązanie (opcjonalne powiadomienia) dostępne w Etapie 2 po założeniu konta.
 
 ---
 
-## 📊 Post-Launch Monitoring (dla MVP)
+## Post-Launch Monitoring
+
+### Etap 1 — monitorujemy aktywnie
 
 ```
-Daily:
-□ Landing → First input: ___% (target: >60%)
-□ First input → First output: ___% (target: >80%)
-□ Time to first output: ___ sek (target: <120)
+Dziennie:
+□ Landing → start formularza: ___% (cel: >60%)
+□ Start → wynik: ___% (cel: >80%)
+□ Średni czas do wyniku: ___ sek (cel: <120)
 
-Weekly:
-□ Day 1 Return Rate: ___% (target: >15%)
-□ Day 7 Return Rate: ___% (target: >20%)
-□ Aha Moment "useful" rate: ___% (target: >70%)
-□ Habit Rate: ___% (target: >30%) [NOWE]
-□ Streak > 7 days: ___% (target: >40%) [NOWE]
+Tygodniowo:
+□ Day 7 Return Rate: ___% (cel: >20%)
+□ Useful rating: ___% (cel: >60%)
+□ Streak counter — czy w ogóle jest używany (czy użytkownicy wracają z wartością >1)
+```
 
-Monthly:
-□ Social Replacement Survey: ___% (target: >40%) [NOWE]
+### Etap 2 — nie mierzymy jeszcze
+
+```
+(niedostępne bez kont i backendu)
+□ Habit Rate
+□ Streak Retention > 7 dni (wiarygodnie)
+□ Social Replacement Rate
+□ Powroty per użytkownik (dokładne)
 ```
 
 ---
 
-## NOWE: User Journey Diagram
+## Flow diagram
 
 ```mermaid
 graph TD
-    A[Użytkownik odczuwa nudę] --> B[Odpala telefon]
-    B --> C{Zamiast?}
-    C -->|Instagram| D[Scrollowanie]
-    C -->|Enpsyneia| E[Check-in 30s]
-    D --> E[Poczucie winy]
-    E --> F[Wynik + Mikroakcja]
-    F --> G{Streak}
-    G -->|Tak| H[Streak rośnie]
-    G -->|Nie| I[Streak = 1]
-    H --> J[Share?]
-    I --> J
-    J -->|Tak| K[Udostępnij]
-    J -->|Nie| L[Wróć później]
-    K --> L
-    L --> M[Następnym razem: Enpsyneia zamiast Instagram]
+    A[Użytkownik odczuwa nudę lub dezorientację] --> B[Otwiera aplikację]
+    B --> C[Landing page — 10 sek]
+    C --> D[Check-in — 6 pytań — 1-2 min]
+    D --> E[Analiza — 2-5 sek]
+    E --> F[Wynik: typ dnia + mikroakcja + streak]
+    F --> G{Powrót?}
+    G -->|Tak — po 1-7 dniach| D
+    G -->|Nie — zapomniał| H[Brak mechanizmu przypominającego w Etapie 1]
+    H --> I[Hipoteza nawykowa weryfikowana w Etapie 2]
 ```
-
----
-
-*Dokument wygenerowany w ramach workflow WF_User_Journey_Map (zaktualizowana wersja)*

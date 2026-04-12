@@ -1,122 +1,120 @@
-# WF_Job_To_Be_Done: Enpsyneia Check In
+# JTBD Analysis — Enpsyneia Check In
 
-**Data:** 2026-03-22 (zaktualizowana wersja)
+**Data:** 2026-03-22 (zaktualizowana 2026-04-12)
 **Projekt:** Enpsyneia Check In
 **Właściciel:** Krzysztof Kowalski
-**Etap produktu:** MVP - z kontami użytkowników
+
+> Ten dokument ma charakter badawczy i wspierający — opisuje użytkowników, ich motywacje i kontekst użycia. Nie definiuje zakresu produktu. Zakres produktu określa `docs/biznes/04-mvp-scope.md`.
 
 ---
 
 ## Summary
 
-### Hipoteza problemu (zaktualizowana)
+### Hipoteza problemu
 
-Użytkownicy (pracownicy biurowi 18-45 lat) doświadczający chronicznego przeciążenia informacyjnego nie potrafią w momencie dezorientacji podjąć decyzji o tym, czego najbardziej potrzebują - ruchu, odpocznienia, ciszy czy kontaktu z drugą osobą. **Dodatkowo** nawykowo sięgają po telefon bez konkretnego celu (scrollowanie social media) i chcą znaleźć zdrowszą alternatywę.
+Użytkownicy (pracownicy biurowi 18–45 lat) doświadczający chronicznego przeciążenia informacyjnego nie potrafią w momencie dezorientacji podjąć decyzji o tym, czego najbardziej potrzebują — ruchu, odpoczynku, ciszy czy kontaktu z drugą osobą. Dodatkowo nawykowo sięgają po telefon bez konkretnego celu i chcą znaleźć zdrowszą alternatywę.
 
-### NOWE: Hipoteza mechanizmu nawykowego
+### Hipoteza mechanizmu nawykowego
 
-Główna hipoteza: **Aplikacja może stać się nawykową alternatywą dla social media** - zamiast bezmyślnego scrollowania, użytkownik wykonuje szybki check-in i otrzymuje konkretne działanie. To jest UNIKALNA propozycja wartości, której konkurencja nie oferuje.
+Aplikacja może stać się alternatywą dla nawykowego sięgania po telefon — zamiast scrollowania użytkownik wykonuje szybki check-in i otrzymuje konkretne działanie. To jest hipoteza, która wymaga walidacji na realnych użytkownikach. Jeśli się potwierdzi, będzie to wyróżnik trudny do szybkiego skopiowania przez konkurencję.
 
-### Target ICP (zaktualizowany)
+### Target ICP
 
-**Dorosłe osoby (18-45 lat)** w trybie pracy biurowej, zdalnej lub studiów, z ciągłą dostępnością online. Odczuwają chroniczne przeciążenie bodźcami i mają trudność z rozpoznaniem własnych potrzeb w danym momencie. **Dodatkowo: chcą ograniczyć nawykowe korzystanie z social media.**
+Dorosłe osoby (18–45 lat) w trybie pracy biurowej, zdalnej lub studiów, z ciągłą dostępnością online. Odczuwają chroniczne przeciążenie bodźcami i mają trudność z rozpoznaniem własnych potrzeb w danym momencie. Chcą ograniczyć nawykowe korzystanie z social media.
 
-### Top insight (zaktualizowany)
+### Top insight
 
-Najważniejsze odkrycie: **Użytkownicy nie potrzebują kolejnej aplikacji do śledzenia nastroju - potrzebują zewnętrznego bodźca, który powie im co mają zrobić**. Paraliż decyzyjny jest głównym blockerem, a wartość aplikacji polega na szybkim przełożeniu samoobserwacji na jedną konkretną akcję.
-
-**NOWE - kluczowy insight:** Użytkownicy chcą znaleźć **zdrowszą alternatywę** dla nawykowego sięgania po telefon. Enpsyneia może być tą alternatywą - jeśli da wartość szybciej niż social media.
+Użytkownicy nie potrzebują kolejnej aplikacji do śledzenia nastroju — potrzebują zewnętrznego bodźca, który powie im co mają zrobić. Paraliż decyzyjny jest głównym blockerem, a wartość aplikacji polega na szybkim przełożeniu samoobserwacji na jedną konkretną akcję.
 
 ---
 
-## JTBD Template - Job Snapshots
+## Job Snapshots
 
-### Job Snapshot 1: "Po maratonie spotkań" (bez zmian)
+### Snapshot 1: „Po maratonie spotkań"
 
 | Element | Opis |
 |---------|------|
-| **Context** | Użytkownik właśnie skończył 4-godzinny dzień spotkań online, czuje się "wyprany" z energii |
-| **Motivation** | Chce wiedzieć, czy potrzebuje przerwy, czy jeszcze może coś zrobić |
-| **Desired Outcome** | Jedno konkretne działanie: "idź na spacer" lub "zrób 5 minut stretchingu" w mniej niż 1 minutę |
-| **Current Solution** | Scroluje Instagram, pije kolejną kawę, lub "po prostu się zmusza" do dalszej pracy |
-| **Barriers** | Nie ma czasu na długie aplikacje, nie chce "journalingu", potrzebuje <1 min |
-| **Trigger** | Koniec serii spotkań, godzina 15-17 |
-| **Wartość** | 15-30 min odzyskanego czasu, uniknięcie wypalenia |
+| **Kontekst** | Użytkownik skończył 4-godzinny dzień spotkań online, czuje się „wyprany" z energii |
+| **Motywacja** | Chce wiedzieć, czy potrzebuje przerwy, czy jeszcze może coś zrobić |
+| **Desired Outcome** | Jedno konkretne działanie: „idź na spacer" lub „zrób 5 minut stretchingu" w mniej niż 1 minutę |
+| **Aktualne rozwiązanie** | Scrolluje Instagram, pije kolejną kawę, lub „po prostu się zmusza" do dalszej pracy |
+| **Bariery** | Nie ma czasu na długie aplikacje, potrzebuje <1 min |
+| **Trigger** | Koniec serii spotkań, godzina 15–17 |
+| **Wartość** | 15–30 min odzyskanego czasu, uniknięcie wypalenia |
 | **Confidence** | 7/10 |
 
 ---
 
-### Job Snapshot 2: "Wieczorna dezorientacja" (bez zmian)
+### Snapshot 2: „Wieczorna dezorientacja"
 
 | Element | Opis |
 |---------|------|
-| **Context** | Wieczór po pracy, użytkownik siedzi przed TV/ekranem, nie może zasnąć |
-| **Motivation** | Chce się zrelaksować ale nie wie, co by mu pomogło - ruch czy odpoczynek? |
-| **Desired Outcome** | Jasna odpowiedź: "teraz potrzebujesz ciszy" lub "potrzebujesz lekkiego ruchu" |
-| **Current Solution** | Ogląda Netflix, scrolluje social media, "jakoś minie" |
-| **Barriers** | Aplikacje wellness są za długie, nudne, wymagają zaangażowania |
-| **Trigger** | 21-23 wieczorem, przed snem |
-| **Wartość** | Lepszy sen, 30-60 min mniej straconego czasu |
+| **Kontekst** | Wieczór po pracy, użytkownik siedzi przed ekranem, nie może zasnąć |
+| **Motywacja** | Chce się zrelaksować, ale nie wie co by pomogło — ruch czy odpoczynek? |
+| **Desired Outcome** | Jasna odpowiedź: „teraz potrzebujesz ciszy" lub „potrzebujesz lekkiego ruchu" |
+| **Aktualne rozwiązanie** | Ogląda Netflix, scrolluje social media, „jakoś minie" |
+| **Bariery** | Aplikacje wellness są za długie, nudne, wymagają zaangażowania |
+| **Trigger** | 21–23 wieczorem, przed snem |
+| **Wartość** | Lepszy sen, 30–60 min mniej straconego czasu |
 | **Confidence** | 6/10 |
 
 ---
 
-### Job Snapshot 3: "Nawykowe scrollowanie" (NOWY - KLUCZOWY)
+### Snapshot 3: „Nawykowe scrollowanie" — kluczowy
 
 | Element | Opis |
 |---------|------|
-| **Context** | Użytkownik leży w łóżku przed snem, odpala telefon "żeby zasnąć", a scrolluje godzinę |
-| **Motivation** | Chce przestać scrollować, ale nie ma alternatywy która by go "zatrzymała" |
-| **Desired Outcome** | Aplikacja, która daje mu wartość w 30 sekund i pozwala wrócić do snu - lub zasnąć z lepszym samopoczuciem |
-| **Current Solution** | Instagram/TikTok → godzina scrollowania → zmęczenie + późne spanie + poczucie winy |
-| **Barriers** | Potrzebuje czegoś "bezpiecznego" - co nie wciągnie go ponownie w rabbit hole |
-| **Trigger** | Leżenie w łóżku, wieczór, nuda, "coś zrobię na telefonie" |
-| **Wartość** | Wcześniejsze spanie (+30-60 min), lepszy sen, mniej zmęczenia następnego dnia |
+| **Kontekst** | Użytkownik leży w łóżku przed snem, odpala telefon „żeby zasnąć", a scrolluje godzinę |
+| **Motywacja** | Chce przestać scrollować, ale nie ma alternatywy, która by go zatrzymała |
+| **Desired Outcome** | Aplikacja dająca wartość w 30 sekund — pozwala wrócić do snu lub zasnąć z lepszym samopoczuciem |
+| **Aktualne rozwiązanie** | Instagram/TikTok → godzina scrollowania → zmęczenie + późne spanie + poczucie winy |
+| **Bariery** | Potrzebuje czegoś „bezpiecznego" — co nie wciągnie go w kolejny rabbit hole |
+| **Trigger** | Leżenie w łóżku, wieczór, nuda |
+| **Wartość** | Wcześniejsze spanie (+30–60 min), lepszy sen |
 | **Confidence** | 9/10 |
-| **Why this matters** | To jest UNIKALNA propozycja wartości - żadna inna aplikacja wellness nie oferuje tego |
 
 ---
 
-### Job Snapshot 4: "Kryzys w pracy" (bez zmian)
+### Snapshot 4: „Kryzys w pracy"
 
 | Element | Opis |
 |---------|------|
-| **Context** | Środek dnia pracy, atak paniki/lęku, potrzeba "złapania oddechu" |
-| **Motivation** | Chce szybko się uspokoić bez wychodzenia z biura, dyskretnie |
-| **Desired Outcome** | Prosta technika: "weź 3 głębokie oddechy" lub "wyjdź na 2 min" |
-| **Current Solution** | Idzie do łazienki, pije wodę, próbuje "przeczekać" |
-| **Barriers** | Nie może wyjść z budynku, potrzebuje dyskretnego rozwiązania |
-| **Trigger** | 10-14 w pracy, w trakcie stresogennego zadania |
-| **Wartość** | Uniknięcie kryzysu, kontynuacja pracy bez zwolnienia |
+| **Kontekst** | Środek dnia pracy, atak paniki lub lęku, potrzeba „złapania oddechu" |
+| **Motywacja** | Chce szybko się uspokoić bez wychodzenia z biura, dyskretnie |
+| **Desired Outcome** | Prosta technika: „weź 3 głębokie oddechy" lub „wyjdź na 2 min" |
+| **Aktualne rozwiązanie** | Idzie do łazienki, pije wodę, próbuje „przeczekać" |
+| **Bariery** | Nie może wyjść z budynku, potrzebuje dyskretnego rozwiązania |
+| **Trigger** | 10–14 w pracy, w trakcie stresogennego zadania |
+| **Wartość** | Uniknięcie kryzysu, kontynuacja pracy |
 | **Confidence** | 8/10 |
 
 ---
 
-### Job Snapshot 5: "Nadmierna analiza" (bez zmian)
+### Snapshot 5: „Nadmierna analiza"
 
 | Element | Opis |
 |---------|------|
-| **Context** | Użytkownik "myśli za dużo", nie może podjąć prostej decyzji co ze sobą zrobić |
-| **Motivation** | Chce "wyłączyć głowę" i pozwolić sobie na prostą akcję |
-| **Desired Outcome** | Ktoś/coś mu powie co ma zrobić, zamiast samemu decydować |
-| **Current Solution** | Decyduje się na "nic" albo robi przypadkową rzecz |
-| **Barriers** | Paraliż decyzyjny, potrzebuje zewnętrznego bodźca |
+| **Kontekst** | Użytkownik „myśli za dużo", nie może podjąć prostej decyzji co ze sobą zrobić |
+| **Motywacja** | Chce „wyłączyć głowę" i pozwolić sobie na prostą akcję |
+| **Desired Outcome** | Ktoś lub coś mu powie co ma zrobić, zamiast samemu decydować |
+| **Aktualne rozwiązanie** | Decyduje się na „nic" albo robi przypadkową rzecz |
+| **Bariery** | Paraliż decyzyjny, potrzebuje zewnętrznego bodźca |
 | **Trigger** | Kiedykolwiek, wiele razy dziennie |
-| **Wartość** | Oszczędność 10-30 min, mniej stresu |
+| **Wartość** | Oszczędność 10–30 min, mniej stresu |
 | **Confidence** | 7/10 |
 
 ---
 
-### Job Snapshot 6: "Nuda w ciągu dnia" (NOWY)
+### Snapshot 6: „Nuda w ciągu dnia"
 
 | Element | Opis |
 |---------|------|
-| **Context** | Użytkownik siedzi w pracy/na uczelni, ma 5 minut przerwy, sięga po telefon |
-| **Motivation** | Chce "zabić czas" ale nie chce tracić go na scrollowanie |
-| **Desired Outcome** | Coś co da mu wartość w 1 minutę i nie wciągnie go na godzinę |
-| **Current Solution** | Instagram → 30 min znika |
-| **Barriers** | Potrzebuje czegoś szybkiego i "bezpiecznego" |
-| **Trigger** | Przerwa w pracy, czekanie na coś, nuda |
+| **Kontekst** | Użytkownik siedzi w pracy lub na uczelni, ma 5 minut przerwy, sięga po telefon |
+| **Motywacja** | Chce „zabić czas", ale nie chce tracić go na scrollowanie |
+| **Desired Outcome** | Coś dającego wartość w 1 minutę, co nie wciągnie go na godzinę |
+| **Aktualne rozwiązanie** | Instagram → 30 min znika |
+| **Bariery** | Potrzebuje czegoś szybkiego i „bezpiecznego" |
+| **Trigger** | Przerwa w pracy, czekanie, nuda |
 | **Wartość** | Odzyskane 30 min, lepsze wykorzystanie przerwy |
 | **Confidence** | 8/10 |
 
@@ -124,255 +122,137 @@ Najważniejsze odkrycie: **Użytkownicy nie potrzebują kolejnej aplikacji do ś
 
 ## Synthetic Analysis
 
-### Top 3 Jobs (zaktualizowane)
+### Top 3 Jobs
 
-| # | Job | Częstotliwość | NOWE |
-|---|-----|---------------|------|
-| 1 | **Szybkie rozpoznanie stanu po okresie przeciążenia** (po meetingach, po pracy) | 3-5x/dzień | |
-| 2 | **Nawykowe scrollowanie zamiast działania** | 5-10x/dzień | ✅ KLUCZOWY |
-| 3 | **Podjęcie decyzji wieczorem** (odpoczynek vs aktywność) | 1x/dzień | |
+| # | Job | Częstotliwość |
+|---|-----|---------------|
+| 1 | Szybkie rozpoznanie stanu po okresie przeciążenia (po meetingach, po pracy) | 3–5x/dzień |
+| 2 | Nawykowe sięganie po telefon bez celu — szukanie alternatywy | 5–10x/dzień |
+| 3 | Podjęcie decyzji wieczorem (odpoczynek vs aktywność) | 1x/dzień |
 
----
+### Top 3 Desired Outcomes
 
-### Top 3 Desired Outcomes (Kryteria sukcesu)
-
-| # | Desired Outcome | Mierzalne kryterium |
+| # | Desired Outcome | Kryterium mierzalne |
 |---|-----------------|---------------------|
-| 1 | **Jedna konkretna mikroakcja** w mniej niż 2 minuty od otwarcia aplikacji | Time-to-first-action < 120 sek |
-| 2 | **Jasna odpowiedź** na pytanie "czego teraz potrzebuję" (ruch/odpoczynek/cisza/kontakt) | 100% użytkowników otrzymuje jednoznaczną rekomendację |
-| 3 | **NOWE: Zdrowsza alternatywa dla social media** | Użytkownik wybiera Enpsyneia zamiast Instagram/TikTok |
+| 1 | Jedna konkretna mikroakcja w mniej niż 2 minuty od otwarcia | Time-to-first-action < 120 sek |
+| 2 | Jasna odpowiedź na „czego teraz potrzebuję" (ruch/odpoczynek/cisza/kontakt) | 100% użytkowników otrzymuje jednoznaczną rekomendację |
+| 3 | Szybka wartość bez wciągania w kolejny rabbit hole | Użytkownik zamyka aplikację po maks. 2 minutach |
 
----
-
-### Primary Pain Drivers (Główne przyczyny bólu)
+### Primary Pain Drivers
 
 | # | Pain Driver | Symptom |
 |---|-------------|---------|
-| 1 | **Paraliż decyzyjny** | "Nie wiem czego potrzebuję" - brak jasności |
-| 2 | **NOWE: Nawykowe scrollowanie** | "Znów straciłem godzinę na Instagramie" |
-| 3 | **NOWE: Poczucie winy** | Po scrollowaniu: "powinienem był coś produktywnego zrobić" |
-| 4 | **Brak czasu** | Aplikacje wellness są za długie (5+ min) |
-| 5 | **Zmęczenie decyzjami** | Po serii meetingów użytkownik jest "wyprany" |
+| 1 | Paraliż decyzyjny | „Nie wiem czego potrzebuję" |
+| 2 | Nawykowe scrollowanie | „Znów straciłem godzinę na Instagramie" |
+| 3 | Poczucie winy | Po scrollowaniu: „powinienem był coś produktywnego zrobić" |
+| 4 | Brak czasu | Aplikacje wellness są za długie (5+ min) |
+| 5 | Zmęczenie decyzjami | Po serii meetingów użytkownik jest „wyprany" |
+
+### Variability — różnice w zależności od kontekstu
+
+| Segment | Specyfika |
+|---------|-----------|
+| Praca zdalna | Więcej triggerów w ciągu dnia, mniejsza struktura |
+| Praca biurowa | Potrzeba dyskrecji, wyraźniejsze granice dnia |
+| Wieczór | Dezorientacja odpoczynkowa + scrollowanie przed snem |
+| Rano | Potrzeba „ustawienia tonu dnia", szybkość krytyczna |
+| „Scroll seeker" | Główny trigger = nuda, chęć „zabicia czasu" |
 
 ---
 
-### Variability (Różnice w zależności od kontekstu)
+## Core Job-to-be-Done
 
-| Segment | Różnice w Job |
-|---------|---------------|
-| **Praca zdalna** | Więcej triggerów w ciągu dnia, mniejsza struktura dnia |
-| **Praca biurowa** | Kryzysy w biurze (potrzeba dyskrecji), wyraźniejsze granice |
-| **Wieczór** | Głównie dezorientacja odpoczynkowa + scrollowanie przed snem |
-| **Rano** | Potrzeba "ustawienia tonu dnia", szybkość krytyczna |
-| **NOWE: "Scroll seeker"** | Główny trigger = nuda, chęć "zabicia czasu" |
+**„W momencie dezorientacji lub gdy nawykowo sięgam po telefon, chcę w mniej niż 2 minuty otrzymać jedną konkretną mikroakcję dopasowaną do mojego obecnego stanu — żebym zamiast analizować lub scrollować mógł teraz zrobić jedną prostą rzecz."**
+
+Produkt realizuje ten job w danym momencie — nie obiecuje trwałej zmiany nawyków ani długoterminowego efektu. Wartość jest tu i teraz: jedna jasna odpowiedź zamiast paraliżu.
 
 ---
 
-## Opportunity Mapping
+## Habit Loop — hipoteza do walidacji
 
-### Core Job-to-be-Done (do MVP)
-
-**"W momencie dezorientacji po okresie przeciążenia LUB gdy nawykowo sięgam po telefon, chcę otrzymać jedną konkretną mikroakcję w mniej niż 2 minuty, żebym mógł zamiast analizować/scrollować przejść do działania."**
-
-**Uzasadnienie:** Najlepsza kombinacja palącości (wysokie przeciążenie + nawykowe scrollowanie) i łatwości rozwiązania (prosty formularz + reguły if/else).
-
-**NOWE - dlaczego mechanizm nawykowy jest unikalny:**
-- Nikt nie oferuje "zdrowszej alternatywy dla social media"
-- To nie jest "feature" - to CORE MECHANIC
-- Jeśli zadziała = ogromna wartość dla użytkowników + viral growth
-
----
-
-### Minimum success criteria (3 kryteria dla MVP)
-
-| # | Kryterium | Definicja sukcesu |
-|---|-----------|-------------------|
-| 1 | **Time-to-first-value < 2 min** | Od otwarcia strony do otrzymania rekomendacji |
-| 2 | **100% otrzymują rekomendację** | Każdy użytkownik wypełniający formularz dostaje mikroakcję |
-| 3 | **NOWE: Nawykowy usage** | >30% użytkowników otwiera aplikację zamiast social media |
-
----
-
-### Quick experiments (3 szybkie testy do przeprowadzenia)
-
-| # | Eksperyment | Metoda | Kryterium sukcesu |
-|---|-------------|--------|-------------------|
-| 1 | **Landing page z live demo** | Strona z działającym formularzem, bez budowy backendu | >30% odwiedzających wypełnia formularz |
-| 2 | **Test mechanizmu nawykowego** | Pytanie "czy używałbyś tej aplikacji zamiast Instagram?" | >40% odpowiada "tak" |
-| 3 | **5 wywiadów JTBD** | Wywiad według script (9 pytań) z rekrutacją przez LinkedIn | 4/5 potwierdza problem nawykowego scrollowania |
-
----
-
-## Risks [RISKS]
-
-### Zaktualizowane ryzyka
-
-| Risk | Severity | NOWE | Mitigation |
-|------|----------|------|------------|
-| **Deklarowana potrzeba vs faktyczna zapłata** | 🔴 Wysoka | | Użytkownicy mówią "tak, tego potrzebuję" ale nie zapłacą (wellness = darmowe) |
-| **NOWE: Mechanizm nawykowy nie zadziała** | 🟡 Średnia | ✅ | Wymaga education i consistent messaging |
-| **NOWE: Użytkownicy wracają do social media** | 🟡 Średnia | ✅ | Potrzebujesz silnego trigger + reward loop |
-| **Niska wartość biznesowa** | 🟡 Średnia | | Problem jest realny, ale użytkownicy nie monetyzują tego typu rozwiązań |
-| **Edge-case fragmentation** | 🟡 Średnia | | Różne konteksty = różne potrzeby |
-| **Support load** | 🟢 Niska | | Prosty produkt = niski support |
-
----
-
-## MVP Scope (konkretnie dla Solo-Deva)
-
-### Essential (do zbudowania w MVP)
-
-| # | Element | Uzasadnienie |
-|---|---------|--------------|
-| 1 | **Formularz check-in (6 pytań)** | Realizuje Core Job-to-be-Done |
-| 2 | **Logika rekomendacji (reguły if/else)** | Generuje mikroakcję |
-| 3 | **NOWE: Supabase Auth** | Konta użytkowników |
-| 4 | **NOWE: Zapis do bazy danych** | Historia i personalizacja |
-| 5 | **NOWE: Streak counter** | Mechanizm nawykowy |
-
-### Analytics (co mierzyć w MVP)
-
-| Metryka | NOWE | Definicja | Cel |
-|---------|------|-----------|-----|
-| **Activation** | | % użytkowników którzy otrzymali rekomendację w pierwszej sesji | >80% |
-| **Time-to-first-value** | | Czas od otwarcia do rekomendacji | <120 sek |
-| **Engagement** | | Średnia liczba check-inów na użytkownika na tydzień | >2 |
-| **NOWE: Habit Rate** | ✅ | % użytkowników którzy otworzyli aplikację zamiast social media | >30% |
-| **Retention (7-dni)** | | % użytkowników wracających po 7 dniach | >20% |
-
----
-
-## NOWE: Habit Loop Design
-
-### Jak działa mechanizm nawykowy
+Aplikacja może działać jako nawykowa alternatywa dla social media. To hipoteza — nie założenie produktowe.
 
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                      HABIT LOOP                                     │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│   CUE (bodziec)          ROUTINE (rutyna)       REWARD (nagroda)   │
-│   ┌─────────┐            ┌─────────────┐        ┌─────────────┐   │
-│   │ Nuda,   │ ────────▶  │ Enpsyneia   │ ────▶  │ Mikroakcja  │   │
-│   │ pustka, │            │ Check-in    │        │ + Reflection│   │
-│   │ "coś   │            │ (30 sek)    │        │             │   │
-│   │ zrobić?"│            │             │        │ + "Zrobiłem │   │
-│   └─────────┘            └─────────────┘        │ coś dla     │   │
-│                                                 │ siebie"     │   │
-│                                                 └─────────────┘   │
-│                                                                     │
-│   ALTERNATIVE (alternatywa)                                        │
-│   ┌─────────┐            ┌─────────────┐        ┌─────────────┐   │
-│   │Instagram│ ────────▶  │ Scrollowanie │ ────▶  │ Dopamina    │   │
-│   │TikTok   │            │ (30-60 min) │        │ (chwilowa)  │   │
-│   └─────────┘            └─────────────┘        │ + Poczucie  │   │
-│                                                 │ winy         │   │
-│                                                 └─────────────┘   │
-└─────────────────────────────────────────────────────────────────────┘
+CUE (bodziec)      →   ROUTINE (rutyna)      →   REWARD (nagroda)
+Nuda, pustka           Enpsyneia check-in         Mikroakcja
+„coś zrobię            (30 sek – 2 min)           + poczucie że
+ na telefonie"                                       zrobiłem coś
+                                                     dla siebie
 ```
 
-### Kluczowe zasady mechanizmu nawykowego
+**Warunki, które hipoteza musi spełnić:**
+1. Aplikacja musi dawać wartość szybciej niż otwarcie Instagrama
+2. Mikroakcja musi być na tyle satysfakcjonująca, żeby zastąpić dopaminę ze scrollowania
+3. Użytkownik musi pamiętać o aplikacji jako opcji — bez powiadomień jest to trudne
 
-1. **Szybkość:** Enpsyneia musi być szybsza niż otwarcie Instagram
-2. **Natychmiastowa wartość:** W 30 sekund użytkownik ma rekomendację
-3. **Mikroakcja = nagroda:** Wykonanie działania daje poczucie spełnienia
-4. **Streak = motywacja:** Licznik "dni z rzędu" buduje nawyk
-5. **Edukacja:** Użytkownik musi rozumieć, że to jest alternatywa
+Walidacja hipotezy odbywa się w Etapie 2 na podstawie danych z realnych użytkowników.
 
 ---
 
-## Metrics to Track
+## Metryki sukcesu
 
-| Metryka | NOWE | Cel | Jak mierzyć |
-|---------|------|-----|-------------|
-| **Activation rate** | | >80% | Google Analytics - form submission |
-| **Time-to-first-value** | | <2 min | Czas między pageview a form submit |
-| **Engagement** | | >2 check-iny/tydzień | Supabase - liczba wpisów |
-| **NOWE: Habit opening rate** | ✅ | >30% | Pytanie przy otwarciu "Co tu robisz?" |
-| **NOWE: Alternative to social** | ✅ | >40% | Ankieta "Używasz zamiast Instagram?" |
-| **Retention (7-dni)** | | >20% | Supabase - powroty po 7 dniach |
-| **NPS (opcjonalnie)** | | >40 | Ankieta w aplikacji (1 pytanie) |
+### Etap 1 — mierzalne od pierwszego dnia
+
+Metryki możliwe do śledzenia bez kont i backendu:
+
+| Metryka | Cel | Jak mierzyć |
+|---------|-----|-------------|
+| Time-to-first-value | < 2 minuty | Czas od otwarcia strony do wyświetlenia wyniku |
+| First use completion rate | > 70% | % użytkowników którzy kończą formularz (GA4 events) |
+| Day 7 return rate | > 20% | % użytkowników wracających po 7 dniach (GA4) |
+| Useful rating | > 60% | % oceniających wynik jako użyteczny (jeden przycisk na ekranie wyniku) |
+
+### Hipotezy do walidacji w Etapie 2
+
+Metryki niemierzalne bez kont i danych z backendu. Weryfikowane po wdrożeniu Supabase:
+
+| Hipoteza | Cel | Metoda |
+|----------|-----|--------|
+| Habit Rate — użytkownicy używają aplikacji zamiast social media | > 30% | Ankieta w aplikacji |
+| Streak Retention — użytkownicy utrzymują streak > 7 dni | > 40% | Dane z bazy (daily_streaks) |
+| Social Replacement — deklarowane zastąpienie social media | > 40% | Ankieta jednorazowa po 30 dniach użycia |
+
+---
+
+## Ryzyka
+
+| Ryzyko | Poziom | Uwaga |
+|--------|--------|-------|
+| Deklarowana potrzeba vs faktyczne użycie — użytkownicy mówią „tak, tego potrzebuję", ale nie wracają | Wysoki | Mierzalne przez Day 7 return rate w Etapie 1 |
+| Mechanizm nawykowy nie zadziała — aplikacja używana raz, nie staje się nawykiem | Średni | Hipoteza do walidacji, nie blokuje Etapu 1 |
+| Użytkownicy wracają do social media zamiast do aplikacji | Średni | Wymaga silnego reward loop — weryfikacja w Etapie 2 |
+| Niska wartość bez powiadomień — użytkownik zapomina o aplikacji | Średni | Streak counter (Etap 1) częściowo mityguje, ale nie rozwiązuje |
+| Mikroakcje są zbyt generyczne — użytkownik nie czuje się rozumiany | Średni | Wymaga starannego projektowania treści przed Fazą 4 implementacji |
 
 ---
 
 ## Interview Script (9 pytań JTBD)
 
-1. **"Opowiedz mi o ostatnim razie, kiedy nie wiedziałeś, co ze sobą zrobić po pracy."**
-   - Kontekst: gdzie byłeś, co robiłeś, jak się czułeś?
+Do użycia przy walidacji z realnymi użytkownikami:
 
-2. **"Co dokładnie robiłeś krok po kroku?"**
-   - Current solution: jak rozwiązałeś problem (lub nie)?
+1. **„Opowiedz mi o ostatnim razie, kiedy nie wiedziałeś co ze sobą zrobić po pracy."**
+   Kontekst: gdzie byłeś, co robiłeś, jak się czułeś?
 
-3. **"Co w tym procesie jest najbardziej frustrujące?"**
-   - Pain: co Ci przeszkadza najbardziej?
+2. **„Co dokładnie robiłeś krok po kroku?"**
+   Jak rozwiązałeś problem — lub nie?
 
-4. **"Jak rozpoznasz, że problem został rozwiązany?"**
-   - Desired outcome: jaki jest Twój ideał?
+3. **„Co w tym procesie jest najbardziej frustrujące?"**
+   Co przeszkadza najbardziej?
 
-5. **"Ile czasu/kosztu to zabiera teraz?"**
-   - Value: ile minut/godzin tracisz?
+4. **„Jak rozpoznasz, że problem został rozwiązany?"**
+   Jaki jest Twój ideał?
 
-6. **"Co byś zapłacił za prostsze rozwiązanie?"**
-   - Willingness-to-pay: nawet $0 jest informacją
+5. **„Ile czasu zajmuje Ci to teraz?"**
+   Ile minut lub godzin tracisz?
 
-7. **"Czy próbowałeś już czegoś innego? Dlaczego to nie zadziałało?"**
-   - Alternatives: co już testowałeś?
+6. **„Co byś zapłacił za prostsze rozwiązanie?"**
+   Nawet $0 jest informacją.
 
-8. **[NOWE] "Opowiedz mi o swoim nawyku korzystania z telefonu."**
-   - Jak często sprawdzasz telefon bez konkretnego powodu?
-   - Kiedy najczęściej to robisz?
-   - Co czujesz po godzinie scrollowania?
+7. **„Czy próbowałeś już czegoś innego? Dlaczego to nie zadziałało?"**
+   Jakie alternatywy już testowałeś?
 
-9. **[NOWE] "Gdyby istniała aplikacja, która mogłaby zastąpić Twoje nawykowe sięganie po telefon, co byś chciał/chciała żeby robiła?"**
-   - Czas: ile minut dziennie by zaoszczędziła?
-   - Funkcja: co konkretnie by oferowała?
+8. **„Opowiedz mi o swoim nawyku korzystania z telefonu."**
+   Jak często sprawdzasz telefon bez konkretnego powodu? Kiedy najczęściej? Co czujesz po godzinie scrollowania?
 
----
-
-## Checklista zbierania danych
-
-- [x] 5 Job Snapshotów (+ 1 nowy o nawykach)
-- [x] 3 metryki wartości oszacowane (czas oszczędzony, sen, produktywność)
-- [x] Core Job-to-be-Done zidentyfikowany
-- [x] 3 propozycje szybkich eksperymentów
-- [x] Mechanizm nawykowy (Habit Loop) zaprojektowany
-- [ ] **5 wywiadów do przeprowadzenia** (TODO)
-- [ ] **Landing page do stworzenia** (TODO)
-
----
-
-## Next Steps
-
-### Sugerowany kolejny workflow
-
-**`WF_MVP_Scoping`** - Zdefiniuj minimalny produkt realizujący Core Job (z kontami i mechanizmem nawykowym)
-
-### Szybki eksperyment (do wykonania TERAZ)
-
-| Krok | Akcja |
-|------|-------|
-| 1 | Stwórz prostą stronę z działającym formularzem (HTML/JS) |
-| 2 | Dodaj pytanie: "Czy używałbyś tej aplikacji zamiast Instagram?" |
-| 3 | Udostępnij na LinkedIn/Instagram z pytaniem "Testujesz?" |
-| 4 | Zbierz 20 osób do testu |
-| 5 | Zmierz: time-to-first-value, "alternative to social" rate |
-
----
-
-## Interaktywne pytanie
-
-**Czy chcesz, żebym przeprowadził 5 wywiadów JTBD zgodnie z powyższym scriptem?**
-
-Do przeprowadzenia wywiadów potrzebuję:
-- 5 kontaktów osób z grupy docelowej (pracownicy biurowi 18-45 lat)
-- Lub mogę wyszukać w LinkedIn grupy "wellness", "work from home", "burnout"
-
-**Opcje:**
-1. Tak, przeprowadź wywiady z moimi kontaktami (podaj dane)
-2. Tak, przeprowadź wywiady z osób z LinkedIn (potrzebuję dostępu)
-3. Nie, przejdź do kolejnego workflow (którego?)
-4. Zmodyfikuj ICP przed JTBD (jaki segment?)
-
----
-
-*Powyższa analiza przeprowadzona w ramach workflow WF_Job_To_Be_Done (zaktualizowana wersja)*
+9. **„Gdyby istniała aplikacja, która mogłaby zastąpić nawykowe sięganie po telefon, co byś chciał żeby robiła?"**
+   Czas: ile minut dziennie zaoszczędziłaby? Co konkretnie by oferowała?

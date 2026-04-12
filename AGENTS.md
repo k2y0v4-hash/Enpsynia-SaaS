@@ -4,7 +4,7 @@
 
 **Project:** Enpsyneia Check In
 **Owner:** Krzysztof Kowalski
-**Last Updated:** 2026-03-31
+**Last Updated:** 2026-04-12
 **Purpose:** Define rules and guidelines for AI Developer Agent working on this project
 
 ---
@@ -15,7 +15,7 @@
 
 Enpsyneia Check In is a lightweight web application that helps users:
 
-1. **Quick self-assessment** - Answer 4-6 simple questions about their current state
+1. **Quick self-assessment** - Answer 6 questions about their current state
 2. **Get actionable recommendations** - Receive one concrete micro-action to take immediately
 3. **Build healthy habits** - Replace mindless social media scrolling with mindful check-ins
 
@@ -25,16 +25,13 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 ### Key Business Documents (READ BEFORE CODING)
 
-| Document                | Path                                                                                 | Purpose                                          |
-| ----------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------ |
-| **Project Description** | [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md)                   | Full project vision, features, and goals         |
-| **ICP & Personas**      | [`docs/biznes/02-icp-persona.md`](docs/biznes/02-icp-persona.md)                     | Target users, pain points, jobs-to-be-done       |
-| **Architecture**        | [`docs/biznes/05-architektura.md`](docs/biznes/05-architektura.md)                   | System architecture, tech stack, database schema |
-| **MVP Scope**           | [`docs/biznes/04-mvp-scoping-v3.md`](docs/biznes/04-mvp-scoping-v3.md)               | What to build in MVP, what to cut                |
-| **Tech Stack Audit**    | [`docs/biznes/tech-stack-audit.md`](docs/biznes/tech-stack-audit.md)                 | Technology decisions and rationale               |
-| **Auth Implementation** | [`docs/biznes/auth-implementation-plan.md`](docs/biznes/auth-implementation-plan.md) | Authentication flow details                      |
-| **JTBD Analysis**       | [`docs/biznes/07-jtbd-analysis.md`](docs/biznes/07-jtbd-analysis.md)                 | Jobs-to-be-done, user motivations                |
-| **User Journey Map**    | [`docs/biznes/08-user-journey-map.md`](docs/biznes/08-user-journey-map.md)           | User flow, friction points, success metrics      |
+| Document                | Path                                                                       | Purpose                                     |
+| ----------------------- | -------------------------------------------------------------------------- | ------------------------------------------- |
+| **MVP Scope**           | [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md)               | Canonical spec: Tier 1/2, features, metrics |
+| **Project Description** | [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md)         | Full project vision, features, and goals    |
+| **ICP & Personas**      | [`docs/biznes/02-icp-persona.md`](docs/biznes/02-icp-persona.md)           | Target users, pain points, jobs-to-be-done  |
+| **JTBD Analysis**       | [`docs/biznes/07-jtbd-analysis.md`](docs/biznes/07-jtbd-analysis.md)       | Jobs-to-be-done, user motivations           |
+| **User Journey Map**    | [`docs/biznes/08-user-journey-map.md`](docs/biznes/08-user-journey-map.md) | User flow, friction points, success metrics |
 
 ---
 
@@ -80,7 +77,9 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 ---
 
-## 📊 Database Schema (Future - Supabase)
+## 📊 Database Schema (Tier 2 only — nie budować w Tier 1)
+
+> Ta sekcja dokumentuje schemat Supabase do użycia w Tier 2. W Tier 1 nie ma bazy danych.
 
 ### Tables
 
@@ -155,8 +154,8 @@ WITH CHECK (auth.uid() = user_id);
 | Component          | Purpose                      | Implementation                     |
 | ------------------ | ---------------------------- | ---------------------------------- |
 | **Landing Page**   | Communicate value in <10 sec | Headline + 2-line value prop + CTA |
-| **Check-in Form**  | Collect user state           | 4-6 sliders with labels            |
-| **Progress Bar**   | Show completion              | "Question 2/4"                     |
+| **Check-in Form**  | Collect user state           | 6 sliders with labels              |
+| **Progress Bar**   | Show completion              | "Question 2/6"                     |
 | **Result Card**    | Display recommendation       | Day type + micro-action + streak   |
 | **Streak Counter** | Motivate return visits       | "🔥 7 days in a row!"              |
 
@@ -226,7 +225,9 @@ const getSession = async () => {
 | **Day 7 Return Rate**    | > 20%   | % users returning after 7 days        |
 | **Useful Feedback**      | > 60%   | % users who rate result as useful     |
 
-### Habit Metrics (Tier 2)
+### Habit Hypothesis (do weryfikacji w Tier 2)
+
+> Mechanizm nawykowy jest hipotezą, którą testujemy po zebraniu pierwszych danych z Tier 1. Metryki poniżej są celami walidacyjnymi, nie założeniami.
 
 | Metric                 | Target | How to Measure                                  |
 | ---------------------- | ------ | ----------------------------------------------- |
@@ -241,7 +242,7 @@ const getSession = async () => {
 ### Before Starting Any Task
 
 1. **Read relevant business docs** (see table above)
-2. **Check MVP scope** ([`docs/biznes/04-mvp-scoping-v3.md`](docs/biznes/04-mvp-scoping-v3.md))
+2. **Check MVP scope** ([`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md))
 3. **Verify feature is in Tier 1** (Must-Have) or Tier 2 (Should-Have)
 4. **If unsure, ask:** "Is this feature in MVP scope?"
 
@@ -285,11 +286,12 @@ const getSession = async () => {
 | Feature                     | Priority     | Notes                                   |
 | --------------------------- | ------------ | --------------------------------------- |
 | Landing page                | 🔴 Critical  | < 10 sec to understand value            |
-| Check-in form (4 questions) | 🔴 Critical  | Sliders with labels                     |
+| Check-in form (6 questions) | 🔴 Critical  | Sliders with labels                     |
 | Analysis logic              | 🔴 Critical  | if/else rules → day type + micro-action |
 | Result display              | 🔴 Critical  | Day type + micro-action                 |
 | localStorage save           | 🔴 Critical  | Last result + history (5 entries)       |
-| Progress bar                | 🟡 Important | "Question 2/4"                          |
+| Streak counter              | 🔴 Critical  | localStorage-only, no account needed    |
+| Progress bar                | 🟡 Important | "Question 2/6"                          |
 | Mobile responsive           | 🔴 Critical  | 80%+ mobile users                       |
 
 ### Tier 2 Features (IMPLEMENT AFTER VALIDATION)
@@ -298,7 +300,6 @@ const getSession = async () => {
 | -------------------------- | ------------ | ------------------------ |
 | Supabase Auth              | 🟡 Important | Magic Link flow          |
 | Database storage           | 🟡 Important | PostgreSQL with RLS      |
-| Streak counter             | 🟡 Important | Habit mechanism          |
 | History view               | 🟢 Nice      | All past check-ins       |
 | Social replacement counter | 🟢 Nice      | "Replaced Instagram 15x" |
 
@@ -345,12 +346,14 @@ enpsyneia-check-in/
 
 ### Analysis Logic (Core Business Logic)
 
-**Questions (4 in MVP):**
+**Questions (6 in MVP):**
 
 1. Energy level (1-5)
 2. Sensory overload (1-5)
 3. Movement need (1-5)
-4. Analysis paralysis (1-5)
+4. Social need (1-5)
+5. Agency level (1-5)
+6. Analysis paralysis (1-5)
 
 **Day Types (5 types):**
 
@@ -365,25 +368,18 @@ enpsyneia-check-in/
 ### localStorage Schema (Tier 1)
 
 ```javascript
-// User data
-{
-  "enpsyneia_user": {
-    "email": "user@example.com", // optional
-    "createdAt": "2026-03-31T10:00:00Z",
-    "sessionToken": "uuid-v4"
-  }
-}
-
-// Check-in history
+// Check-in history (last 5 entries)
 {
   "enpsyneia_history": [
     {
       "id": "uuid",
-      "timestamp": "2026-03-31T10:00:00Z",
+      "timestamp": "2026-04-12T10:00:00Z",
       "answers": {
         "energy": 3,
         "overload": 4,
         "movement": 2,
+        "social": 3,
+        "agency": 4,
         "paralysis": 5
       },
       "result": {
@@ -392,6 +388,14 @@ enpsyneia-check-in/
       }
     }
   ]
+}
+
+// Streak data
+{
+  "enpsyneia_streak": {
+    "currentStreak": 7,
+    "lastCheckIn": "2026-04-12"
+  }
 }
 ```
 
@@ -454,10 +458,10 @@ enpsyneia-check-in/
 
 ### Key Files to Read First
 
-1. [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md) - Project vision
-2. [`docs/biznes/04-mvp-scoping-v3.md`](docs/biznes/04-mvp-scoping-v3.md) - What to build
-3. [`docs/biznes/05-architektura.md`](docs/biznes/05-architektura.md) - How to build it
-4. [`docs/biznes/tech-stack-audit.md`](docs/biznes/tech-stack-audit.md) - Tech decisions
+1. [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md) - What to build (canonical)
+2. [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md) - Project vision
+3. [`docs/biznes/07-jtbd-analysis.md`](docs/biznes/07-jtbd-analysis.md) - Why we build it
+4. [`docs/biznes/08-user-journey-map.md`](docs/biznes/08-user-journey-map.md) - How users experience it
 
 ### Common Questions
 
@@ -465,7 +469,7 @@ enpsyneia-check-in/
 A: Not in Tier 1. Use localStorage. Add Supabase only after validation.
 
 **Q: How many questions in the check-in?**
-A: 4 questions in MVP (reduced from 6 for speed).
+A: 6 questions in MVP. See `docs/biznes/04-mvp-scope.md` for the exact list.
 
 **Q: What about user accounts?**
 A: Tier 1 = no accounts. Tier 2 = Supabase Auth with Magic Link.
@@ -474,7 +478,7 @@ A: Tier 1 = no accounts. Tier 2 = Supabase Auth with Magic Link.
 A: No. It's a cut feature (Tier 3). Focus on core functionality.
 
 **Q: How do I handle streaks?**
-A: Tier 1 = no streaks. Tier 2 = daily_streaks table in Supabase.
+A: Tier 1 = localStorage streak (`enpsyneia_streak`). Tier 2 = daily_streaks table in Supabase.
 
 ---
 
