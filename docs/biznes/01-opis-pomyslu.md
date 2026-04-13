@@ -158,7 +158,7 @@ Projekt nie opiera się wyłącznie na zapisywaniu danych. Główną wartością
 
 Dodatkowo po wykonaniu mikroakcji użytkownik może zaznaczyć, czy rekomendacja pomogła. Dzięki temu aplikacja buduje wrażenie prostego, osobistego systemu wspierania decyzji, a nie tylko formularza.
 
-Po kilku dniach lub tygodniach użytkownik może też zobaczyć krótkie obserwacje dotyczące powtarzających się wzorców, na przykład częstego przeciążenia, częstej potrzeby ruchu albo tendencji do utknięcia w analizie. Zwiększa to poczucie sensu korzystania z aplikacji i wspiera autorefleksję.
+Po kilku dniach lub tygodniach użytkownik może też zobaczyć krótkie obserwacje dotyczące powtarzających się wzorców, na przykład częstego przeciążenia, częstej potrzeby ruchu albo tendencji do utknięcia w analizie. Zwiększa to poczucie sensu korzystania z aplikacji i wspiera autorefleksję. *(Planowane w Etapie 3 — poza zakresem MVP.)*
 
 Dodatkowe elementy angażujące (hipoteza do walidacji):
 - **Streak counter:** "Dni z rzędu — ile razy wybrałeś Enpsyneia zamiast social media"

@@ -21,7 +21,7 @@ Hipoteza dodatkowego sukcesu: użytkownik sięga po aplikację zamiast social me
 **Cel:** Użytkownik rozumie w 10 sekund czy aplikacja jest dla niego.
 
 **Co widzi:**
-- Nagłówek: „Czego teraz najbardziej potrzebujesz?" lub „Zamiast scrollować — wybierz działanie"
+- Nagłówek (kanoniczna wersja Etapu 1): **„Czego teraz najbardziej potrzebujesz?"** — wariant „Zamiast scrollować — wybierz działanie" jako opcja A/B po launchu
 - Value prop (max 2 linie): „Wypełnij 6 prostych pytań i otrzymaj jedną konkretną mikroakcję. W mniej niż 2 minuty."
 - Jeden przycisk CTA: „Rozpocznij check-in"
 
@@ -79,9 +79,10 @@ Hipoteza dodatkowego sukcesu: użytkownik sięga po aplikację zamiast social me
 **Co widzi:**
 1. Podsumowanie stanu (1 linia): „Czujesz się przebodźcowany z niską energią"
 2. Typ dnia (duży, wyróżniony): „🌿 Twój dzień wygląda jak Dzień Wyciszenia"
-3. Mikroakcja (konkretna, natychmiastowa): „Zrób 10 minut przerwy od ekranów. Usiądź w ciszy, zamknij oczy."
-4. Streak counter: „🔥 7 dni z rzędu"
-5. Przycisk: „Wykonaj ponownie"
+3. Uzasadnienie wyniku (1 zdanie bezpośrednio pod typem dnia): „Twój poziom przeciążenia bodźcami jest wysoki — ciało i umysł potrzebują teraz spokoju."
+4. Mikroakcja (konkretna, natychmiastowa): „Zrób 10 minut przerwy od ekranów. Usiądź w ciszy, zamknij oczy."
+5. Streak counter: „🔥 7 dni z rzędu"
+6. Przycisk: „Wykonaj ponownie"
 
 **Elementy krytyczne:**
 - Wynik czytelny na telefonie bez scrollowania
@@ -153,12 +154,12 @@ Weryfikacja hipotezy nawykowej odbywa się w Etapie 2.
 
 ### Etap 1 — mierzalne od pierwszego dnia
 
-Metryki możliwe do śledzenia bez kont i backendu, przez GA4 i jeden przycisk feedbacku na ekranie wyniku:
+Metryki możliwe do śledzenia bez kont i backendu, przez GA4 i jeden przycisk feedbacku na ekranie wyniku. **Kanoniczne wartości docelowe: `docs/biznes/04-mvp-scope.md`.** Liczby poniżej muszą być zgodne z 04.
 
 | Metryka | Cel | Źródło danych |
 |---------|-----|---------------|
 | Landing → start formularza | > 60% | GA4 event: form_start |
-| Start → wynik (completion) | > 80% | GA4 event: result_shown |
+| Start → wynik (completion) | > 70% | GA4 event: result_shown |
 | Time-to-first-value | < 2 minuty | GA4: czas między pageview a result_shown |
 | Useful rating | > 60% | Przycisk „Czy to pomogło?" na ekranie wyniku |
 | Day 7 Return Rate | > 20% | GA4: returning users po 7 dniach |
@@ -195,7 +196,7 @@ Pełne rozwiązanie (opcjonalne powiadomienia) dostępne w Etapie 2 po założen
 ```
 Dziennie:
 □ Landing → start formularza: ___% (cel: >60%)
-□ Start → wynik: ___% (cel: >80%)
+□ Start → wynik: ___% (cel: >70%)
 □ Średni czas do wyniku: ___ sek (cel: <120)
 
 Tygodniowo:

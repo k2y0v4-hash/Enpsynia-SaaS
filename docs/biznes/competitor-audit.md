@@ -7,6 +7,10 @@
 
 ---
 
+> **Nota archiwalna:** Sugestie stacku technicznego i modelu MVP w tym dokumencie (sekcje "Recommendations", "Priority 2", "Tech suggestions", "MVP Scope") mają charakter porównawczy i historyczny. **Obowiązujący stack projektu** (React + Vite + Tailwind + Shadcn + Vercel) oraz zakres MVP są zdefiniowane w `AGENTS.md` i `docs/biznes/04-mvp-scope.md`. W razie sprzeczności — tamte dokumenty są nadrzędne.
+
+---
+
 ## Summary
 
 ### Problem

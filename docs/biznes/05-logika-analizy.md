@@ -221,7 +221,31 @@ Tekst mikroakcji jest gotowy do wyświetlenia w UI — bez przeróbek. Konkretny
 
 ---
 
-## 6. Uzasadnienie wyniku (tekst do UI)
+## 6. Podsumowanie stanu (tekst do UI)
+
+Jedno zdanie wyświetlane jako **pierwszy element ekranu wyniku**, bezpośrednio nad typem dnia. Opisuje co aktualnie dzieje się z użytkownikiem. Nie wyjaśnia dlaczego dostał dany typ (to robi sekcja 7). Nie jest diagnozą.
+
+**Forma:** krótka, adresowana bezpośrednio ("Czujesz się…", "Twoja…", "Jesteś…"), opisowa i neutralna.
+
+| Typ dnia | Tekst podsumowania stanu |
+|----------|--------------------------|
+| **Działania** | „Masz dziś wyraźnie więcej energii i sprawczości niż zwykle." |
+| **Wyciszenia** | „Czujesz się teraz przebodźcowany — zbyt dużo bodźców, za mało ciszy." |
+| **Odbudowy** | „Energia i sprawczość są dziś niskie — ciało i umysł potrzebują teraz zasilenia." |
+| **Kontaktu** | „Wyraźnie potrzebujesz dziś kontaktu z innymi — i masz na to zasoby." |
+| **Przeciążenia** | „Jesteś jednocześnie przebodźcowany i utknąłeś w analizie." |
+
+**Przypadek szczególny — Odbudowy jako fallback (wszystkie = 3):**
+> „Nie widać dziś wyraźnych przeciążeń ani szczególnie wysokich zasobów — dzień bez wyraźnego charakteru."
+
+**Relacja do sekcji 7:**
+- **Podsumowanie stanu** (ta sekcja) = co się z Tobą teraz dzieje — opisowe
+- **Uzasadnienie wyniku** (sekcja 7) = dlaczego dostałeś ten konkretny typ dnia — wyjaśniające
+- Oba elementy pojawiają się na ekranie wyniku jeden pod drugim, podsumowanie stanu pierwsze
+
+---
+
+## 7. Uzasadnienie wyniku (tekst do UI)
 
 Jedno zdanie wyświetlane bezpośrednio pod typem dnia. Wyjaśnia dlaczego użytkownik dostał ten wynik. Nie diagnoza — podpowiedź w ludzkim języku. Brak sformułowań diagnostycznych ("masz", "cierpisz", "problem").
 
@@ -238,7 +262,7 @@ Jedno zdanie wyświetlane bezpośrednio pod typem dnia. Wyjaśnia dlaczego użyt
 
 ---
 
-## 7. Przypadki testowe
+## 8. Przypadki testowe
 
 Do ręcznej weryfikacji przed wdrożeniem i po każdej zmianie logiki.
 
@@ -249,13 +273,13 @@ Do ręcznej weryfikacji przed wdrożeniem i po każdej zmianie logiki.
 | 3 | 2 | 5 | 1 | 1 | 2 | 3 | Wyciszenia | A (social=1) |
 | 4 | 3 | 4 | 3 | 4 | 3 | 2 | Wyciszenia | B (social=4) |
 | 5 | 1 | 2 | 1 | 2 | 1 | 2 | Odbudowy | A (energy=1) |
-| 6 | 2 | 2 | 2 | 2 | 2 | 2 | Odbudowy | B (energy=2→≥3 nie, więc A) |
+| 6 | 2 | 2 | 2 | 2 | 2 | 2 | Odbudowy | A (energy=2 ≤ 2) |
 | 7 | 3 | 2 | 2 | 5 | 3 | 2 | Kontaktu | B (energy=3) |
 | 8 | 4 | 2 | 3 | 5 | 4 | 2 | Kontaktu | A (energy=4) |
 | 9 | 2 | 5 | 2 | 2 | 2 | 5 | Przeciążenia | A (agency=2) |
 | 10 | 3 | 4 | 3 | 2 | 3 | 4 | Przeciążenia | B (agency=3) |
 | 11 | 3 | 3 | 3 | 3 | 3 | 3 | Odbudowy (fallback) | B (energy=3) |
-| 12 | 5 | 5 | 5 | 5 | 5 | 5 | Przeciążenia | A (agency=5→≥3, więc B) |
+| 12 | 5 | 5 | 5 | 5 | 5 | 5 | Przeciążenia | B (agency=5 ≥ 3) |
 | 13 | 5 | 4 | 5 | 5 | 5 | 4 | Przeciążenia | B (agency=5) |
 | 14 | 5 | 2 | 5 | 5 | 5 | 1 | Działania | A (movement=5) |
 | 15 | 1 | 1 | 1 | 1 | 1 | 1 | Odbudowy (fallback) | A (energy=1) |
@@ -265,12 +289,13 @@ Do ręcznej weryfikacji przed wdrożeniem i po każdej zmianie logiki.
 
 ---
 
-## 8. Decyzje otwarte przed implementacją
+## 9. Decyzje otwarte przed implementacją
 
 | # | Pytanie | Opcja domyślna (jeśli brak decyzji) |
 |---|---------|--------------------------------------|
 | 1 | Czy mikroakcja A/B wybierana jest przy każdym check-inie na nowo na podstawie bieżących wartości? | Tak — każdy check-in liczy od nowa |
 | 2 | Jeśli użytkownik robi dwa check-iny tego samego dnia z tym samym wynikiem — tę samą mikroakcję czy alternatywną? | Tę samą (deterministycznie) — rotacja dopiero w Etapie 2 z historią |
 | 3 | Czy tekst uzasadnienia (sekcja 6) jest widoczny od razu pod typem dnia, czy schowany za "dlaczego ten wynik"? | Od razu — jedno zdanie bezpośrednio pod typem |
-| 4 | Czy "Odbudowa jako fallback" (wszystkie=3) ma osobny tekst uzasadnienia czy taki sam jak Odbudowa z niskim energy/agency? | Osobny (zdefiniowany w sekcji 6) |
+| 4 | Kiedy używany jest special fallback text Odbudowy (sekcje 6 i 7)? | Wyłącznie gdy dokładnie wszystkie 6 wartości wejściowych = 3. Każde inne Odbudowy-via-KROK-5 (np. energy=3, agency=1, pozostałe różne) używa standardowego tekstu Odbudowy z sekcji 6 i 7. |
 | 5 | Czy funkcja zwraca też nazwę zmiennej pomocniczej użytej do wyboru mikroakcji (np. do console.log w trybie dev)? | Tak — do debugowania logiki |
+| 6 | Jaki jest interfejs funkcji `analyzeCheckIn()` w `analysisLogic.js`? | Wejście: `{ energy, overload, movement, social, agency, paralysis }` (każda wartość: integer 1–5). Wyjście: `{ dayType, summaryText, justificationText, microaction, microactionKey }` — gdzie `microactionKey` to `'A'` lub `'B'`. Funkcja obsługuje special fallback text wewnętrznie (sekcja 4 powyżej). |

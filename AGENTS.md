@@ -35,6 +35,29 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 ---
 
+## 📌 Source of Truth & Working Rules
+
+### Source of truth for implementation
+
+Implementację Etapu 1 należy prowadzić wyłącznie na podstawie:
+
+- [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md) — zakres, metryki, warunki przejścia do Etapu 2
+- [`docs/biznes/05-logika-analizy.md`](docs/biznes/05-logika-analizy.md) — algorytm, typy dnia, mikroakcje, teksty UI
+- [`docs/biznes/06-plan-implementacji.md`](docs/biznes/06-plan-implementacji.md) — fazy, zakres per faza, definicje ukończenia
+- `AGENTS.md` — stack, architektura, reguły kodowania
+
+Pozostałe dokumenty (`01`, `02`, `07`, `08`, `09`, `competitor-audit.md` itd.) mają charakter strategiczny, analityczny lub historyczny. Mogą dostarczać kontekstu, ale nie są źródłem bieżących decyzji implementacyjnych. W razie sprzeczności między nimi a powyższymi czterema — obowiązują powyższe cztery.
+
+### Working rule before coding
+
+Przed rozpoczęciem kodowania agent ma:
+
+1. **Przygotować plan prac** dla aktualnej fazy na podstawie `docs/biznes/06-plan-implementacji.md`
+2. **Nie pisać kodu** przed zatwierdzeniem planu przez właściciela projektu
+3. **Zgłosić każdą sprzeczność** między dokumentami source of truth przed implementacją — nie rozstrzygać samodzielnie
+
+---
+
 ## 🏗️ Tech Stack & Architecture
 
 ### Current Stack (MVP - Tier 1)
@@ -156,7 +179,7 @@ WITH CHECK (auth.uid() = user_id);
 | **Landing Page**   | Communicate value in <10 sec | Headline + 2-line value prop + CTA |
 | **Check-in Form**  | Collect user state           | 6 sliders with labels              |
 | **Progress Bar**   | Show completion              | "Question 2/6"                     |
-| **Result Card**    | Display recommendation       | Day type + micro-action + streak   |
+| **Result Card**    | Display recommendation       | Day type + uzasadnienie + micro-action + streak |
 | **Streak Counter** | Motivate return visits       | "🔥 7 days in a row!"              |
 
 ### Color Palette (Suggested)
@@ -259,7 +282,7 @@ const getSession = async () => {
 
 - **Functional components only** (no class components)
 - **Hooks for state management** (useState, useEffect)
-- **Custom hooks for reusable logic** (useAuth, useCheckIn)
+- **Custom hooks for reusable logic** (useCheckIn, useLocalStorage — Tier 1; useAuth dopiero w Tier 2)
 - **Prop validation** with TypeScript or PropTypes
 - **Component composition** over inheritance
 
@@ -301,7 +324,6 @@ const getSession = async () => {
 | Supabase Auth              | 🟡 Important | Magic Link flow          |
 | Database storage           | 🟡 Important | PostgreSQL with RLS      |
 | History view               | 🟢 Nice      | All past check-ins       |
-| Social replacement counter | 🟢 Nice      | "Replaced Instagram 15x" |
 
 ### Tier 3 Features (NEVER IMPLEMENT IN MVP)
 
@@ -333,8 +355,8 @@ enpsyneia-check-in/
 │   │   ├── ResultCard.jsx
 │   │   └── ProgressBar.jsx
 │   ├── hooks/
-│   │   ├── useLocalStorage.js
-│   │   └── useCheckIn.js
+│   │   ├── useLocalStorage.js   # odczyt i zapis localStorage (historia, streak)
+│   │   └── useCheckIn.js        # stan formularza + wywołanie analysisLogic; NIE zapisuje do localStorage
 │   ├── utils/
 │   │   ├── analysisLogic.js
 │   │   └── constants.js
@@ -355,15 +377,19 @@ enpsyneia-check-in/
 5. Agency level (1-5)
 6. Analysis paralysis (1-5)
 
-**Day Types (5 types):**
+**Day Types (5 types) — triggery skrócone, specyfikacja nadrzędna w `docs/biznes/05-logika-analizy.md`:**
 
-1. 🌟 **Dzień działania** (Action Day) - High energy, low overload
-2. 🌿 **Dzień wyciszenia** (Quiet Day) - Low energy, high overload
-3. 💪 **Dzień odbudowy** (Recovery Day) - Low energy, low movement need
-4. 👥 **Dzień kontaktu** (Contact Day) - High social need
-5. ⚡ **Dzień przeciążenia** (Overload Day) - High overload, high analysis paralysis
+1. 🌟 **Dzień Działania** — `energy ≥ 4 AND agency ≥ 3 AND overload ≤ 3`
+2. 🌿 **Dzień Wyciszenia** — `overload ≥ 4` (i `paralysis < 4`)
+3. 💪 **Dzień Odbudowy** — fallback; lub `energy ≤ 2 AND agency ≤ 2 AND overload ≤ 3`
+4. 👥 **Dzień Kontaktu** — `social ≥ 4 AND overload ≤ 3`
+5. ⚡ **Dzień Przeciążenia** — `overload ≥ 4 AND paralysis ≥ 4`
 
-**Micro-actions:** One concrete, immediate action based on day type
+> **Pełny algorytm (kolejność sprawdzania, konflikty, mikroakcje, teksty UI):** `docs/biznes/05-logika-analizy.md` — ta specyfikacja jest nadrzędna wobec skrótów powyżej. W razie sprzeczności obowiązuje 05.
+
+**Micro-actions:** One concrete, immediate action based on day type — full texts in `docs/biznes/05-logika-analizy.md` section 5
+
+**Function API (`analyzeCheckIn`):** Input: `{ energy, overload, movement, social, agency, paralysis }` (integers 1–5). Output: `{ dayType, summaryText, justificationText, microaction, microactionKey }`. Full spec in `docs/biznes/05-logika-analizy.md` section 9 (decision #6).
 
 ### localStorage Schema (Tier 1)
 

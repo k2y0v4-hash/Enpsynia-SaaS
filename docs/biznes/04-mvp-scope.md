@@ -59,7 +59,7 @@ Etap 2 startuje gdy spełniony jest co najmniej jeden z warunków:
 | Baza danych | PostgreSQL + RLS, zapis check-inów |
 | Historia pełna | Wszystkie check-iny przypisane do konta |
 | Cross-device sync | Historia dostępna na każdym urządzeniu |
-| Feedback loop | "Czy mikroakcja pomogła?" (jeden przycisk) |
+| Feedback loop | Zapis odpowiedzi "Czy mikroakcja pomogła?" do bazy (Supabase) — odrębny od Etap 1 GA4 feedback event; w Etapie 2 dane są trwałe i przypisane do konta |
 | Email (Resend) | Magic Link delivery |
 
 ### Tech stack
@@ -104,12 +104,15 @@ Poniższe elementy nie wchodzą do MVP. Decyzja nie podlega negocjacji bez zmian
 
 | Metryka | Cel |
 |---------|-----|
+| Landing → start formularza | > 60% użytkowników klika CTA |
 | Time-to-first-value | < 2 minuty od otwarcia do wyniku |
 | First use completion rate | > 70% użytkowników kończy formularz |
 | Day 7 return rate | > 20% użytkowników wraca po 7 dniach |
-| Useful rating | > 60% ocenia wynik jako użyteczny |
+| Useful rating | > 60% użytkowników którzy widzą ekran wyniku ocenia go jako użyteczny (mianownik: `result_shown` events w GA4) |
 
-Metryki mierzone przez Google Analytics 4 + opcjonalny przycisk "Czy to pomogło?" na ekranie wyniku.
+Metryki mierzone przez Google Analytics 4 + przycisk "Czy to pomogło?" na ekranie wyniku (Faza 5).
+
+> **Uwaga do Day 7 Return Rate:** GA4 nie rozróżnia niezalogowanych użytkowników niezawodnie na iOS Safari — mechanizm ITP może czyścić identyfikatory, zaniżając wynik. Metrykę należy traktować jako sygnał orientacyjny, a nie precyzyjny pomiar indywidualnych powrotów. Przy pierwszych 20–30 użytkownikach warto uzupełnić ją ręczną ankietą (1 pytanie: "czy wróciłeś po pierwszym użyciu?").
 
 ---
 

@@ -72,7 +72,7 @@ Zamiast śledzić Monthly Recurring Revenue, mierzymy:
 
 ---
 
-## 3. Virality Mechanics (Loops)
+## 3. Virality Mechanics (Loops) *(mechanizmy share i challenge — Etap 2+; w Etapie 1 dostępny wyłącznie streak counter)*
 
 ### Habit Loop
 
@@ -127,6 +127,8 @@ Każdy wynik (typ dnia + mikroakcja) powinien docelowo mieć przycisk **"Udostę
 6. Każde udostępnienie = bezpłatny reach + social proof
 
 ### B. Challenge / Streak system
+
+*(Badge, profil i leaderboard wymagają kont użytkowników — Etap 2+. Streak counter bez konta dostępny w Etapie 1.)*
 
 Dodaj element grywalizacji:
 
@@ -242,12 +244,11 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 - ✅ **Streak counter** - mechanizm nawykowy (localStorage)
 - ✅ **UTM params** na wszystkich linkach (track source)
 - ✅ **Google Analytics 4** (free) - podstawowe eventy
-- ✅ **Mailchimp** (free tier) - capture emails
 - ✅ **Social media accounts** - Twitter/X, LinkedIn, TikTok
 
 ### Rekomendowane (miesiąc 1-2):
 
-- 📧 **Newsletter signup** na stronie
+- 📧 **Newsletter signup + Mailchimp** (free tier) — element marketingowy, nie produktowy; poza zakresem implementacji Etapu 1; dodać po launchu jako aktywność dystrybucyjna
 - 📊 **"Built with" badge** - pokaż, że używasz określonych tech
 - 🔗 **Open source repo** (GitHub) - build in public
 - 📝 **Blog section** - SEO content
