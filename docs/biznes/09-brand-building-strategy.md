@@ -375,6 +375,10 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 | Messaging "vs" vs "instead of" | Który framing działa lepiej? |
 | Notification timing | Kiedy przypomnienie najskuteczniejsze? |
 
+### Fallback positioning
+
+Hipoteza nawykowa ("zamiast social media") jest jedną z głównych osi komunikacji na start, ale pozostaje hipotezą do walidacji — nie założeniem produktowym. Jeśli dane z Etapu 1 nie potwierdzą, że użytkownicy traktują Enpsyneia jako zamiennik social media, główną osią wartości staje się **szybkie wyjście z paraliżu decyzyjnego**: użytkownik nie wie, co zrobić z sobą teraz — aplikacja w mniej niż 2 minuty daje jedną konkretną mikroakcję. Ta wartość jest niezależna od hipotezy nawykowej i nie wymaga zmiany produktu — wymaga jedynie zmiany komunikacji.
+
 ---
 
 ## 📊 PODSUMOWANIE: Brand Building Metrics
