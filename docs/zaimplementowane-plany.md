@@ -1,8 +1,16 @@
 # Zaimplementowane plany
 
+> **NIEAKTUALNY — plik archiwalny.**
+> Ten dokument opisuje plan z 2026-03-31, który nigdy nie został zrealizowany i referuje zarchiwizowane wersje specyfikacji.
+> **Aktualny plan implementacji:** [`docs/biznes/06-plan-implementacji.md`](biznes/06-plan-implementacji.md)
+> **Aktualny scope MVP:** [`docs/biznes/04-mvp-scope.md`](biznes/04-mvp-scope.md) — formularz ma **6 pytań**, nie 4.
+> Poniższa treść zachowana wyłącznie jako materiał historyczny. Nie traktuj jej jako aktualnych instrukcji.
+
+---
+
 ## 2026-03-31 - Bootstrap aplikacji (szkielet + landing page)
 
-**Status:** 🔄 W trakcie
+**Status:** ~~🔄 W trakcie~~ — **ARCHIWALNE, zastąpione przez 06-plan-implementacji.md**
 
 **Opis:** Utworzenie podstawowego szkieletu aplikacji React z Tailwind CSS i Shadcn UI, wraz z działającą stroną początkową (landing page).
 
