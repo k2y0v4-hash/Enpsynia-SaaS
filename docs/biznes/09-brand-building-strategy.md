@@ -15,13 +15,13 @@
 | **Jednostka wartości** | Virality + Brand Awareness + Portfolio |
 | **Cel biznesowy** | Budowanie marki osobistej → przyszła monetyzacja (content/coaching/B2B) |
 | **MRR Target** | $0 (MVP) → przyszłe przychody pośrednie |
-| **NOWE: Mechanizm** | Habit loop = viral growth potential |
+| **Mechanizm nawykowy** | Habit loop jako hipoteza wzrostu |
 
 ---
 
 ## 1. Fundamentalna Zmiana Paradygmatu
 
-### NOWY MODEL: Brand First
+### Model: Brand First
 
 Tradycyjny SaaS monetyzuje **użytkowników** (per seat/feature/usage).
 
@@ -36,7 +36,7 @@ Tradycyjny SaaS monetyzuje **użytkowników** (per seat/feature/usage).
 │                                                             │
 │  Zarabiamy Na Marku, Nie Na Produkt                        │
 │                                                             │
-│  ⚡ NOWE: Mechanizm nawykowy = viral potential             │
+│  ⚡ Mechanizm nawykowy = hipoteza viral potential          │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -54,27 +54,27 @@ Tradycyjny SaaS monetyzuje **użytkowników** (per seat/feature/usage).
 
 ## 2. Brand Building Metrics (zamiast MRR)
 
-### NOWE - metryki z mechanizmem nawykowym
+### Metryki
 
 Zamiast śledzić Monthly Recurring Revenue, mierzymy:
 
-| Metryka | Cel (6 miesięcy) | NOWE | Narzędzie |
-|---------|------------------|------|-----------|
-| **Total Users** | 1,000+ | | Google Analytics |
-| **Weekly Active Users** | 200+ | | GA4 events |
-| **NOWE: Habit Rate** | >30% | ✅ | Supabase |
-| **NOWE: Alternative to Social** | >40% | ✅ | Ankieta |
-| **Shares/Virality Rate** | 10%+ | | UTM params + GA |
-| **Social Mentions** | 50+ | | Google Alerts, manual |
-| **Email Subscribers** | 100+ | | Mailchimp (free tier) |
-| **Inbound Links** | 10+ | | Ahrefs free / manual |
-| **Brand Mentions** | 50+ | | Social listening |
+| Metryka | Cel (6 miesięcy) | Narzędzie |
+|---------|------------------|-----------|
+| **Total Users** | 1,000+ | Google Analytics |
+| **Weekly Active Users** | 200+ | GA4 events |
+| **Habit Rate** | >30% (hipoteza) | Ankieta w Etapie 2 |
+| **Alternative to Social** | >40% (hipoteza) | Ankieta w Etapie 2 |
+| **Shares/Virality Rate** | 10%+ | UTM params + GA |
+| **Social Mentions** | 50+ | Google Alerts, manual |
+| **Email Subscribers** | 100+ | Mailchimp (free tier) |
+| **Inbound Links** | 10+ | Ahrefs free / manual |
+| **Brand Mentions** | 50+ | Social listening |
 
 ---
 
 ## 3. Virality Mechanics (Loops)
 
-### NOWE - Habit Loop jako mechanizm wzrostu
+### Habit Loop
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -91,7 +91,7 @@ Zamiast śledzić Monthly Recurring Revenue, mierzymy:
 │                                                 │ siebie"     │   │
 │                                                 └─────────────┘   │
 │                                                                     │
-│   NOWE: Share loop                                                   │
+│   Share loop (Etap 2+)                                               │
 │   ┌─────────┐            ┌─────────────┐        ┌─────────────┐   │
 │   │ Wynik   │ ────────▶  │ "Udostępnij" │ ────▶  │ Social      │   │
 │   │ Mikroakcja│           │             │        │ Proof       │   │
@@ -100,9 +100,9 @@ Zamiast śledzić Monthly Recurring Revenue, mierzymy:
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### A. Share wyniku check-in
+### A. Share wyniku check-in (planowane po Etapie 2 — poza zakresem Etapu 1 i Etapu 2)
 
-Każdy wynik (typ dnia + mikroakcja) powinien mieć przycisk **"Udostępnij"**:
+Każdy wynik (typ dnia + mikroakcja) powinien docelowo mieć przycisk **"Udostępnij"**:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -113,8 +113,6 @@ Każdy wynik (typ dnia + mikroakcja) powinien mieć przycisk **"Udostępnij"**:
 │  [ 🔄 Wykonaj ponownie ]    [ 📤 Udostępnij ]             │
 │                            → Generuje social proof        │
 │                                                             │
-│  NOWE:                                                    │
-│  ───────────────                                          │
 │  🔥 Streak: 7 dni                                         │
 │  💪 Zastąpiłem 15x social media                          │
 └─────────────────────────────────────────────────────────────┘
@@ -150,18 +148,18 @@ Dodaj element grywalizacji:
 
 ### Kanały akwizycji (bez budżetu reklamowego)
 
-| Kanał | NOWE | Taktyka | Expected Impact |
-|-------|------|---------|-----------------|
-| **Twitter/X** | | Thread o filozofii enpsynei + link do app | Średni |
-| **NOWE: TikTok/Reels** | ✅ | Short-form: "zamiast scrollować - używam tego" | Wysoki |
-| **Reddit** | | Post w r/wellness, r/MentalHealth, r/productivity | Średni |
-| **LinkedIn** | | "Building in public" - posty o projekcie | Średni |
-| **Content Blog** | | SEO artykuły o enpsynerii (keyword: "co to jest enpsyneia") | Wysoki (długoterminowy) |
-| **Newsletter** | | Mailchimp free - "Enpsyneia Weekly" | Średni |
-| **Podcast appearances** | | Gość w wellness podcasts | Wysoki |
-| **Cross-promotion** | | Wymiana z innymi free apps | Niski-średni |
+| Kanał | Taktyka | Expected Impact |
+|-------|---------|-----------------|
+| **Twitter/X** | Thread o filozofii enpsynei + link do app | Średni |
+| **TikTok/Reels** | Short-form: "zamiast scrollować - używam tego" | Wysoki |
+| **Reddit** | Post w r/wellness, r/MentalHealth, r/productivity | Średni |
+| **LinkedIn** | "Building in public" - posty o projekcie | Średni |
+| **Content Blog** | SEO artykuły o enpsynerii (keyword: "co to jest enpsyneia") | Wysoki (długoterminowy) |
+| **Newsletter** | Mailchimp free - "Enpsyneia Weekly" | Średni |
+| **Podcast appearances** | Gość w wellness podcasts | Wysoki |
+| **Cross-promotion** | Wymiana z innymi free apps | Niski-średni |
 
-### NOWE: Content Strategy
+### Content Strategy
 
 **Kluczowe tematy (content marketing):**
 
@@ -177,7 +175,7 @@ Dodaj element grywalizacji:
 
 ## 5. Future Monetization Pathways
 
-### NOWE - rozszerzone ścieżki
+### Ścieżki monetyzacji
 
 Model jest darmowy TERAZ, ale buduje fundament dla przyszłych przychodów:
 
@@ -204,14 +202,14 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 - Free app generuje listę email
 - Newsletter: "Enpsyneia Weekly" z wartością (tips, insights)
 - Monetizacja: affiliate links (wellness produkty), sponsored content
-- **NOWE:** Newsletter jako "digital wellness guide"
+- Newsletter jako "digital wellness guide"
 
 ### Pathway B: Coaching / Konsultacje (rok 2)
 
 - Zbudujesz reputację jako "ekspert od enpsynei"
 - Oferujesz 1:1 coaching lub warsztaty
 - Model: $50-150/hour session
-- **NOWE:** "Digital Wellness Coach" jako specjalizacja
+- "Digital Wellness Coach" jako specjalizacja
 
 ### Pathway C: B2B Employee Wellness (rok 2-3)
 
@@ -219,16 +217,16 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 - Sprzedaj firmom jako benefit pracowniczy
 - Wymaga: konta użytkowników, dashboard HR, SSO
 - Model: $2-5/user/month
-- **NOWE:** "Enpsyneia for Teams"
+- "Enpsyneia for Teams"
 
 ### Pathway D: Premium Content / Kurs (rok 2)
 
 - Darmowa app = lead magnet
 - Płatny kurs: "Enpsyneia Masterclass" ($97-297)
 - lub e-book: "Praktyczny przewodnik po enpsynerii"
-- **NOWE:** "Digital Detox Blueprint"
+- "Digital Detox Blueprint"
 
-### Pathway E: Brand Partnerships (NOWE)
+### Pathway E: Brand Partnerships
 
 - Partnerstwo z markami wellness (Headspace, Calm kontra Enpsyneia)
 - Afiliacje z produktami "digital detox"
@@ -236,40 +234,12 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 
 ---
 
-## 6. Model Z Kontami vs. Bez Kont
-
-### NOWE - Supabase (Z kontami)
-
-| Aspekt | Status |
-|--------|--------|
-| **Koszt** | $0 (Supabase Free Tier) |
-| **Skalowalność** | Wysoka |
-| **Dane** | Supabase (analiza wzorców) |
-| **Monetyzacja** | Freemium → Premium (v2) |
-| **Virality** | Referrals + social features |
-| **Retention** | Streak counter + powiadomienia |
-| **Support** | Średni |
-
-### Supabase Features (do wykorzystania)
-
-| Feature | Zastosowanie |
-|---------|-------------|
-| Auth | Konta użytkowników |
-| Database | Historia check-inów |
-| Realtime | Powiadomienia |
-| Edge Functions | Logika rekomendacji |
-| Storage | Profile images |
-
----
-
 ## 7. Go-Live Checklist (Brand Edition)
 
 ### Wymagane (przed launch):
 
-- ✅ **Landing page** (Carrd lub GitHub Pages) z live demo
-- ✅ **Supabase setup** - konta użytkowników
-- ✅ **Share buttons** na każdym wyniku (Twitter, LinkedIn, copy link)
-- ✅ **Streak counter** - mechanizm nawykowy
+- ✅ **Landing page** z live demo
+- ✅ **Streak counter** - mechanizm nawykowy (localStorage)
 - ✅ **UTM params** na wszystkich linkach (track source)
 - ✅ **Google Analytics 4** (free) - podstawowe eventy
 - ✅ **Mailchimp** (free tier) - capture emails
@@ -296,14 +266,14 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 
 ### Brand Building Risks
 
-| Risk | Severity | NOWE | Mitigation |
-|------|----------|------|------------|
-| **Zero revenue** | 🔴 Wysoka | | Akceptuj - cel = learning + portfolio + brand |
-| **Niska wartość portfolio** | 🟡 Średnia | | Dokumentuj journey (build in public) |
-| **Zniknięcie użytkowników** | 🟡 Średnia | ✅ | Streak system + email retention |
-| **NOWE: Mechanizm nie zadziała** | 🟡 Średnia | ✅ | Wymaga testów i iteracji |
-| **NOWE: Użytkownicy wracają do social media** | 🟡 Średnia | ✅ | Silny messaging + streak rewards |
-| **Konkurencja skopiuje** | 🟢 Niska | | Enpsyneia = trademark + first mover |
+| Risk | Severity | Mitigation |
+|------|----------|------------|
+| **Zero revenue** | 🔴 Wysoka | Akceptuj - cel = learning + portfolio + brand |
+| **Niska wartość portfolio** | 🟡 Średnia | Dokumentuj journey (build in public) |
+| **Zniknięcie użytkowników** | 🟡 Średnia | Streak system + email retention |
+| **Mechanizm nawykowy nie zadziała** | 🟡 Średnia | Wymaga testów i iteracji |
+| **Użytkownicy wracają do social media** | 🟡 Średnia | Silny messaging + streak rewards |
+| **Konkurencja skopiuje** | 🟢 Niska | Enpsyneia = trademark + first mover |
 
 ### Mitigations
 
@@ -311,7 +281,7 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 2. **Retention:** Email newsletter + streak counter + powiadomienia
 3. **Portfolio value:** Dokumentuj wszystko - blog posts, tweets, repo
 4. **Trademark:** Rozważ zarejestrowanie "Enpsyneia" jako trademark (tanie w PL)
-5. **NOWE: Mechanizm nawykowy:** Testuj, iteruj, pytaj użytkowników
+5. **Mechanizm nawykowy:** Testuj, iteruj, pytaj użytkowników
 
 ---
 
@@ -323,7 +293,7 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 □ Stwórz landing page z waitlist
 □ Post na Twitter/X: "Buduję aplikację do enpsynei - feedback?"
 □ Pokaż MVP 3-5 znajomym (soft launch)
-□ NOWE: Nagraj teaser TikTok "co zamiast scrollować"
+□ Nagraj teaser TikTok "co zamiast scrollować"
 ```
 
 ### Faza 2: Soft Launch (tydzień 1-2)
@@ -333,7 +303,7 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 □ Post na Reddit (r/PolishOS, r/Wellness)
 □ Dodaj do Product Hunt (jeśli są jeszcze free submissions)
 □ Blog post: "Czym jest enpsyneia"
-□ NOWE: TikTok/Reels "mój pierwszy streak"
+□ TikTok/Reels "mój pierwszy streak"
 ```
 
 ### Faza 3: Growth (miesiąc 1-3)
@@ -341,7 +311,7 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 ```
 □ Newsletter: "Enpsyneia Update #1"
 □ Thread na Twitter: "Czego nauczyłem się od 100 użytkowników"
-□ NOWE: "Challenge" - "30 dni bez nawykowego scrollowania"
+□ "Challenge" - "30 dni bez nawykowego scrollowania"
 □ Rozszerz content (2x blog posts/miesiąc)
 □ Network: 2-3 podcast pitches
 ```
@@ -352,7 +322,7 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 □ Sprawdź: Czy ludzie pytają o premium?
 □ Testuj: "Chcesz więcej? Napisz na [email] - possible future offering"
 □ B2B outreach: 5 firm, propozycja "employee wellness pilot"
-□ NOWE: Czy brand ma wartość? (Czy ktoś Cię zna?)
+□ Czy brand ma wartość? (Czy ktoś Cię zna?)
 ```
 
 ---
@@ -361,13 +331,12 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 
 ### Co MUSISZ zrobić (MVP):
 
-1. **100% Free** - bez paywalla, bez konta (opcjonalnie Supabase)
-2. **Share button** na każdym wyniku
-3. **Streak counter** - mechanizm nawykowy
-4. **UTM tracking** na wszystkich linkach
-5. **Newsletter signup** (Mailchimp free)
-6. **Build in public** - dokumentuj journey
-7. **NOWE: TikTok/Reels** - short-form content
+1. **100% Free** - bez paywalla, bez konta w Etapie 1 (konta: Etap 2, Supabase)
+2. **Streak counter** - mechanizm nawykowy (localStorage)
+3. **UTM tracking** na wszystkich linkach
+4. **Newsletter signup** (Mailchimp free)
+5. **Build in public** - dokumentuj journey
+6. **TikTok/Reels** - short-form content
 
 ### Czego NIE robić:
 
@@ -382,11 +351,11 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 - ✅ Content → paid course/e-book
 - ✅ Reputation → coaching
 - ✅ Traction → B2B wellness contracts
-- ✅ NOWE: Brand → speaking opportunities
+- ✅ Brand → speaking opportunities
 
 ---
 
-## 11. NOWE: Mechanizm Nawykowy - Kluczowe Wiadomości
+## 11. Mechanizm nawykowy — komunikacja
 
 ### Messaging (jak komunikować mechanizm nawykowy)
 
@@ -403,23 +372,8 @@ MVP (rok 1)          v2 (rok 2)           v3 (rok 3)
 | Test | Hipoteza |
 |------|----------|
 | Streak counter on/off | Czy streak zwiększa retention? |
-| Share button placement | Gdzie najlepiej umieścić? |
 | Messaging "vs" vs "instead of" | Który framing działa lepiej? |
 | Notification timing | Kiedy przypomnienie najskuteczniejsze? |
-
----
-
-## 12. Pytanie Zamknięcia
-
-Masz już:
-- ✅ Live app (MVP - do zbudowania z Supabase)
-- ✅ Landing page (do stworzenia)
-- ✅ Konta społecznościowe (Twitter/X, LinkedIn, TikTok)
-- ✅ NOWE: Mechanizm nawykowy (do wdrożenia)
-
-Jeśli tak → **Możemy przejść do GTM Strategy** (jak dotrzeć do pierwszych 100 użytkowników).
-
-Jeśli potrzebujesz pomocy z **konkretnymi share buttons, streak counter lub Supabase setup** → Mogę wskazać techniczne rozwiązania.
 
 ---
 
@@ -436,4 +390,3 @@ Jeśli potrzebujesz pomocy z **konkretnymi share buttons, streak counter lub Sup
 
 ---
 
-*Strategia wygenerowana w ramach workflow WF_Brand_Building_Strategy (zaktualizowana wersja)*

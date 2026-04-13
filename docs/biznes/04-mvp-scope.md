@@ -89,7 +89,7 @@ Poniższe elementy nie wchodzą do MVP. Decyzja nie podlega negocjacji bez zmian
 
 - Powiadomienia push
 - Dark mode
-- Share buttons / udostępnianie wyniku
+- Share buttons / udostępnianie wyniku — planowane po Etapie 2, nie wchodzą ani do Etapu 1, ani do Etapu 2
 - Obserwacje wzorców i wykresy
 - Personalizacja rekomendacji
 - OAuth (Google, GitHub)

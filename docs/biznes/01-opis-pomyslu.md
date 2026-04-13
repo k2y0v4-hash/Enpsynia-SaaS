@@ -2,7 +2,7 @@
 
 ## Status dokumentu
 
-
+Zaktualizowany: 2026-04-12. Podstawa: [`04-mvp-scope.md`](04-mvp-scope.md), [`03-decision.md`](03-decision.md).
 
 ## Nazwa projektu
 
@@ -24,25 +24,23 @@ Na podstawie odpowiedzi aplikacja generuje prosty wynik składający się z trze
 
 Najważniejszą wartością aplikacji nie jest sam opis samopoczucia, lecz szybkie przełożenie samoobserwacji na praktyczne działanie. Dzięki temu użytkownik po kilku - kilkudziesięciu sekundach otrzymuje konkretną podpowiedź, co może zrobić tu i teraz.
 
-
 ---
 
-###  Główny cel aplikacji
+### Główny cel aplikacji
 
 Głównym celem aplikacji jest wspieranie użytkownika w odzyskiwaniu orientacji we własnym stanie, przerywaniu automatycznych reakcji i podejmowaniu małych, adekwatnych działań na tu i teraz. Na poziomie strategicznym aplikacja ma również pełnić funkcję praktycznego punktu wejścia do projektu Enpsyneia, wzmacniając jego rozpoznawalność i budując długofalową relację użytkownika z tą ideą.
 
-
 ---
 
-### pobocznie - nowy mechanizm nawykowy (Anti-Social Media)
+### Mechanizm nawykowy — hipoteza do walidacji
 
-**Zmiana:** Aplikacja ma stać się NAWYKOWĄ alternatywą dla nawykowego sięgania po media społecznościowe, gry i inne destrukcyjne nawyki.
+**Kierunek:** Aplikacja może stać się nawykową alternatywą dla nawykowego sięgania po media społecznościowe, gry i inne destrukcyjne nawyki.
 
 **Uzasadnienie:**
 - Użytkownik sięga po telefon bezmyślnie (scrollowanie, sprawdzanie powiadomień)
 - Zamiast "nic nie robienia" - aplikacja oferuje moment refleksji
 - Z czasem użytkownik ZAMIAST odpalać Instagram odpala aplikację
-- To nie jest "feature" - to CORE MECHANIC
+- To hipoteza do walidacji na realnych użytkownikach — nie założenie produktowe.
 
 **Jak to działa:**
 1. Użytkownik odczuwa pustkę/nudę → automatycznie sięga po telefon
@@ -53,13 +51,13 @@ Głównym celem aplikacji jest wspieranie użytkownika w odzyskiwaniu orientacji
 
 ---
 
-### 4. Cel poboczny: Redukcja social media
+### Cel poboczny: Redukcja social media
 
-**Zmiana:** Dla wielu użytkowników celem pobocznym (być może pierwszoplanowym z czasem) jest rezygnacja lub zmniejszenie zaangażowania w media społecznościowe.
+Dla wielu użytkowników celem pobocznym (być może pierwszoplanowym z czasem) jest rezygnacja lub zmniejszenie zaangażowania w media społecznościowe.
 
 **Mechanizm:**
 - Aplikacja nie mówi "nie korzystaj z social media"
-- Aplikacja oferuje LEPSZĄ alternatywę
+- Aplikacja oferuje lepszą alternatywę
 - Z czasem użytkownik sam wybiera aplikację zamiast social media
 - Nie walka z uzależnieniem, lecz zastąpienie zdrowszym nawykiem
 
@@ -67,7 +65,7 @@ Głównym celem aplikacji jest wspieranie użytkownika w odzyskiwaniu orientacji
 
 ## Problem, na który odpowiada projekt
 
-### Problem pierwotny (bez zmian)
+### Problem pierwotny
 
 W codziennym życiu wiele osób funkcjonuje pod wpływem przeciążenia informacyjnego, nadmiaru bodźców i stałej presji działania. W takich warunkach łatwo utracić orientację we własnym stanie i potrzebach. Człowiek często nie wie, czy bardziej potrzebuje ruchu, odpocznienia, wyciszenia, samotności, czy może lekkiego kontaktu z drugą osobą. Zamiast tego działa automatycznie, odkłada decyzje albo wpada w nadmierną analizę.
 
@@ -81,25 +79,23 @@ Dodatkowy problem: Nawykowe sięganie po telefon bez konkretnego celu. Użytkown
 - Scrolluje social media lub gra
 - Po 30 minutach: poczucie straty czasu, wina, zmęczenia
 
-**Rozwiązanie:** Enpsyneia jako anchorski nawyk - zamiast bezmyślnego scrollowania, użytkownik wykonuje szybki check-in i otrzymuje konkretne działanie.
-
--
+**Rozwiązanie:** Enpsyneia jako anchorski nawyk — zamiast bezmyślnego scrollowania, użytkownik wykonuje szybki check-in i otrzymuje konkretne działanie.
 
 ---
 
 ## Grupa docelowa
 
-### Główna grupa (rozszerzona)
+### Główna grupa
 
 Aplikacja jest skierowana do osób, które:
 
-1. **Czują się przebodźcowane lub przeciążone** - główna grupa bez zmian
-2. **Mają trudność z rozpoznaniem, czego w danym momencie potrzebują** - główna grupa bez zmian
-3. **Mają skłonność do nadmiernego analizowania zamiast przechodzenia do działania** - główna grupa bez zmian
-4. **Chcą w prosty sposób poprawić codzienną równowagę i samoregulację** - główna grupa bez zmian
-5. **CHCĄ OGRANICZYĆ KORZYSTANIE Z SOCIAL MEDIA** - NOWA PODGRUPA
+1. **Czują się przebodźcowane lub przeciążone**
+2. **Mają trudność z rozpoznaniem, czego w danym momencie potrzebują**
+3. **Mają skłonność do nadmiernego analizowania zamiast przechodzenia do działania**
+4. **Chcą w prosty sposób poprawić codzienną równowagę i samoregulację**
+5. Chcą ograniczyć korzystanie z social media
 
-### NOWA PODGRUPA: "Social Media Detox Seekers"
+### Podgrupa: użytkownicy szukający alternatywy dla social media
 
 | Element | Opis |
 |---------|------|
@@ -119,15 +115,13 @@ Centralnym założeniem aplikacji jest odpowiedź na pytanie:
 
 Projekt opiera się na przekonaniu, że w wielu sytuacjach człowiek nie potrzebuje rozbudowanego raportu ani długiego opisu swojego stanu, lecz prostego rozpoznania i jednej sensownej sugestii działania. Dzięki temu korzystanie z aplikacji może stać się mikrorytuałem podejmowanym kilka razy dziennie, a nie tylko okazjonalnym wpisywaniem danych.
 
-**NOWE - Warstwa nawykowa:**
-
-Dodatkowo, aplikacja ma być "anchor app" - aplikacja, którą użytkownik odpala automatycznie, gdy:
+Dodatkowo, aplikacja ma być "anchor app" — aplikacja, którą użytkownik odpala automatycznie, gdy:
 - Czuje nudę
 - Chce "zabić czas"
 - Odczuwa pustkę
 - Potrzebuje "coś zrobić na telefonie"
 
-Zamiast Instagram → Enpsyneia. Zamiast scrollowania → refleksji i działania.
+Zamiast Instagram → Enpsyneia. Zamiast scrollowania → refleksja i działanie.
 
 ---
 
@@ -145,10 +139,7 @@ Typ dnia nie powinien być traktowany jako ozdobna etykieta ani główny rezulta
 
 Trzeci element wyniku stanowi jedna główna mikroakcja, czyli bardzo prosta sugestia działania możliwa do wykonania natychmiast i bez dużego wysiłku organizacyjnego. Jej celem nie jest rozwiązanie całego problemu użytkownika, lecz przerwanie automatyzmu, obniżenie chaosu decyzyjnego i ułatwienie wykonania pierwszego małego kroku adekwatnego do aktualnego stanu. Mikroakcja powinna być krótka, konkretna, łatwa do zrozumienia i możliwa do wykonania od razu w bieżących warunkach. Może dotyczyć ruchu, ograniczenia bodźców, prostego działania manualnego, krótkiego kontaktu z drugą osobą, zmiany otoczenia albo świadomego zatrzymania. Przykładami takich mikroakcji mogą być krótki spacer bez telefonu, kilka minut lekkiego ruchu, odłożenie ekranu na określony czas, wykonanie jednej bardzo prostej czynności fizycznej, przewietrzenie pokoju, napicie się wody albo napisanie krótkiej wiadomości do bezpiecznej osoby. Najważniejsze jest to, aby mikroakcja była dostosowana do rozpoznanej potrzeby użytkownika i stanowiła realny most między chwilowym rozpoznaniem stanu a bardziej intencjonalnym działaniem.
 
-
 Użytkownik początkowo nie musi zakładać konta, aby skorzystać z aplikacji. Pierwsze użycie ma być możliwie szybkie, lekkie i pozbawione zbędnych barier, tak aby użytkownik mógł od razu przejść do check inu i otrzymać użyteczną wskazówkę. Dzięki temu aplikacja zachowuje niski próg wejścia i pozwala najpierw doświadczyć jej wartości w praktyce. Możliwość założenia konta może być dostępna od razu dla osób, które chcą rozpocząć pełniejsze korzystanie od początku, jednak nie powinna być wymagana na starcie. Dopiero po wielokrotnym skorzystaniu z aplikacji użytkownik może otrzymać sugestię utworzenia konta, jeśli wyraźnie widać, że wraca do narzędzia i czerpie z niego wartość. W takiej sytuacji konto staje się naturalnym kolejnym krokiem, umożliwiającym zachowanie historii, synchronizację danych, bardziej długofalowe śledzenie wzorców oraz stopniowe pogłębianie relacji z aplikacją i z samym projektem Enpsyneia.
-
-**NOWE - Integracja z mechanizmem nawykowym:**
 
 | Moment | Co się dzieje |
 |--------|---------------|
@@ -157,7 +148,7 @@ Użytkownik początkowo nie musi zakładać konta, aby skorzystać z aplikacji. 
 | 30 sekund check-in | (cue) |
 | Mikroakcja | (response) |
 | Wykonanie mikroakcji | (reward) |
-| Powrót do pracy/życia | ( continuation) |
+| Powrót do pracy/życia | (continuation) |
 
 ---
 
@@ -169,10 +160,8 @@ Dodatkowo po wykonaniu mikroakcji użytkownik może zaznaczyć, czy rekomendacja
 
 Po kilku dniach lub tygodniach użytkownik może też zobaczyć krótkie obserwacje dotyczące powtarzających się wzorców, na przykład częstego przeciążenia, częstej potrzeby ruchu albo tendencji do utknięcia w analizie. Zwiększa to poczucie sensu korzystania z aplikacji i wspiera autorefleksję.
 
-**NOWE - Warstwa nawykowa:**
-
-Dodatkowe elementy angażujące:
-- **Streak counter:** "Dni z rzędu - ile razy wybrałeś Enpsyneia zamiast social media"
+Dodatkowe elementy angażujące (hipoteza do walidacji):
+- **Streak counter:** "Dni z rzędu — ile razy wybrałeś Enpsyneia zamiast social media"
 - **"Zastąpione nawyki":** Licznik pokazujący ile razy użytkownik wybrał aplikację zamiast scrollowania
 - **Poranna/wieczorna rutyna:** Sugestie kiedy używać aplikacji (trigger times)
 
@@ -180,59 +169,35 @@ Dodatkowe elementy angażujące:
 
 ## Najważniejsze funkcjonalności
 
-### Tier 1 (MVP - Must Have)
+Aktualny zakres MVP definiuje [`docs/biznes/04-mvp-scope.md`](04-mvp-scope.md).
 
-1. Krótki formularz check in
+### Etap 1 (MVP — localStorage, bez konta)
+
+1. Krótki formularz check-in
 2. Analiza odpowiedzi na podstawie prostych reguł
 3. Wyświetlenie typu dnia
 4. Jedna główna rekomendacja działania
-5. System kont użytkowników (Supabase Auth)
-6. Zapisywanie wpisów na koncie
-7. Historia wyników
+5. Streak counter (lokalny, przechowywany w przeglądarce)
+6. Responsywność mobilna
 
-### Tier 2 (Rozszerzenie - Should Have)
+Aplikacja w Etapie 1 działa bez konta. Dane są przechowywane lokalnie w przeglądarce — w tym historia ostatnich 5 wpisów jako element lokalnej pamięci między sesjami.
 
-1. Ocena rekomendacji (feedback loop)
-2. Obserwacje wzorców (np. "często masz dzień przeciążenia")
-3. Mechanizm nawykowy - Streak counter
+### Etap 2 (po walidacji Etapu 1 — Supabase)
+
+1. System kont i synchronizacja danych (Supabase Auth)
+2. Ocena rekomendacji (feedback loop)
+3. Obserwacje wzorców (np. "często masz dzień przeciążenia")
 4. "Zastąpione nawyki" licznik
 5. Powiadomienia (trigger times)
 
-### Tier 3 (Przyszłość - Nice to Have)
+### Etap 3 (Przyszłość)
 
 1. Poranne/wieczorne rutyny
 2. Widget na ekranie głównym
 3. Więcej typów dnia
 4. Personalizacja mikroakcji
 
----
-
-## NOWA Warstwa Techniczna: System Kont
-
-### Architektura (Supabase)
-
-| Component | Wybór | Koszt |
-|-----------|-------|-------|
-| Frontend | React | $0 |
-| Styling | Tailwind CSS + Shadcn UI | $0 |
-| Backend/Auth | Supabase | $0 (Free Tier) |
-| Baza danych | Supabase  | $0 (Free Tier) |
-| Hosting | 
-
-### Flow Autentykacji
-
-1. Użytkownik wpisuje e-mail
-2. System wysyła Magic Link (Supabase)
-3. Kliknięcie linka = automatycznie zalogowany
-4. Na innym urządzeniu: ponownie Magic Link
-
-**Zalety:**
-- Bez hasła (mniej friction)
-- Bezpieczne
-- Gotowe rozwiązanie Supabase
-- Możliwość przyszłej synchronizacji
-
----
+Architektura i etapowanie techniczne są opisane w `AGENTS.md` oraz [`docs/biznes/04-mvp-scope.md`](04-mvp-scope.md).
 
 ---
 
@@ -246,7 +211,7 @@ Po drugie aplikacja opiera się na napięciach między różnymi stanami i potrz
 
 Po trzecie najważniejszym rezultatem nie jest raport, lecz jedna konkretna mikroakcja, która ma pomóc użytkownikowi podjąć lepszą decyzję w danym momencie.
 
-Po czwarte (NOWE) aplikacja jest zaprojektowana jako NAWYKOWA alternatywa dla social media - to unikalny mechanizm na rynku.
+Po czwarte, aplikacja jest projektowana jako potencjalna nawykowa alternatywa dla social media — hipoteza wyróżnikowa do walidacji.
 
 Dzięki temu projekt jest prosty technicznie, ale jednocześnie posiada własny, wyraźny punkt ciężkości i praktyczną użyteczność.
 
@@ -258,7 +223,7 @@ Użytkownik zaznacza, że ma niski poziom energii, wysokie przeciążenie bodźc
 
 W innej sytuacji użytkownik może zaznaczyć średnią energię, niskie przeciążenie i wysoką potrzebę kontaktu. Aplikacja rozpoznaje dzień kontaktu i sugeruje wykonanie krótkiego telefonu lub napisanie do jednej przyjaznej osoby.
 
-**NOWE - Przykład mechanizmu nawykowego:**
+Przykład mechanizmu nawykowego:
 
 Użytkownik siedzi wieczorem przed TV, sięga po telefon żeby "sprawdzić coś na Instagramie". Zamiast tego odpala Enpsyneia. Po 30 sekundach otrzymuje mikroakcję: "Zrób 5 minut stretchingu". Wstaje, robi stretching, wraca do TV z lepszym samopoczuciem. Następnym razem: może znów odpali Instagrama, ale pamięta że Enpsyneia daje mu więcej wartości.
 
@@ -267,8 +232,6 @@ Użytkownik siedzi wieczorem przed TV, sięga po telefon żeby "sprawdzić coś 
 ## Możliwości rozwoju
 
 W przyszłości projekt można rozwinąć o wykres historii wpisów, większą liczbę typów dnia, personalizację mikroakcji, tryb ciemny, wersję mobilną albo bardziej rozbudowany system obserwacji wzorców.
-
-**NOWE:**
 
 - Widget na ekranie głównym (mobile)
 - Integracja z Apple Health/Google Fit
@@ -281,4 +244,3 @@ W przyszłości projekt można rozwinąć o wykres historii wpisów, większą l
 ## Podsumowanie
 
 Enpsyneia Check In to prosta aplikacja webowa, która pomaga użytkownikowi rozpoznać swój aktualny stan i wybrać jedno małe działanie wspierające równowagę psychofizyczną. Projekt łączy prostotę techniczną z realną użytecznością. Jego wartość nie polega na samym śledzeniu samopoczucia, lecz na szybkim przekładaniu samoobserwacji na praktyczną decyzję.
-

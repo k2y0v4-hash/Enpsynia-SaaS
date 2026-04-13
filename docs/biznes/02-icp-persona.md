@@ -3,26 +3,7 @@
 **Data:** 2026-03-22 (zaktualizowana wersja)
 **Projekt:** Enpsyneia Check In
 **Właściciel:** Krzysztof Kowalski
-**Etap produktu:** MVP (z kontami użytkowników)
-
----
-
-## Summary - KLUCZOWE ZMIANY
-
-### Zmiana paradygmatu
-
-| Aspekt | Wersja poprzednia | Wersja aktualna |
-|--------|-------------------|------------------|
-| Model | localStorage (bez kont) | Supabase (z kontami) |
-| Cel główny | Walidacja problemu | Budowanie marki osobistej |
-| Monetyzacja | Brak | Pośrednia (brand, content) |
-| Mechanizm | Check-in jako narzędzie | Check-in jako nawyk |
-
-### Nowe założenia projektu
-
-1. **Konta użytkowników:** Supabase Auth umożliwia rejestrację i logowanie
-2. **Brand Building:** Główny cel = rozpoznawalność marki Enpsyneia
-3. **Mechanizm nawykowy:** Aplikacja jako alternatywa dla social media
+**Etap produktu:** MVP — Etap 1 (localStorage, bez kont)
 
 ---
 
@@ -36,7 +17,7 @@
 - Chcą ograniczyć korzystanie z social media, ale nie wiedzą czym je zastąpić
 - Głównym job-to-be-done jest **szybkie rozpoznanie własnego stanu** w momencie dezorientacji i otrzymanie konkretnej, natychmiastowej podpowiedzi co zrobić
 
-**NOWE - dodatkowy job-to-be-done:** Użytkownik chce mieć **zdrowszą alternatywę** dla nawykowego sięgania po telefon.
+Użytkownik chce mieć **zdrowszą alternatywę** dla nawykowego sięgania po telefon.
 
 ---
 
@@ -50,21 +31,21 @@
 | **Wiek** | 18-45 lat |
 | **Tryb pracy** | Praca przy komputerze, wiele meetingów, ciągła dostępność online |
 | **Problem główny** | Nie wiem, czego teraz potrzebuję - ruchu, odpocznienia, ciszy? |
-| **NOWE - Problem nawykowy** | Nawykowo sięgam po telefon bez powodu, chcę to zmienić |
+| **Problem nawykowy** | Nawykowo sięgam po telefon bez powodu, chcę to zmienić |
 | **Trigger** | Moment przebodźcowania: po meetingach, wieczorem, przed podjęciem decyzji |
-| **NOWE - Trigger nawykowy** | "Znów scrollowałem 30 min" - szukam alternatywy |
+| **Trigger nawykowy** | "Znów scrollowałem 30 min" - szukam alternatywy |
 | **Decision Criteria** | Szybkość (<2 min), prostota (minimalny friction), praktyczność (akcja, nie raport) |
-| **NOWE - Decision Criteria 2** | Czy aplikacja pomoże mi ograniczyć social media? |
+| **Decision Criteria 2** | Czy aplikacja pomoże mi ograniczyć social media? |
 | **KPI sukcesu** | Codziennie 1-3 check-iny, widoczna poprawa świadomości własnych potrzeb |
-| **NOWE - KPI sukcesu 2** | Liczba "nawykowych otwarć" aplikacji zamiast social media |
+| **KPI sukcesu 2** | Liczba "nawykowych otwarć" aplikacji zamiast social media |
 | **Budżet decyzyjny** | $0-15/miesiąc (jeśli freemium) |
-| **NOWE - Wartość marki** | Gotowość do polecenia aplikacji znajomym |
+| **Wartość marki** | Gotowość do polecenia aplikacji znajomym |
 
 ---
 
 ## 🔍 Job To Be Done (Job Snapshots)
 
-### NOWE: Job Snapshot - "Nawykowe sięganie po telefon"
+### Job Snapshot: "Nawykowe sięganie po telefon"
 
 | Element | Opis |
 |---------|------|
@@ -110,7 +91,7 @@
 
 ---
 
-### Job Snapshot 3: "Nawykowe scrollowanie" (NOWY)
+### Job Snapshot 3: "Nawykowe scrollowanie"
 
 | Element | Opis |
 |---------|------|
@@ -158,13 +139,13 @@
 
 ## 🗺️ Pain Mapping (Mapowanie Bólów)
 
-### Zmieniona sekcja - NOWE BÓLE
+### Pain Map
 
 | Ból | Kto go odczuwa | Kiedy | Częstotliwość | Wartość do odzyskania |
 |-----|-----------------|-------|---------------|----------------------|
 | **Paraliż decyzyjny** | Wszyscy | Wieczorem, rano | 5-7x/tydzień | 15-30 min/dzień |
-| **NOWE: Nawykowe scrollowanie** | "Social media seekers" | Wieczorem, w łóżku, z nudów | 5-10x/dzień | 30-120 min/dzień |
-| **NOWE: Poczucie winy po social media** | Użytkownicy social media | Po każdym session | Codziennie | Emocjonalna wartość |
+| **Nawykowe scrollowanie** | "Social media seekers" | Wieczorem, w łóżku, z nudów | 5-10x/dzień | 30-120 min/dzień |
+| **Poczucie winy po social media** | Użytkownicy social media | Po każdym session | Codziennie | Emocjonalna wartość |
 | **Brak czasu na wellness** | Pracownicy biurowi | Ciągle | Codziennie | 10-20 min/dzień |
 | **Przeciążenie bodźcami** | Praca zdalna | Po meetingach | 3-5x/dzień | 30-60 min |
 | **Niepewność co do potrzeb** | Wszyscy | Rano, wieczorem | Codziennie | Trudne do kwantyfikacji |
@@ -174,12 +155,12 @@
 
 ## 💰 Value Hypotheses (Kwantyfikacja Wartości)
 
-### NOWE - Hipotezy związane z mechanizmem nawykowym
+### Hipotezy wartości
 
 | Hipoteza wartości | Metryka | Szacunkowa wartość | Uwagi |
 |-------------------|---------|-------------------|-------|
-| **NOWE: Redukcja social media** | Minuty dziennie bez scrollowania | -30-90 min/dzień | UNIKALNA WARTOŚĆ |
-| **NOWE: Zdrowszy nawyk** | Liczba otwarć aplikacji vs social media | 3:1 | Cel ratio |
+| **Redukcja social media** | Minuty dziennie bez scrollowania | -30-90 min/dzień | hipoteza do walidacji |
+| **Zdrowszy nawyk** | Liczba otwarć aplikacji vs social media | 3:1 | cel ratio |
 | Szybsze podejmowanie decyzji | Czas zaoszczędzony na analizie | 15-30 min/dzień | ~7.5-15h/miesiąc |
 | Lepszy sen | Minuty snu/ noc | +30-60 min | Trudne do dokładnego pomiaru |
 | Większa produktywność | Godziny produktywnej pracy | +2-4h/tydzień | Zależy od kontekstu |
@@ -190,32 +171,31 @@
 
 ## ⚖️ Confidence & Ease Assessment
 
-### Zaktualizowana ocena
+### Ocena
 
 | Problem | Confidence (1-10) | Ease (1-10) | Uzasadnienie |
 |---------|-------------------|-------------|--------------|
 | Szybki check-in w <2 min | 8 | 9 | Prosty formularz 6 pytań |
 | Rekomendacja mikroakcji | 7 | 9 | Proste reguły if/else |
-| NOWE: Konta użytkowników | 8 | 7 | Supabase Free Tier wystarcza |
-| NOWE: Mechanizm nawykowy | 6 | 8 | Wymaga user education |
+| Mechanizm nawykowy | 6 | 8 | Wymaga user education |
 | Retention/nawyk | 5 | 7 | Brak powiadomień = słaby retention |
-| NOWE: Brand Building | 7 | 8 | Content + social media |
+| Brand Building | 7 | 8 | Content + social media |
 | Monetyzacja | 4 | 5 | Model pośredni |
 
 ---
 
 ## 🎯 Problem Matrix (Priorytetyzacja)
 
-### Zaktualizowana macierz
+### Macierz priorytetów
 
 | # | Problem | Impact (1-10) | Confidence (1-10) | Ease (1-10) | Priority (I×C×E) | Suggested Experiment |
 |---|---------|---------------|-------------------|-------------|------------------|---------------------|
 | 1 | Szybki check-in <2 min | 8 | 8 | 9 | **576** | Landing page z demo formularza |
 | 2 | Rekomendacja mikroakcji | 8 | 7 | 9 | **504** | Concierge MVP dla 3 osób |
-| 3 | NOWE: Mechanizm nawykowy | 9 | 6 | 8 | **432** | Test z użytkownikami "scroll-addicted" |
+| 3 | Mechanizm nawykowy | 9 | 6 | 8 | **432** | Test z użytkownikami "scroll-addicted" |
 | 4 | Paraliż decyzyjny (wieczór) | 7 | 6 | 8 | **336** | Wywiady (5 osób) |
 | 5 | Przeciążenie po meetingach | 7 | 7 | 7 | **343** | Wywiady (5 osób) |
-| 6 | NOWE: Brand Building | 8 | 7 | 8 | **448** | Content marketing test |
+| 6 | Brand Building | 8 | 7 | 8 | **448** | Content marketing test |
 | 7 | Retention/nawyk | 6 | 5 | 7 | **210** | Test z powiadomieniami |
 | 8 | Monetyzacja | 5 | 4 | 5 | **100** | Pre-signup test |
 
@@ -263,7 +243,7 @@
 
 ## 📝 Interview Script (nowe pytania o nawyki)
 
-### NOWE - Pytania o mechanizm nawykowy
+### Pytania
 
 1. **"Opowiedz mi o ostatnim razie, kiedy nie wiedziałeś, co ze sobą zrobić po pracy."**
    - Kontekst: gdzie byłeś, co robiłeś, jak się czułeś?
@@ -286,56 +266,14 @@
 7. **"Czy próbowałeś już czegoś innego? Dlaczego to nie zadziałało?"**
    - Alternatives: co już testowałeś?
 
-8. **[NOWE] "Opowiedz mi o swoim nawyku korzystania z telefonu."**
+8. **"Opowiedz mi o swoim nawyku korzystania z telefonu."**
    - Jak często sprawdzasz telefon bez konkretnego powodu?
    - Kiedy najczęściej to robisz?
    - Co czujesz po godzinie scrollowania?
 
-9. **[NOWE] "Gdyby istniała aplikacja, która mogłaby zastąpić Twoje nawykowe sięganie po telefon, co byś chciał/chciała żeby robiła?"**
+9. **"Gdyby istniała aplikacja, która mogłaby zastąpić Twoje nawykowe sięganie po telefon, co byś chciał/chciała żeby robiła?"**
    - Czas: ile minut dziennie by zaoszczędziła?
    - Funkcja: co konkretnie by oferowała?
 
 ---
 
-## ✅ Checklista Końcowa
-
-- [x] 1-stronicowa karta ICP
-- [x] 5 Job Snapshotów (+ 1 nowy o nawykach)
-- [x] Problem Matrix z priorytetami
-- [x] 3 propozycje szybkich eksperymentów
-- [x] Interview script (9 pytań + nowe o nawykach)
-- [x] Aktualizacja o mechanizm nawykowy
-- [x] Aktualizacja o konta użytkowników
-
----
-
-## 🔄 Następne Kroki
-
-| Krok | Akcja | Status |
-|------|-------|--------|
-| 1 | Wykonaj eksperyment #1 (Landing Page) | Do realizacji |
-| 2 | Przeprowadź 5 wywiadów (eksperyment #2) | Do realizacji |
-| 3 | Na podstawie wyników zaktualizuj ICP | Warunkowo |
-| 4 | Jeśli ICP potwierdzone → przejdź do Brand Building Strategy | Warunkowo |
-
----
-
-## ⚠️ Ostrzeżenie (zaktualizowane)
-
-**Ten projekt ma fundamentalną zmianę:**
-
-| Aspekt | Poprzednia wersja | Aktualna wersja |
-|--------|-------------------|-----------------|
-| Cel | Walidacja problemu | Brand Building |
-| Model | localStorage (bez kont) | Supabase (z kontami) |
-| Monetyzacja | Brak | Pośrednia |
-| Mechanizm | Brak | Nawykowy |
-
-**To jest ZALETA, nie problem:**
-- Konta = możliwość śledzenia retention
-- Brand Building = wartość projektu = w rozpoznawalności
-- Mechanizm nawykowy = UNIKALNA propozycja na rynku
-
----
-
-*Powyższa analiza przeprowadzona w ramach workflow WF_ICP_Persona (zaktualizowana wersja)*

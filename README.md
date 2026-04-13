@@ -14,10 +14,8 @@ Projekt rozwijany jest jako praktyczne narzędzie użytkowe oraz punkt wejścia 
 
 ## Dokumentacja projektu
 
-Pełny opis projektu, założenia, analizy i dokumentacja robocza znajdują się tutaj:
-
-[README projektu Enpsynea Check In](./Enpsynea-check-in/README.md)
+Pełny opis projektu, założenia, analizy i dokumentacja robocza znajdują się w katalogu [`docs/biznes/`](./docs/biznes/).
 
 ## Status
 
-Projekt znajduje się obecnie na etapie koncepcji, walidacji, definiowania MVP oraz przygotowania architektury i planu wdrożenia.
+Etap 1 — implementacja MVP. Specyfikacja gotowa ([`04-mvp-scope.md`](./docs/biznes/04-mvp-scope.md)), plan wdrożenia gotowy ([`06-plan-implementacji.md`](./docs/biznes/06-plan-implementacji.md)). Kod: w trakcie budowania.
