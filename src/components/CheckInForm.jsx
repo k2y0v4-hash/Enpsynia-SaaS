@@ -94,7 +94,7 @@ export function CheckInForm({ onComplete }) {
             step={1}
             value={value}
             onChange={handleChange}
-            className="w-full cursor-pointer accent-primary"
+            className="w-full"
           />
           <div className="flex items-center justify-between text-sm text-muted-foreground">
             <span className="max-w-[35%]">{question.leftLabel}</span>

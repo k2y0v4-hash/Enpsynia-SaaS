@@ -122,4 +122,45 @@
   html {
     @apply font-sans;
   }
+
+  /* Slider — touch-friendly (min. 28px thumb, 6px track) */
+  input[type='range'] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+    padding-block: 12px; /* powiększa obszar dotyku bez zmiany layoutu */
+    width: 100%;
+  }
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--border);
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background: var(--primary);
+    margin-top: -11px;
+    cursor: pointer;
+    border: 3px solid var(--background);
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  input[type='range']::-moz-range-track {
+    height: 6px;
+    border-radius: 9999px;
+    background: var(--border);
+  }
+  input[type='range']::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background: var(--primary);
+    border: 3px solid var(--background);
+    box-shadow: 0 0 0 2px var(--primary);
+    cursor: pointer;
+  }
 }
