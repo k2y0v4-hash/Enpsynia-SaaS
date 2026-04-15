@@ -4,7 +4,7 @@
 **Projekt:** Enpsyneia Check In
 **Właściciel:** Krzysztof Kowalski
 
-> Ten dokument ma charakter badawczy i wspierający — opisuje użytkowników, ich motywacje i kontekst użycia. Nie definiuje zakresu produktu. Zakres produktu określa `docs/biznes/04-mvp-scope.md`.
+> Ten dokument ma charakter badawczy i wspierający — opisuje użytkowników, ich motywacje i kontekst użycia. Nie definiuje zakresu produktu. Zakres produktu określa `docs/product/mvp-scope.md`.
 
 ---
 
@@ -66,7 +66,7 @@ Użytkownicy nie potrzebują kolejnej aplikacji do śledzenia nastroju — potrz
 |---------|------|
 | **Kontekst** | Użytkownik leży w łóżku przed snem, odpala telefon „żeby zasnąć", a scrolluje godzinę |
 | **Motywacja** | Chce przestać scrollować, ale nie ma alternatywy, która by go zatrzymała |
-| **Desired Outcome** | Aplikacja dająca wartość w 30 sekund — pozwala wrócić do snu lub zasnąć z lepszym samopoczuciem |
+| **Desired Outcome** | Aplikacja dająca wartość szybko — pozwala wrócić do snu lub zasnąć z lepszym samopoczuciem *(user-stated desire: "30 sekund"; kanoniczna obietnica produktu: < 2 minuty)* |
 | **Aktualne rozwiązanie** | Instagram/TikTok → godzina scrollowania → zmęczenie + późne spanie + poczucie winy |
 | **Bariery** | Potrzebuje czegoś „bezpiecznego" — co nie wciągnie go w kolejny rabbit hole |
 | **Trigger** | Leżenie w łóżku, wieczór, nuda |

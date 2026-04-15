@@ -38,20 +38,22 @@ Hipoteza dodatkowego sukcesu: użytkownik sięga po aplikację zamiast social me
 
 ---
 
-### Stage 2: Check-in — 6 pytań (1–2 minuty)
+### Stage 2: Check-in — 2 bloki po 3 pytania (< 2 minuty)
 
-**Cel:** Użytkownik wypełnia 6 pytań i przechodzi do wyniku.
+**Cel:** Użytkownik wypełnia 6 pytań w 2 blokach i przechodzi do wyniku.
 
 **Co widzi:**
-- 6 suwaków (skala 1–5) w kolejności: energy, overload, movement, social, agency, paralysis
-- Etykiety na obu końcach każdego suwaka
-- Progress bar: „Pytanie 3 z 6"
-- Przycisk „Dalej" po każdym pytaniu, „Zobacz wynik" na końcu
+- Blok 1 (energy, overload, paralysis): 3 suwaki jednocześnie na ekranie
+- Blok 2 (movement, social, agency): 3 suwaki jednocześnie na ekranie
+- Help text pod każdym pytaniem (szary, mały font)
+- Progress bar: „Blok 1 z 2" / „Blok 2 z 2"
+- Przycisk „Dalej" na Bloku 1, „Zobacz wynik" na Bloku 2
+- Układ przewijalny — priorytety: wygoda i odstępy, nie upychanie
 
 **Elementy krytyczne:**
 - Suwaki domyślnie na środku (3) — można kliknąć „Dalej" bez zmiany
-- Pytania bez żargonu, z krótkim help textem pod każdym
-- Możliwość cofnięcia się do poprzedniego pytania
+- Help text zawsze widoczny — nie ukryty za ikoną
+- Możliwość cofnięcia się do poprzedniego bloku
 - Progress bar widoczny przez cały czas
 
 **Friction:**
@@ -154,7 +156,7 @@ Weryfikacja hipotezy nawykowej odbywa się w Etapie 2.
 
 ### Etap 1 — mierzalne od pierwszego dnia
 
-Metryki możliwe do śledzenia bez kont i backendu, przez GA4 i jeden przycisk feedbacku na ekranie wyniku. **Kanoniczne wartości docelowe: `docs/biznes/04-mvp-scope.md`.** Liczby poniżej muszą być zgodne z 04.
+Metryki możliwe do śledzenia bez kont i backendu, przez GA4 i jeden przycisk feedbacku na ekranie wyniku. **Kanoniczne wartości docelowe: `docs/product/mvp-scope.md`.** Liczby poniżej muszą być zgodne z 04.
 
 | Metryka | Cel | Źródło danych |
 |---------|-----|---------------|

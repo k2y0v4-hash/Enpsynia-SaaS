@@ -27,11 +27,11 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 | Document                | Path                                                                       | Purpose                                     |
 | ----------------------- | -------------------------------------------------------------------------- | ------------------------------------------- |
-| **MVP Scope**           | [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md)               | Canonical spec: Tier 1/2, features, metrics |
-| **Project Description** | [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md)         | Full project vision, features, and goals    |
-| **ICP & Personas**      | [`docs/biznes/02-icp-persona.md`](docs/biznes/02-icp-persona.md)           | Target users, pain points, jobs-to-be-done  |
-| **JTBD Analysis**       | [`docs/biznes/07-jtbd-analysis.md`](docs/biznes/07-jtbd-analysis.md)       | Jobs-to-be-done, user motivations           |
-| **User Journey Map**    | [`docs/biznes/08-user-journey-map.md`](docs/biznes/08-user-journey-map.md) | User flow, friction points, success metrics |
+| **MVP Scope**           | [`docs/product/mvp-scope.md`](docs/product/mvp-scope.md)               | Canonical spec: Tier 1/2, features, metrics |
+| **Project Description** | [`docs/context/project-vision.md`](docs/context/project-vision.md)     | Full project vision, features, and goals    |
+| **ICP & Personas**      | [`docs/context/icp-persona.md`](docs/context/icp-persona.md)           | Target users, pain points, jobs-to-be-done  |
+| **JTBD Analysis**       | [`docs/context/jtbd-analysis.md`](docs/context/jtbd-analysis.md)       | Jobs-to-be-done, user motivations           |
+| **User Journey Map**    | [`docs/context/user-journey.md`](docs/context/user-journey.md)         | User flow, friction points, success metrics |
 
 ---
 
@@ -41,9 +41,9 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 Implementację Etapu 1 należy prowadzić wyłącznie na podstawie:
 
-- [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md) — zakres, metryki, warunki przejścia do Etapu 2
-- [`docs/biznes/05-logika-analizy.md`](docs/biznes/05-logika-analizy.md) — algorytm, typy dnia, mikroakcje, teksty UI
-- [`docs/biznes/06-plan-implementacji.md`](docs/biznes/06-plan-implementacji.md) — fazy, zakres per faza, definicje ukończenia
+- [`docs/product/mvp-scope.md`](docs/product/mvp-scope.md) — zakres, metryki, warunki przejścia do Etapu 2
+- [`docs/product/analysis-logic.md`](docs/product/analysis-logic.md) — algorytm, typy dnia, mikroakcje, teksty UI
+- [`docs/product/implementation-plan.md`](docs/product/implementation-plan.md) — fazy, zakres per faza, definicje ukończenia
 - `AGENTS.md` — stack, architektura, reguły kodowania
 
 Pozostałe dokumenty (`01`, `02`, `07`, `08`, `09`, `competitor-audit.md` itd.) mają charakter strategiczny, analityczny lub historyczny. Mogą dostarczać kontekstu, ale nie są źródłem bieżących decyzji implementacyjnych. W razie sprzeczności między nimi a powyższymi czterema — obowiązują powyższe cztery.
@@ -52,7 +52,7 @@ Pozostałe dokumenty (`01`, `02`, `07`, `08`, `09`, `competitor-audit.md` itd.) 
 
 Przed rozpoczęciem kodowania agent ma:
 
-1. **Przygotować plan prac** dla aktualnej fazy na podstawie `docs/biznes/06-plan-implementacji.md`
+1. **Przygotować plan prac** dla aktualnej fazy na podstawie `docs/product/implementation-plan.md`
 2. **Nie pisać kodu** przed zatwierdzeniem planu przez właściciela projektu
 3. **Zgłosić każdą sprzeczność** między dokumentami source of truth przed implementacją — nie rozstrzygać samodzielnie
 
@@ -265,7 +265,7 @@ const getSession = async () => {
 ### Before Starting Any Task
 
 1. **Read relevant business docs** (see table above)
-2. **Check MVP scope** ([`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md))
+2. **Check MVP scope** ([`docs/product/mvp-scope.md`](docs/product/mvp-scope.md))
 3. **Verify feature is in Tier 1** (Must-Have) or Tier 2 (Should-Have)
 4. **If unsure, ask:** "Is this feature in MVP scope?"
 
@@ -277,6 +277,7 @@ const getSession = async () => {
 - **No premature optimization:** Build for now, not for scale
 - **Test critical paths:** Form submission, result generation
 - **Document decisions:** Why, not just what
+- **New doc only when necessary:** Create a new document only when an existing file cannot be sensibly extended
 
 #### React Best Practices
 
@@ -377,7 +378,7 @@ enpsyneia-check-in/
 5. Agency level (1-5)
 6. Analysis paralysis (1-5)
 
-**Day Types (5 types) — triggery skrócone, specyfikacja nadrzędna w `docs/biznes/05-logika-analizy.md`:**
+**Day Types (5 types) — triggery skrócone, specyfikacja nadrzędna w `docs/product/analysis-logic.md`:**
 
 1. 🌟 **Dzień Działania** — `energy ≥ 4 AND agency ≥ 3 AND overload ≤ 3`
 2. 🌿 **Dzień Wyciszenia** — `overload ≥ 4` (i `paralysis < 4`)
@@ -385,11 +386,11 @@ enpsyneia-check-in/
 4. 👥 **Dzień Kontaktu** — `social ≥ 4 AND overload ≤ 3`
 5. ⚡ **Dzień Przeciążenia** — `overload ≥ 4 AND paralysis ≥ 4`
 
-> **Pełny algorytm (kolejność sprawdzania, konflikty, mikroakcje, teksty UI):** `docs/biznes/05-logika-analizy.md` — ta specyfikacja jest nadrzędna wobec skrótów powyżej. W razie sprzeczności obowiązuje 05.
+> **Pełny algorytm (kolejność sprawdzania, konflikty, mikroakcje, teksty UI):** `docs/product/analysis-logic.md` — ta specyfikacja jest nadrzędna wobec skrótów powyżej. W razie sprzeczności obowiązuje `analysis-logic.md`.
 
-**Micro-actions:** One concrete, immediate action based on day type — full texts in `docs/biznes/05-logika-analizy.md` section 5
+**Micro-actions:** One concrete, immediate action based on day type — full texts in `docs/product/analysis-logic.md` section 5
 
-**Function API (`analyzeCheckIn`):** Input: `{ energy, overload, movement, social, agency, paralysis }` (integers 1–5). Output: `{ dayType, summaryText, justificationText, microaction, microactionKey }`. Full spec in `docs/biznes/05-logika-analizy.md` section 9 (decision #6).
+**Function API (`analyzeCheckIn`):** Input: `{ energy, overload, movement, social, agency, paralysis }` (integers 1–5). Output: `{ dayType, summaryText, justificationText, microaction, microactionKey }`. Full spec in `docs/product/analysis-logic.md` section 9 (decision #6).
 
 ### localStorage Schema (Tier 1)
 
@@ -484,10 +485,10 @@ enpsyneia-check-in/
 
 ### Key Files to Read First
 
-1. [`docs/biznes/04-mvp-scope.md`](docs/biznes/04-mvp-scope.md) - What to build (canonical)
-2. [`docs/biznes/01-opis-pomyslu.md`](docs/biznes/01-opis-pomyslu.md) - Project vision
-3. [`docs/biznes/07-jtbd-analysis.md`](docs/biznes/07-jtbd-analysis.md) - Why we build it
-4. [`docs/biznes/08-user-journey-map.md`](docs/biznes/08-user-journey-map.md) - How users experience it
+1. [`docs/product/mvp-scope.md`](docs/product/mvp-scope.md) - What to build (canonical)
+2. [`docs/context/project-vision.md`](docs/context/project-vision.md) - Project vision
+3. [`docs/context/jtbd-analysis.md`](docs/context/jtbd-analysis.md) - Why we build it
+4. [`docs/context/user-journey.md`](docs/context/user-journey.md) - How users experience it
 
 ### Common Questions
 
@@ -495,7 +496,7 @@ enpsyneia-check-in/
 A: Not in Tier 1. Use localStorage. Add Supabase only after validation.
 
 **Q: How many questions in the check-in?**
-A: 6 questions in MVP. See `docs/biznes/04-mvp-scope.md` for the exact list.
+A: 6 questions in MVP. See `docs/product/mvp-scope.md` for the exact list.
 
 **Q: What about user accounts?**
 A: Tier 1 = no accounts. Tier 2 = Supabase Auth with Magic Link.
@@ -540,4 +541,12 @@ The AI Agent is successful when:
 
 ---
 
-_This document defines the rules for AI Developer Agent working on Enpsyneia Check In project. For detailed business context, refer to the linked documents in the `docs/biznes/` directory._
+---
+
+## System ról
+
+Praca może być prowadzona w trybie spec-driven AI development z rolami. Routing i lista ról: [`agents/ROUTING.md`](./agents/ROUTING.md)
+
+---
+
+_This document defines the rules for AI Developer Agent working on Enpsyneia Check In project. Implementation specs: `docs/product/`. Context and research: `docs/context/`._

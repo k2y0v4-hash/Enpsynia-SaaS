@@ -51,7 +51,7 @@ Użytkownik chce mieć **zdrowszą alternatywę** dla nawykowego sięgania po te
 |---------|------|
 | **Context** | Użytkownik siedzi bez celu, sięga po telefon "żeby coś zrobić" |
 | **Motivation** | Chce przestać bezmyślnie scrollować, ale nie ma alternatywy |
-| **Desired Outcome** | Aplikacja, którą odpala zamiast Instagram/TikTok - daje wartość w 30 sekund |
+| **Desired Outcome** | Aplikacja, którą odpala zamiast Instagram/TikTok - daje wartość szybko *(user chce "30 sekund"; produkt dostarcza < 2 minuty)* |
 | **Current Solution** | Instagram → 30 min scrollowania → poczucie winy |
 | **Barriers** | Aplikacja musi być szybka i dawać natychmiastową wartość |
 | **Trigger** | Nuda, pustka, "coś zrobię na telefonie" |
@@ -97,7 +97,7 @@ Użytkownik chce mieć **zdrowszą alternatywę** dla nawykowego sięgania po te
 |---------|------|
 | **Context** | Użytkownik leży w łóżku, odpala telefon "żeby zasnąć", a scrolluje godzinę |
 | **Motivation** | Chce przestać, ale nie ma alternatywy która go "zatrzyma" |
-| **Desired Outcome** | Aplikacja, która daje mu wartość w 30 sekund i pozwala wrócić do snu |
+| **Desired Outcome** | Aplikacja, która daje mu wartość szybko i pozwala wrócić do snu *(user chce "30 sekund"; produkt dostarcza < 2 minuty)* |
 | **Current Solution** | Instagram/TikTok → godzina → zmęczenie + późne spanie |
 | **Barriers** | Potrzebuje czegoś "bezpiecznego" - co nie wciągnie go ponownie |
 | **Trigger** | Leżenie w łóżku, wieczór, nuda |

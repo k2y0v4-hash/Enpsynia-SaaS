@@ -24,7 +24,7 @@ Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ
 | Faza 2 — Landing page | Nagłówek, value prop, CTA | Ukonczona |
 | Faza 3 — Formularz check-in | 6 suwaków, progress bar, nawigacja | Ukonczona |
 | Faza 4 — Logika analizy | 5 typów dnia, 10 mikroakcji, testy | Ukonczona |
-| Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Do zrobienia |
+| Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Ukonczona |
 | Faza 6 — localStorage | Historia 5 check-inów, streak counter | Do zrobienia |
 | Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Do zrobienia |
 
@@ -37,8 +37,10 @@ src/
 ├── App.jsx                    # Routing między ekranami (landing → form → result)
 ├── components/
 │   ├── Landing.jsx            # Ekran startowy z CTA
-│   ├── CheckInForm.jsx        # Formularz 6 pytań na suwakach
-│   ├── ProgressBar.jsx        # Pasek postępu "Pytanie X z 6"
+│   ├── CheckInForm.jsx        # Formularz 2 bloki po 3 pytania
+│   ├── AnalysisScreen.jsx     # Ekran przejściowy "Analizuję..."
+│   ├── ResultScreen.jsx       # Ekran wyniku z mikroakcją i feedbackiem
+│   ├── ProgressBar.jsx        # Pasek postępu "Blok X z 2"
 │   └── ui/button.jsx          # Komponent Shadcn
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
@@ -46,7 +48,7 @@ src/
 └── hooks/                     # Hook useLocalStorage (Faza 6)
 ```
 
-**Logika analizy** ([`src/utils/analysisLogic.js`](./src/utils/analysisLogic.js)) działa na drzewie priorytetów per [`docs/biznes/05-logika-analizy.md`](./docs/biznes/05-logika-analizy.md):
+**Logika analizy** ([`src/utils/analysisLogic.js`](./src/utils/analysisLogic.js)) działa na drzewie priorytetów per [`docs/product/analysis-logic.md`](./docs/product/analysis-logic.md):
 
 1. Przeciążenia — `overload >= 4` i `paralysis >= 4`
 2. Wyciszenia — `overload >= 4`
@@ -69,27 +71,42 @@ npm run dev
 
 ## Dokumentacja projektu
 
-Pełny opis projektu, założenia, analizy i dokumentacja robocza w katalogu [`docs/biznes/`](./docs/biznes/):
+### Źródła prawdy (implementacja)
 
 | Plik | Zawartość |
 |------|-----------|
-| [`01-opis-pomyslu.md`](./docs/biznes/01-opis-pomyslu.md) | Opis koncepcji i wizja projektu |
-| [`02-icp-persona.md`](./docs/biznes/02-icp-persona.md) | Profil użytkownika (ICP) i persony |
-| [`03-decision.md`](./docs/biznes/03-decision.md) | Kluczowe decyzje projektowe i ich uzasadnienie |
-| [`04-mvp-scope.md`](./docs/biznes/04-mvp-scope.md) | Zakres MVP — Tier 1/2, funkcje, metryki sukcesu |
-| [`05-logika-analizy.md`](./docs/biznes/05-logika-analizy.md) | Specyfikacja algorytmu analizy, mikroakcje, teksty UI |
-| [`06-plan-implementacji.md`](./docs/biznes/06-plan-implementacji.md) | Plan fazowy — zakres per faza, definicje ukończenia |
-| [`07-jtbd-analysis.md`](./docs/biznes/07-jtbd-analysis.md) | Jobs-to-be-Done — motywacje i cele użytkownika |
-| [`08-user-journey-map.md`](./docs/biznes/08-user-journey-map.md) | Mapa podróży użytkownika i punkty tarcia |
-| [`09-brand-building-strategy.md`](./docs/biznes/09-brand-building-strategy.md) | Strategia budowania marki Enpsynea |
-| [`competitor-audit.md`](./docs/biznes/competitor-audit.md) | Audyt konkurencji i analiza rynku |
+| [`docs/product/mvp-scope.md`](./docs/product/mvp-scope.md) | Zakres MVP — Tier 1/2, funkcje, metryki sukcesu |
+| [`docs/product/analysis-logic.md`](./docs/product/analysis-logic.md) | Specyfikacja algorytmu analizy, mikroakcje, teksty UI |
+| [`docs/product/implementation-plan.md`](./docs/product/implementation-plan.md) | Plan fazowy — zakres per faza, definicje ukończenia |
+
+### UI i architektura
+
+| Plik | Zawartość |
+|------|-----------|
+| [`docs/ui/screens.md`](./docs/ui/screens.md) | Opis ekranów, copy, zasady UI |
+| [`docs/architecture/tech-stack.md`](./docs/architecture/tech-stack.md) | Stack, struktura src/, localStorage schema |
+
+### Kontekst i materiały pomocnicze
+
+| Plik | Zawartość |
+|------|-----------|
+| [`docs/context/project-vision.md`](./docs/context/project-vision.md) | Wizja projektu i mechanizm nawykowy |
+| [`docs/context/icp-persona.md`](./docs/context/icp-persona.md) | Profil użytkownika (ICP) i persony |
+| [`docs/context/decision-log.md`](./docs/context/decision-log.md) | Uzasadnienie decyzji o kontynuacji projektu |
+| [`docs/context/jtbd-analysis.md`](./docs/context/jtbd-analysis.md) | Jobs-to-be-Done — motywacje i cele użytkownika |
+| [`docs/context/user-journey.md`](./docs/context/user-journey.md) | Mapa podróży użytkownika i punkty tarcia |
+| [`docs/context/brand-strategy.md`](./docs/context/brand-strategy.md) | Strategia budowania marki Enpsynea |
+| [`docs/context/competitor-audit.md`](./docs/context/competitor-audit.md) | Audyt konkurencji i analiza rynku |
 
 ### Pliki pomocnicze
 
 | Plik | Zawartość |
 |------|-----------|
 | [`AGENTS.md`](./AGENTS.md) | Reguły i wytyczne dla AI Developer Agent |
-| [`docs/zaimplementowane-plany.md`](./docs/zaimplementowane-plany.md) | Archiwalne plany implementacji (nieaktualne — zachowane historycznie) |
+
+### Zasada tworzenia dokumentów
+
+Nowy dokument tworzymy tylko wtedy, gdy nie da się sensownie rozszerzyć istniejącego pliku.
 
 ---
 

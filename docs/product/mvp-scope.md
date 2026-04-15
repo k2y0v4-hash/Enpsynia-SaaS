@@ -27,7 +27,7 @@ Użytkownik otwiera aplikację, wypełnia 6 pytań i w mniej niż 2 minuty otrzy
 | 5 typów dnia | Działania, Wyciszenia, Odbudowy, Kontaktu, Przeciążenia |
 | Wynik | Typ dnia + jedna mikroakcja (czytelne, bez dashboardu) |
 | Zapis historii | localStorage, ostatnie 5 wyników |
-| Progress bar | "Pytanie 3 z 6" |
+| Progress bar | "Blok 1 z 2" |
 | Streak counter | Licznik dni z rzędu — localStorage, bez konta |
 | Responsywność | Mobile-first |
 
@@ -119,7 +119,7 @@ Metryki mierzone przez Google Analytics 4 + przycisk "Czy to pomogło?" na ekran
 ## Ten dokument zastępuje wcześniejsze wersje scopingu
 
 Niniejszy plik zastępuje:
-- `docs/biznes/04-mvp-scoping-v2.md`
-- `docs/biznes/04-mvp-scoping-v3.md`
+- `docs/archive/04-mvp-scoping-v2.md`
+- `docs/archive/04-mvp-scoping-v3.md`
 
 Tamte pliki są archiwalne. W razie sprzeczności między nimi a tym dokumentem — obowiązuje ten.

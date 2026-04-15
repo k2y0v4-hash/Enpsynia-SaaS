@@ -41,7 +41,7 @@ Oba raporty zostały zarchiwizowane jako materiał historyczny. Nie są dokument
 | Share buttons | Poza zakresem MVP |
 | Mechanizm nawykowy | Hipoteza do walidacji — nie założenie |
 
-Szczegółowy zakres: [`docs/biznes/04-mvp-scope.md`](04-mvp-scope.md)
+Szczegółowy zakres: [`docs/product/mvp-scope.md`](../product/mvp-scope.md)
 
 ---
 

@@ -2,7 +2,7 @@
 
 **Status:** Specyfikacja — podstawa implementacji `src/utils/analysisLogic.js`
 **Data:** 2026-04-13
-**Podstawa:** `04-mvp-scope.md`, `06-plan-implementacji.md` (Faza 4)
+**Podstawa:** `mvp-scope.md`, `implementation-plan.md` (Faza 4)
 
 ---
 
@@ -159,9 +159,11 @@ Ewentualna trzecia mikroakcja to rezerwa dla Etapu 2 lub rotacji przez deweloper
 |----------|--------------------|------------------------|------------------------|
 | Działania | `movement` | `movement` ≥ 4 | `movement` ≤ 3 |
 | Wyciszenia | `social` | `social` ≤ 2 | `social` ≥ 3 |
-| Odbudowy | `energy` | `energy` ≤ 2 | `energy` ≥ 3 |
+| Odbudowy | `energy`, `movement` | `energy` ≤ 2 **i** `movement` ≤ 3 | w pozostałych przypadkach |
 | Kontaktu | `energy` | `energy` ≥ 4 | `energy` ≤ 3 |
 | Przeciążenia | `agency` | `agency` ≤ 2 | `agency` ≥ 3 |
+
+**Uwaga do Odbudowy:** Mikroakcja A zawiera fizyczne zatrzymanie ("połóż się"). Jeśli użytkownik jednocześnie ma wysoką potrzebę ruchu (`movement` ≥ 4), wybierana jest mikroakcja B — która zawiera ruch (stretching). Unika to rekomendacji odwrotnej do deklarowanej potrzeby.
 
 ---
 
@@ -272,20 +274,22 @@ Do ręcznej weryfikacji przed wdrożeniem i po każdej zmianie logiki.
 | 2 | 4 | 2 | 2 | 3 | 4 | 2 | Działania | B (movement=2) |
 | 3 | 2 | 5 | 1 | 1 | 2 | 3 | Wyciszenia | A (social=1) |
 | 4 | 3 | 4 | 3 | 4 | 3 | 2 | Wyciszenia | B (social=4) |
-| 5 | 1 | 2 | 1 | 2 | 1 | 2 | Odbudowy | A (energy=1) |
-| 6 | 2 | 2 | 2 | 2 | 2 | 2 | Odbudowy | A (energy=2 ≤ 2) |
+| 5 | 1 | 2 | 1 | 2 | 1 | 2 | Odbudowy | A (energy=1 ≤ 2, movement=1 ≤ 3) |
+| 6 | 2 | 2 | 2 | 2 | 2 | 2 | Odbudowy | A (energy=2 ≤ 2, movement=2 ≤ 3) |
 | 7 | 3 | 2 | 2 | 5 | 3 | 2 | Kontaktu | B (energy=3) |
 | 8 | 4 | 2 | 3 | 5 | 4 | 2 | Kontaktu | A (energy=4) |
 | 9 | 2 | 5 | 2 | 2 | 2 | 5 | Przeciążenia | A (agency=2) |
 | 10 | 3 | 4 | 3 | 2 | 3 | 4 | Przeciążenia | B (agency=3) |
-| 11 | 3 | 3 | 3 | 3 | 3 | 3 | Odbudowy (fallback) | B (energy=3) |
+| 11 | 3 | 3 | 3 | 3 | 3 | 3 | Odbudowy (fallback) | B (energy=3 ≥ 3, reguła ruch nieistotna przy movement=3) |
 | 12 | 5 | 5 | 5 | 5 | 5 | 5 | Przeciążenia | B (agency=5 ≥ 3) |
 | 13 | 5 | 4 | 5 | 5 | 5 | 4 | Przeciążenia | B (agency=5) |
 | 14 | 5 | 2 | 5 | 5 | 5 | 1 | Działania | A (movement=5) |
-| 15 | 1 | 1 | 1 | 1 | 1 | 1 | Odbudowy (fallback) | A (energy=1) |
+| 15 | 1 | 1 | 1 | 1 | 1 | 1 | Odbudowy (fallback) | A (energy=1 ≤ 2, movement=1 ≤ 3) |
+| 16 | 1 | 2 | 5 | 3 | 2 | 1 | Odbudowy | B (energy=1 ≤ 2, ale movement=5 ≥ 4 → override do B) |
 
-*Uwaga do przypadku #6:* `energy=2` → warunek `energy ≤ 2` jest spełniony → mikroakcja A.
+*Uwaga do przypadku #6:* `energy=2` i `movement=2` → oba warunki mikroakcji A spełnione → A.
 *Uwaga do przypadku #12:* `overload=5` i `paralysis=5` → KROK 1 → Przeciążenie. `agency=5 ≥ 3` → mikroakcja B.
+*Uwaga do przypadku #16:* edge case — niskie zasoby, ale wysoka potrzeba ruchu. `movement=5 ≥ 4` override'uje regułę energii → mikroakcja B (stretching zamiast "połóż się").
 
 ---
 

@@ -2,7 +2,7 @@
 
 ## Status dokumentu
 
-Zaktualizowany: 2026-04-12. Podstawa: [`04-mvp-scope.md`](04-mvp-scope.md), [`03-decision.md`](03-decision.md).
+Zaktualizowany: 2026-04-12. Podstawa: [`docs/product/mvp-scope.md`](../product/mvp-scope.md), [`docs/context/decision-log.md`](decision-log.md).
 
 ## Nazwa projektu
 
@@ -45,7 +45,7 @@ Głównym celem aplikacji jest wspieranie użytkownika w odzyskiwaniu orientacji
 **Jak to działa:**
 1. Użytkownik odczuwa pustkę/nudę → automatycznie sięga po telefon
 2. Zamiast social media → odpala Enpsyneia
-3. 30 sekund check-in → otrzymuje mikroakcję
+3. Check-in < 2 minuty → otrzymuje mikroakcję
 4. Wykonuje mikroakcję → wraca do pracy/życia z większą świadomością
 5. Z czasem: "odpalać Enpsyneia" staje się nowym nawykiem
 
@@ -145,7 +145,7 @@ Użytkownik początkowo nie musi zakładać konta, aby skorzystać z aplikacji. 
 |--------|---------------|
 | Użytkownik sięga po telefon | (trigger) |
 | Zamiast social media → Enpsyneia | (alternative) |
-| 30 sekund check-in | (cue) |
+| Check-in (< 2 minuty) | (cue) |
 | Mikroakcja | (response) |
 | Wykonanie mikroakcji | (reward) |
 | Powrót do pracy/życia | (continuation) |
@@ -169,7 +169,7 @@ Dodatkowe elementy angażujące (hipoteza do walidacji):
 
 ## Najważniejsze funkcjonalności
 
-Aktualny zakres MVP definiuje [`docs/biznes/04-mvp-scope.md`](04-mvp-scope.md).
+Aktualny zakres MVP definiuje [`docs/product/mvp-scope.md`](../product/mvp-scope.md).
 
 ### Etap 1 (MVP — localStorage, bez konta)
 
@@ -197,7 +197,7 @@ Aplikacja w Etapie 1 działa bez konta. Dane są przechowywane lokalnie w przegl
 3. Więcej typów dnia
 4. Personalizacja mikroakcji
 
-Architektura i etapowanie techniczne są opisane w `AGENTS.md` oraz [`docs/biznes/04-mvp-scope.md`](04-mvp-scope.md).
+Architektura i etapowanie techniczne są opisane w `AGENTS.md` oraz [`docs/product/mvp-scope.md`](../product/mvp-scope.md).
 
 ---
 
@@ -225,7 +225,7 @@ W innej sytuacji użytkownik może zaznaczyć średnią energię, niskie przeci�
 
 Przykład mechanizmu nawykowego:
 
-Użytkownik siedzi wieczorem przed TV, sięga po telefon żeby "sprawdzić coś na Instagramie". Zamiast tego odpala Enpsyneia. Po 30 sekundach otrzymuje mikroakcję: "Zrób 5 minut stretchingu". Wstaje, robi stretching, wraca do TV z lepszym samopoczuciem. Następnym razem: może znów odpali Instagrama, ale pamięta że Enpsyneia daje mu więcej wartości.
+Użytkownik siedzi wieczorem przed TV, sięga po telefon żeby "sprawdzić coś na Instagramie". Zamiast tego odpala Enpsyneia. W mniej niż 2 minuty otrzymuje mikroakcję: "Zrób 5 minut stretchingu". Wstaje, robi stretching, wraca do TV z lepszym samopoczuciem. Następnym razem: może znów odpali Instagrama, ale pamięta że Enpsyneia daje mu więcej wartości.
 
 ---
 

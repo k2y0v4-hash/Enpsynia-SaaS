@@ -2,43 +2,60 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ProgressBar } from '@/components/ProgressBar'
 
-// Kolejność i brzmienie per 04-mvp-scope.md
-const QUESTIONS = [
+// Kolejność i brzmienie per docs/product/mvp-scope.md
+// Grupowanie per docs/ui/screens.md — Ekran 2
+const BLOCKS = [
   {
-    id: 'energy',
-    text: 'Poziom energii',
-    leftLabel: 'wyczerpany',
-    rightLabel: 'pełen energii',
+    label: 'Blok 1',
+    questions: [
+      {
+        id: 'energy',
+        text: 'Poziom energii',
+        leftLabel: 'wyczerpany',
+        rightLabel: 'pełen energii',
+        helpText: 'Chodzi o energię fizyczną i umysłową — nie o nastrój ani motywację.',
+      },
+      {
+        id: 'overload',
+        text: 'Przeciążenie bodźcami',
+        leftLabel: 'spokojnie',
+        rightLabel: 'przebodźcowany',
+        helpText: 'Ile rzeczy na ciebie działa: dźwięki, ekrany, rozmowy, decyzje, wiadomości.',
+      },
+      {
+        id: 'paralysis',
+        text: 'Utknięcie w analizie',
+        leftLabel: 'działam',
+        rightLabel: 'myślę bez końca',
+        helpText: 'Czy działasz i decydujesz, czy kręcisz się w kółko w głowie bez decyzji?',
+      },
+    ],
   },
   {
-    id: 'overload',
-    text: 'Przeciążenie bodźcami',
-    leftLabel: 'spokojnie',
-    rightLabel: 'przebodźcowany',
-  },
-  {
-    id: 'movement',
-    text: 'Potrzeba ruchu vs odpoczynku',
-    leftLabel: 'potrzebuję odpocząć',
-    rightLabel: 'potrzebuję ruchu',
-  },
-  {
-    id: 'social',
-    text: 'Potrzeba samotności vs kontaktu',
-    leftLabel: 'chcę być sam',
-    rightLabel: 'chcę być z ludźmi',
-  },
-  {
-    id: 'agency',
-    text: 'Poczucie sprawczości',
-    leftLabel: 'nic nie mogę',
-    rightLabel: 'mogę wszystko',
-  },
-  {
-    id: 'paralysis',
-    text: 'Utknięcie w analizie',
-    leftLabel: 'działam',
-    rightLabel: 'myślę bez końca',
+    label: 'Blok 2',
+    questions: [
+      {
+        id: 'movement',
+        text: 'Potrzeba ruchu vs odpoczynku',
+        leftLabel: 'potrzebuję odpocząć',
+        rightLabel: 'potrzebuję ruchu',
+        helpText: 'Czy ciało prosi teraz o aktywność fizyczną, czy raczej o spokój i bezruch?',
+      },
+      {
+        id: 'social',
+        text: 'Potrzeba samotności vs kontaktu',
+        leftLabel: 'chcę być sam',
+        rightLabel: 'chcę być z ludźmi',
+        helpText: 'Chodzi o kontakt z ludźmi — nie o pracę ani obowiązki zawodowe.',
+      },
+      {
+        id: 'agency',
+        text: 'Poczucie sprawczości',
+        leftLabel: 'nic nie mogę',
+        rightLabel: 'mogę wszystko',
+        helpText: 'Czy masz teraz poczucie, że możesz coś realnie zrobić i na coś wpłynąć?',
+      },
+    ],
   },
 ]
 
@@ -51,61 +68,102 @@ const DEFAULT_ANSWERS = {
   paralysis: 3,
 }
 
-export function CheckInForm({ onComplete }) {
-  const [step, setStep] = useState(0)
-  const [answers, setAnswers] = useState(DEFAULT_ANSWERS)
+// Przelicza wartość (1–5) na procent wypełnienia tracka (0–100%)
+function fillPercent(value) {
+  return ((value - 1) / 4) * 100
+}
 
-  const question = QUESTIONS[step]
-  const value = answers[question.id]
-  const isLast = step === QUESTIONS.length - 1
-
-  function handleChange(e) {
-    setAnswers(prev => ({ ...prev, [question.id]: Number(e.target.value) }))
+function SliderQuestion({ question, value, onChange }) {
+  const pct = fillPercent(value)
+  const trackStyle = {
+    background: `linear-gradient(to right, var(--primary) ${pct}%, #e2e2e2 ${pct}%)`,
   }
 
-  function handleNext() {
-    if (isLast) {
-      onComplete(answers)
-    } else {
-      setStep(s => s + 1)
-    }
-  }
-
-  function handleBack() {
-    setStep(s => s - 1)
-  }
+  // Pozycje markerów dla wartości 1–5
+  const markers = [0, 25, 50, 75, 100]
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-8">
-      <div className="mb-8">
-        <ProgressBar current={step + 1} total={QUESTIONS.length} />
+    <div className="space-y-2">
+      <div>
+        <p className="text-base font-semibold leading-snug">{question.text}</p>
+        <p className="mt-0.5 text-sm text-muted-foreground">{question.helpText}</p>
       </div>
 
-      <div className="flex flex-1 flex-col justify-center space-y-10">
-        <h2 className="text-center text-2xl font-bold leading-tight">
-          {question.text}
-        </h2>
-
-        <div className="space-y-3">
+      <div className="space-y-1.5 pt-1">
+        <div className="relative">
           <input
             type="range"
             min={1}
             max={5}
             step={1}
             value={value}
-            onChange={handleChange}
+            onChange={e => onChange(question.id, Number(e.target.value))}
             className="w-full"
+            style={trackStyle}
           />
-          <div className="flex items-center justify-between text-sm text-muted-foreground">
-            <span className="max-w-[35%]">{question.leftLabel}</span>
-            <span className="text-base font-semibold text-foreground">{value}</span>
-            <span className="max-w-[35%] text-right">{question.rightLabel}</span>
+          {/* Markery skali — 5 subtelnych kresek */}
+          <div className="relative mt-0.5 flex justify-between px-[11px]">
+            {markers.map(pos => (
+              <span
+                key={pos}
+                className="h-1 w-px bg-border"
+                aria-hidden="true"
+              />
+            ))}
           </div>
         </div>
+
+        <div className="flex justify-between text-xs text-muted-foreground">
+          <span className="max-w-[42%] leading-tight">{question.leftLabel}</span>
+          <span className="max-w-[42%] text-right leading-tight">{question.rightLabel}</span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function CheckInForm({ onComplete }) {
+  const [block, setBlock] = useState(0)
+  const [answers, setAnswers] = useState(DEFAULT_ANSWERS)
+
+  const currentBlock = BLOCKS[block]
+  const isLast = block === BLOCKS.length - 1
+
+  function handleChange(id, value) {
+    setAnswers(prev => ({ ...prev, [id]: value }))
+  }
+
+  function handleNext() {
+    if (isLast) {
+      onComplete(answers)
+    } else {
+      setBlock(b => b + 1)
+    }
+  }
+
+  function handleBack() {
+    setBlock(b => b - 1)
+  }
+
+  return (
+    <main className="flex min-h-screen flex-col px-6 py-8">
+      <div className="mb-8">
+        <ProgressBar current={block + 1} total={BLOCKS.length} />
       </div>
 
-      <div className="mt-8 flex gap-3">
-        {step > 0 && (
+      <div className="flex flex-1 flex-col space-y-8">
+        {currentBlock.questions.map(question => (
+          <SliderQuestion
+            key={question.id}
+            question={question}
+            value={answers[question.id]}
+            onChange={handleChange}
+          />
+        ))}
+      </div>
+
+      <div className="mt-10 flex gap-3">
+        {block > 0 && (
           <Button variant="outline" className="flex-1" onClick={handleBack}>
             Wstecz
           </Button>

@@ -7,7 +7,7 @@
 
 ---
 
-> **Nota archiwalna:** Sugestie stacku technicznego i modelu MVP w tym dokumencie (sekcje "Recommendations", "Priority 2", "Tech suggestions", "MVP Scope") mają charakter porównawczy i historyczny. **Obowiązujący stack projektu** (React + Vite + Tailwind + Shadcn + Vercel) oraz zakres MVP są zdefiniowane w `AGENTS.md` i `docs/biznes/04-mvp-scope.md`. W razie sprzeczności — tamte dokumenty są nadrzędne.
+> **Nota archiwalna:** Sugestie stacku technicznego i modelu MVP w tym dokumencie (sekcje "Recommendations", "Priority 2", "Tech suggestions", "MVP Scope") mają charakter porównawczy i historyczny. **Obowiązujący stack projektu** (React + Vite + Tailwind + Shadcn + Vercel) oraz zakres MVP są zdefiniowane w `AGENTS.md` i `docs/product/mvp-scope.md`. W razie sprzeczności — tamte dokumenty są nadrzędne.
 
 ---
 
@@ -386,7 +386,7 @@ Rynek wellness jest nasycony aplikacjami darmowymi (Daylio 5M+ pobrań, Headspac
 
 | # | Luka | Opis | Enpsyneia advantage |
 |---|------|------|---------------------|
-| 1 | **Szybkość** | Wszystkie aplikacje wymagają >= 1 minuty | ✅ <30 sekund (formularz 6 pytań) |
+| 1 | **Szybkość** | Większość aplikacji wymaga 2–5 minut | ✅ < 2 minuty (2 bloki po 3 pytania) |
 | 2 | **No-login** | Wszystkie wymagają konta (poza Daylio częściowo) | ✅ localStorage = zero bariery |
 | 3 | **Need-based vs Mood** | Konkurencja śledzi nastrój, nie potrzeby | ✅ Unikalne podejście do napięć między potrzebami |
 
@@ -529,7 +529,7 @@ Rynek wellness jest nasycony aplikacjami darmowymi (Daylio 5M+ pobrań, Headspac
 ### Activation
 | Metric | Target |
 |--------|--------|
-| Time-to-first-value | <30 sekund |
+| Time-to-first-value | < 2 minuty |
 | % who complete first check-in | >70% |
 | % who rate recommendation helpful | >50% |
 

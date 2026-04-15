@@ -1,5 +1,5 @@
 // Logika analizy — Enpsyneia Check In
-// Specyfikacja: docs/biznes/05-logika-analizy.md
+// Specyfikacja: docs/product/analysis-logic.md
 // Algorytm: sekcja 3 — kolejność KROK 1-5 jest nadrzędna wobec opisów profilów
 
 // ─── Typy dnia ───────────────────────────────────────────────────────────────
@@ -63,7 +63,7 @@ function selectMicroactionKey(dayType, { energy, movement, social, agency }) {
   switch (dayType) {
     case DAY_TYPES.DZIALANIA:    return movement >= 4 ? 'A' : 'B'
     case DAY_TYPES.WYCISZENIA:   return social   <= 2 ? 'A' : 'B'
-    case DAY_TYPES.ODBUDOWY:     return energy   <= 2 ? 'A' : 'B'
+    case DAY_TYPES.ODBUDOWY:     return (energy <= 2 && movement <= 3) ? 'A' : 'B'
     case DAY_TYPES.KONTAKTU:     return energy   >= 4 ? 'A' : 'B'
     case DAY_TYPES.PRZECIAZENIA: return agency   <= 2 ? 'A' : 'B'
   }

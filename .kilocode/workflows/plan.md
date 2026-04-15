@@ -164,8 +164,8 @@ Ten workflow definiuje wzorzec planowania pracy dla Agenta AI Developera. Każdy
 
 ### Krok 2: Weryfikacja zakresu
 
-1. Sprawdź dokumenty biznesowe (`docs/biznes/`)
-2. Sprawdź MVP scope (`docs/biznes/04-mvp-scoping-v3.md`)
+1. Sprawdź dokumenty produktowe (`docs/product/`)
+2. Sprawdź MVP scope (`docs/product/mvp-scope.md`)
 3. Upewnij się że funkcjonalność jest w **Tier 1** (Must-Have) lub **Tier 2** (Should-Have)
 
 ### Krok 3: Tworzenie planu
@@ -275,9 +275,9 @@ Jeśli potrzebujesz szybkiego planu, użyj tego skróconego formatu:
 ## 🔗 Powiązane dokumenty
 
 - [`AGENTS.md`](../../AGENTS.md) - Zasady dla Agenta AI
-- [`docs/biznes/04-mvp-scoping-v3.md`](../biznes/04-mvp-scoping-v3.md) - MVP Scope
-- [`docs/biznes/05-architektura.md`](../biznes/05-architektura.md) - Architektura
-- [`docs/zaimplementowane-plany.md`](../zaimplementowane-plany.md) - Zaimplementowane plany
+- [`docs/product/mvp-scope.md`](../product/mvp-scope.md) - MVP Scope
+- [`docs/architecture/tech-stack.md`](../architecture/tech-stack.md) - Architektura
+- [`docs/archive/zaimplementowane-plany.md`](../archive/zaimplementowane-plany.md) - Archiwalne plany
 
 ---
 

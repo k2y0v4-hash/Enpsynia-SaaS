@@ -1,7 +1,7 @@
 # Plan implementacji MVP — Enpsyneia Check In (Etap 1)
 
 **Dotyczy:** Etap 1 (localStorage, brak kont)
-**Podstawa:** `03-decision.md`, `04-mvp-scope.md`, `AGENTS.md`
+**Podstawa:** `../context/decision-log.md`, `mvp-scope.md`, `AGENTS.md`
 **Data:** 2026-04-12
 
 ---
@@ -51,17 +51,22 @@
 **Cel:** Użytkownik wypełnia 6 pytań na suwakach i przechodzi do wyniku.
 
 **Zakres:**
-- 6 suwaków (skala 1–5), każdy z etykietami na obu końcach
-- Pytania w kolejności: energy, overload, movement, social, agency, paralysis
+- 6 suwaków (skala 1–5), każdy z etykietami na obu końcach, pogrupowanych w 2 bloki po 3
+- Blok 1 (aktualny stan): energy, overload, paralysis
+- Blok 2 (kierunek regulacji): movement, social, agency
+- Help text pod każdym pytaniem (szary, mały font) — treści w `docs/ui/screens.md` sekcja Ekran 2
 - Suwaki domyślnie ustawione na 3
-- Progress bar: "Pytanie X z 6"
-- Przycisk "Dalej" / "Zobacz wynik" na końcu
+- Markery skali: 5 subtelnych kresek pod trackiem — bez centralnej wartości liczbowej
+- Progress bar: "Blok X z 2"
+- Przycisk "Dalej" na Bloku 1 / "Zobacz wynik" na Bloku 2
+- Układ przewijalny — nie wymagane upychanie na jednym ekranie
 
 **Definicja ukończenia:**
 - Wszystkie 6 suwaków działają na dotyk i myszce
-- Progress bar aktualizuje się przy każdym pytaniu
+- Help text wyświetlany pod każdym pytaniem, zawsze widoczny
+- Progress bar aktualizuje się przy zmianie bloku
 - Formularz przekazuje 6 wartości do logiki analizy
-- Możliwość cofnięcia się do poprzedniego pytania
+- Możliwość cofnięcia się do poprzedniego bloku
 
 ---
 
@@ -104,6 +109,7 @@
 - Streak counter pokazuje aktualną wartość
 - Przycisk "Wykonaj ponownie" resetuje formularz i wraca do pytania 1
 - Przycisk "Czy to pomogło?" jest widoczny i wysyła event do GA4 (`feedback_helpful: true/false`)
+- Po kliknięciu 👍 lub 👎: kliknięty przycisk wyróżniony, drugi wyszarzony, oba nieklikalnie — reset przy "Wykonaj ponownie"
 
 ---
 
@@ -122,6 +128,7 @@
 - Po odświeżeniu strony streak i historia są zachowane
 - Historia nie przekracza 5 wpisów (najstarszy usuwany automatycznie)
 - Streak resetuje się poprawnie po przerwie dłuższej niż 1 dzień
+- Streak counter na Landing page pojawia się dopiero gdy `enpsyneia_streak.currentStreak > 0`
 
 ---
 
