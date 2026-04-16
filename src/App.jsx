@@ -24,7 +24,9 @@ function App() {
   }
 
   function handleFormComplete(answers) {
-    setResult(analyzeCheckIn(answers))
+    const analysisResult = analyzeCheckIn(answers)
+    setResult(analysisResult)
+    saveCheckIn(answers, analysisResult)
     setScreen('analysis')
   }
 
@@ -37,7 +39,7 @@ function App() {
   }
 
   if (screen === 'landing') {
-    return <Landing onStart={handleStart} />
+    return <Landing onStart={handleStart} streak={streak} />
   }
 
   if (screen === 'form') {
@@ -48,7 +50,7 @@ function App() {
     return <AnalysisScreen onComplete={handleAnalysisComplete} />
   }
 
-  return <ResultScreen result={result} onReset={handleReset} />
+  return <ResultScreen result={result} streak={streak} onReset={handleReset} />
 }
 
 export default App

@@ -18,22 +18,9 @@ function trackEvent(name, params) {
   }
 }
 
-// Odczyt streaka z localStorage — zwraca 0 jeśli brak lub błąd
-function readStreak() {
-  try {
-    const raw = localStorage.getItem('enpsyneia_streak')
-    if (!raw) return 0
-    const data = JSON.parse(raw)
-    return data?.currentStreak ?? 0
-  } catch {
-    return 0
-  }
-}
-
-export function ResultScreen({ result, onReset }) {
+export function ResultScreen({ result, streak = 0, onReset }) {
   const { dayType, summaryText, justificationText, microaction } = result
   const meta = DAY_META[dayType]
-  const streak = readStreak()
 
   // null = brak odpowiedzi | 'up' = pomogło | 'down' = nie pomogło
   const [feedback, setFeedback] = useState(null)

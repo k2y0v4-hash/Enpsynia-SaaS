@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 
-export function Landing({ onStart }) {
+export function Landing({ onStart, streak = 0 }) {
   return (
     <main className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
       <div className="w-full max-w-sm space-y-6">
@@ -11,6 +11,11 @@ export function Landing({ onStart }) {
           Wypełnij 6 prostych pytań i otrzymaj jedną konkretną mikroakcję.{' '}
           W mniej niż 2 minuty.
         </p>
+        {streak > 0 && (
+          <p className="text-sm font-medium">
+            🔥 {streak} {streak === 1 ? 'dzień' : 'dni'} z rzędu
+          </p>
+        )}
         <Button size="lg" className="w-full" onClick={onStart}>
           Rozpocznij check-in
         </Button>

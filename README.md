@@ -25,7 +25,7 @@ Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ
 | Faza 3 — Formularz check-in | 6 suwaków, progress bar, nawigacja | Ukonczona |
 | Faza 4 — Logika analizy | 5 typów dnia, 10 mikroakcji, testy | Ukonczona |
 | Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Ukonczona |
-| Faza 6 — localStorage | Historia 5 check-inów, streak counter | Do zrobienia |
+| Faza 6 — localStorage | Historia 5 check-inów, streak counter | Ukonczona |
 | Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Do zrobienia |
 
 ---
