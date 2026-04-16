@@ -5,13 +5,7 @@ import { AnalysisScreen } from '@/components/AnalysisScreen'
 import { ResultScreen } from '@/components/ResultScreen'
 import { analyzeCheckIn } from '@/utils/analysisLogic'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-
-// GA4 — bezpieczna funkcja, nie rzuca błędem gdy gtag niedostępny
-function trackEvent(name, params) {
-  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    window.gtag('event', name, params)
-  }
-}
+import { trackEvent } from '@/lib/analytics'
 
 function App() {
   const [screen, setScreen] = useState('landing')

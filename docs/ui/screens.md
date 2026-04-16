@@ -23,7 +23,7 @@
 - Nagłówek: „Czego teraz najbardziej potrzebujesz?"
 - Value prop: „Wypełnij 6 prostych pytań i otrzymaj jedną konkretną mikroakcję. W mniej niż 2 minuty."
 - Przycisk CTA: „Rozpocznij check-in"
-- Streak counter pod CTA (tylko jeśli `enpsyneia_streak.currentStreak > 0`): „🔥 Twoja seria: X dni z rzędu"
+- Streak counter pod CTA (tylko jeśli `enpsyneia_streak.currentStreak > 0`): „🔥 X dni z rzędu" (singular: „🔥 1 dzień z rzędu")
 
 **Zasady:**
 - Brak linków zewnętrznych, brak menu

@@ -283,12 +283,13 @@ Do ręcznej weryfikacji przed wdrożeniem i po każdej zmianie logiki.
 | 11 | 3 | 3 | 3 | 3 | 3 | 3 | Odbudowy (fallback) | B (energy=3 ≥ 3, reguła ruch nieistotna przy movement=3) |
 | 12 | 5 | 5 | 5 | 5 | 5 | 5 | Przeciążenia | B (agency=5 ≥ 3) |
 | 13 | 5 | 4 | 5 | 5 | 5 | 4 | Przeciążenia | B (agency=5) |
-| 14 | 5 | 2 | 5 | 5 | 5 | 1 | Działania | A (movement=5) |
+| 14 | 5 | 2 | 5 | 5 | 5 | 1 | Kontaktu | A (energy=5 ≥ 4 → A) |
 | 15 | 1 | 1 | 1 | 1 | 1 | 1 | Odbudowy (fallback) | A (energy=1 ≤ 2, movement=1 ≤ 3) |
 | 16 | 1 | 2 | 5 | 3 | 2 | 1 | Odbudowy | B (energy=1 ≤ 2, ale movement=5 ≥ 4 → override do B) |
 
 *Uwaga do przypadku #6:* `energy=2` i `movement=2` → oba warunki mikroakcji A spełnione → A.
 *Uwaga do przypadku #12:* `overload=5` i `paralysis=5` → KROK 1 → Przeciążenie. `agency=5 ≥ 3` → mikroakcja B.
+*Uwaga do przypadku #14:* `social=5 ≥ 4 AND overload=2 ≤ 3` → KROK 3 (Kontaktu) wyprzedza KROK 4 (Działania). Wysoka energia nie przebija potrzeby kontaktu przy braku blokad.
 *Uwaga do przypadku #16:* edge case — niskie zasoby, ale wysoka potrzeba ruchu. `movement=5 ≥ 4` override'uje regułę energii → mikroakcja B (stretching zamiast "połóż się").
 
 ---

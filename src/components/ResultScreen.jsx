@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { DAY_TYPES } from '@/utils/analysisLogic'
+import { trackEvent } from '@/lib/analytics'
 
 // Metadane wyświetlania typów dnia — emoji i etykieta
 const DAY_META = {
@@ -9,13 +10,6 @@ const DAY_META = {
   [DAY_TYPES.ODBUDOWY]:     { emoji: '🌱', label: 'Dzień Odbudowy' },
   [DAY_TYPES.KONTAKTU]:     { emoji: '🤝', label: 'Dzień Kontaktu' },
   [DAY_TYPES.PRZECIAZENIA]: { emoji: '🌀', label: 'Dzień Przeciążenia' },
-}
-
-// GA4 — bezpieczna funkcja, nie rzuca błędem gdy gtag niedostępny
-function trackEvent(name, params) {
-  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
-    window.gtag('event', name, params)
-  }
 }
 
 export function ResultScreen({ result, streak = 0, onReset }) {

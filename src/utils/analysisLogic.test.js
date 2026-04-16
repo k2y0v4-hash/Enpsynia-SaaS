@@ -1,6 +1,6 @@
 /* global process */
-// Weryfikacja ręczna — 15 przypadków testowych z 05-logika-analizy.md sekcja 8
-// Uruchom: node src/utils/analysisLogic.test.js
+// Weryfikacja — 16 przypadków testowych z docs/product/analysis-logic.md sekcja 8
+// Uruchom: npm test  lub  node src/utils/analysisLogic.test.js
 
 import { analyzeCheckIn } from './analysisLogic.js'
 
@@ -18,21 +18,15 @@ const CASES = [
   { id: 11, energy:3, overload:3, movement:3, social:3, agency:3, paralysis:3, expectedType:'Odbudowy',     expectedKey:'B' },
   { id: 12, energy:5, overload:5, movement:5, social:5, agency:5, paralysis:5, expectedType:'Przeciążenia', expectedKey:'B' },
   { id: 13, energy:5, overload:4, movement:5, social:5, agency:5, paralysis:4, expectedType:'Przeciążenia', expectedKey:'B' },
-  // UWAGA: przypadek #14 — sprzeczność w spec (patrz komentarz poniżej)
-  { id: 14, energy:5, overload:2, movement:5, social:5, agency:5, paralysis:1, expectedType:'Działania',    expectedKey:'A' },
+  // #14 — social=5 wyzwala KROK 3 (Kontaktu) przed KROK 4 (Działania) — per algorytm sekcji 3
+  { id: 14, energy:5, overload:2, movement:5, social:5, agency:5, paralysis:1, expectedType:'Kontaktu',     expectedKey:'A' },
   { id: 15, energy:1, overload:1, movement:1, social:1, agency:1, paralysis:1, expectedType:'Odbudowy',     expectedKey:'A' },
+  // #16 — edge case: niskie zasoby, ale wysoka potrzeba ruchu → mikroakcja B (ruch zamiast odpoczynku)
+  { id: 16, energy:1, overload:2, movement:5, social:3, agency:2, paralysis:1, expectedType:'Odbudowy',     expectedKey:'B' },
 ]
-
-// Przypadek #14 — SPRZECZNOŚĆ W SPEC:
-// Algorytm z sekcji 3: KROK 3 (social=5 ≥ 4 AND overload=2 ≤ 3) → Kontaktu
-// Tabela testowa z sekcji 8: oczekiwany wynik = Działania
-// Implementacja stosuje algorytm z sekcji 3 (Kontaktu) — sekcja 3 jest nadrzędna.
-// Faktyczny wynik: Kontaktu A (energy=5 ≥ 4 → A)
-// Do rozstrzygnięcia przez właściciela projektu.
 
 let passed = 0
 let failed = 0
-let flagged = 0
 
 for (const c of CASES) {
   const result = analyzeCheckIn({
@@ -47,11 +41,7 @@ for (const c of CASES) {
   const typeOk = result.dayType === c.expectedType
   const keyOk  = result.microactionKey === c.expectedKey
 
-  if (c.id === 14) {
-    // Znana sprzeczność — nie liczymy jako FAIL, ale flagujemy
-    console.log(`[FLAGGED] #${c.id}: algorytm → ${result.dayType} ${result.microactionKey} | spec tabela → ${c.expectedType} ${c.expectedKey}`)
-    flagged++
-  } else if (typeOk && keyOk) {
+  if (typeOk && keyOk) {
     console.log(`[PASS]    #${c.id}: ${result.dayType} ${result.microactionKey}`)
     passed++
   } else {
@@ -60,5 +50,5 @@ for (const c of CASES) {
   }
 }
 
-console.log(`\nWyniki: ${passed} PASS, ${failed} FAIL, ${flagged} FLAGGED`)
+console.log(`\nWyniki: ${passed} PASS, ${failed} FAIL`)
 if (failed > 0) process.exit(1)

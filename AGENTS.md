@@ -283,7 +283,7 @@ const getSession = async () => {
 
 - **Functional components only** (no class components)
 - **Hooks for state management** (useState, useEffect)
-- **Custom hooks for reusable logic** (useCheckIn, useLocalStorage — Tier 1; useAuth dopiero w Tier 2)
+- **Custom hooks for reusable logic** (useLocalStorage — Tier 1; useAuth dopiero w Tier 2)
 - **Prop validation** with TypeScript or PropTypes
 - **Component composition** over inheritance
 
@@ -342,27 +342,31 @@ const getSession = async () => {
 
 ## 🔧 Implementation Guidelines
 
-### File Structure (Suggested)
+### File Structure (Actual)
 
 ```
 enpsyneia-check-in/
-├── public/
-│   └── index.html
+├── index.html                        # Entry point (Vite) — zawiera inicjalizację GA4
 ├── src/
 │   ├── components/
-│   │   ├── Landing.jsx
-│   │   ├── CheckInForm.jsx
-│   │   ├── Slider.jsx
-│   │   ├── ResultCard.jsx
-│   │   └── ProgressBar.jsx
+│   │   ├── Landing.jsx               # Ekran startowy z CTA i streak
+│   │   ├── CheckInForm.jsx           # Formularz: 6 suwaków w 2 blokach
+│   │   ├── AnalysisScreen.jsx        # Ekran przejściowy (2s)
+│   │   ├── ResultScreen.jsx          # Ekran wyniku z mikroakcją i feedbackiem
+│   │   ├── ProgressBar.jsx           # "Blok X z 2"
+│   │   └── ui/button.jsx             # Shadcn Button (nie edytować)
 │   ├── hooks/
-│   │   ├── useLocalStorage.js   # odczyt i zapis localStorage (historia, streak)
-│   │   └── useCheckIn.js        # stan formularza + wywołanie analysisLogic; NIE zapisuje do localStorage
+│   │   └── useLocalStorage.js        # Odczyt/zapis localStorage: historia + streak
 │   ├── utils/
-│   │   ├── analysisLogic.js
-│   │   └── constants.js
-│   ├── App.jsx
-│   └── index.js
+│   │   ├── analysisLogic.js          # Logika analizy — pure function
+│   │   └── analysisLogic.test.js     # 16 przypadków testowych (npm test)
+│   ├── lib/
+│   │   ├── utils.js                  # cn() helper (Shadcn)
+│   │   └── analytics.js             # GA4 trackEvent — jedyne miejsce
+│   ├── App.jsx                       # Routing: landing → form → analysis → result
+│   ├── main.jsx                      # React root
+│   └── index.css                     # Tailwind + fonty
+├── .env.example                      # Szablon zmiennych środowiskowych
 ├── package.json
 └── README.md
 ```

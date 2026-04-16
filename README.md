@@ -44,8 +44,12 @@ src/
 │   └── ui/button.jsx          # Komponent Shadcn
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
-│   └── analysisLogic.test.js  # Testy jednostkowe logiki
-└── hooks/                     # Hook useLocalStorage (Faza 6)
+│   └── analysisLogic.test.js  # 16 przypadków testowych (npm test)
+├── hooks/
+│   └── useLocalStorage.js     # Historia 5 check-inów + streak counter
+└── lib/
+    ├── utils.js               # cn() helper (Shadcn)
+    └── analytics.js           # GA4 trackEvent — jedyne miejsce
 ```
 
 **Logika analizy** ([`src/utils/analysisLogic.js`](./src/utils/analysisLogic.js)) działa na drzewie priorytetów per [`docs/product/analysis-logic.md`](./docs/product/analysis-logic.md):
@@ -66,6 +70,41 @@ Dla każdego typu dnia dostępne są 2 mikroakcje (A/B) wybierane deterministycz
 npm install
 npm run dev
 ```
+
+Testy logiki analizy:
+
+```bash
+npm test
+```
+
+---
+
+## Konfiguracja GA4
+
+Aplikacja wysyła trzy eventy do Google Analytics 4: `form_start`, `result_shown`, `feedback_helpful`.
+Eventy są wysyłane tylko gdy `VITE_GA4_ID` jest ustawiony — brak zmiennej nie powoduje błędów.
+
+**Dev / lokalnie:**
+
+```bash
+cp .env.example .env.local
+# Wpisz swój Measurement ID w .env.local:
+# VITE_GA4_ID=G-XXXXXXXXXX
+```
+
+**Produkcja (Vercel):** Project Settings → Environment Variables → dodaj `VITE_GA4_ID` z wartością `G-XXXXXXXXXX`.
+
+---
+
+## Deploy na Vercel
+
+Vercel automatycznie wykrywa projekt Vite. Wystarczy połączyć repozytorium:
+
+1. Utwórz nowy projekt w Vercel i wskaż to repozytorium.
+2. Build command: `npm run build` (domyślne dla Vite — nie trzeba zmieniać).
+3. Output directory: `dist` (domyślne — nie trzeba zmieniać).
+4. Dodaj zmienną środowiskową `VITE_GA4_ID` (patrz sekcja GA4 powyżej).
+5. Każdy push na `main` uruchamia automatyczny deploy.
 
 ---
 
