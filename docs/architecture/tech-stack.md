@@ -75,6 +75,13 @@ Logika streak: wczoraj → streak +1 · dziś ponownie → bez zmiany · dawniej
 
 ---
 
+## Produkcja
+
+- URL: `checkin.enpsyneia.org` (Vercel)
+- GA4: zmienna środowiskowa `VITE_GA4_ID` ustawiona w Vercel Project Settings
+
+---
+
 ## Etap 2 (po walidacji)
 
 Supabase (Auth + PostgreSQL) + Resend. Schemat bazy i plan migracji w `AGENTS.md`.

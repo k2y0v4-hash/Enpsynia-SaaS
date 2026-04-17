@@ -26,7 +26,15 @@ Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ
 | Faza 4 — Logika analizy | 5 typów dnia, 10 mikroakcji, testy | Ukonczona |
 | Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Ukonczona |
 | Faza 6 — localStorage | Historia 5 check-inów, streak counter | Ukonczona |
-| Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Do zrobienia |
+| Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Ukończona |
+
+---
+
+## Produkcja
+
+- URL produkcyjny: `https://checkin.enpsyneia.org`
+- Hosting: Vercel
+- GA4: skonfigurowane
 
 ---
 
