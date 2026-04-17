@@ -171,6 +171,26 @@ Nowy dokument tworzymy tylko wtedy, gdy nie da się sensownie rozszerzyć istnie
 
 ---
 
+## System ról agentów
+
+Repozytorium może być rozwijane w trybie spec-driven AI development z podziałem zadań między wyspecjalizowane role.
+
+**Główne role:**
+
+- Product Owner
+- UX Designer
+- System Architect
+- Implementation Planner
+- Developer
+- Tester
+- DevOps
+
+**Zasada:** jedna rola główna, opcjonalnie jedna pomocnicza — nigdy więcej niż dwie jednocześnie.
+
+Szczegółowy routing i opisy ról: [`agents/ROUTING.md`](./agents/ROUTING.md) · [`agents/roles/`](./agents/roles/)
+
+---
+
 ## Archiwum dokumentów
 
 Wcześniejsze wersje dokumentów, zastąpione przez aktualną specyfikację. Zachowane jako materiał historyczny — nie używać jako źródła decyzji implementacyjnych.
