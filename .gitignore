@@ -1,5 +1,7 @@
 .DS_Store
 .env
+.env.*
+!.env.example
 .kiloignore
 node_modules
 dist
@@ -9,3 +11,6 @@ dist-ssr
 .env.development.local
 .env.test.local
 .env.production.local
+
+# local vercel files
+.vercel/
