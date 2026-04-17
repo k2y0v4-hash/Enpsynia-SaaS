@@ -49,12 +49,14 @@ src/
 │   ├── AnalysisScreen.jsx     # Ekran przejściowy "Analizuję..."
 │   ├── ResultScreen.jsx       # Ekran wyniku z mikroakcją i feedbackiem
 │   ├── ProgressBar.jsx        # Pasek postępu "Blok X z 2"
+│   ├── ConsentBanner.jsx      # Baner zgody analytics (jednorazowy)
 │   └── ui/button.jsx          # Komponent Shadcn
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
 │   └── analysisLogic.test.js  # 16 przypadków testowych (npm test)
 ├── hooks/
-│   └── useLocalStorage.js     # Historia 5 check-inów + streak counter
+│   ├── useLocalStorage.js     # Historia 5 check-inów + streak counter
+│   └── useConsent.js          # Stan zgody analytics (accepted/rejected/null)
 └── lib/
     ├── utils.js               # cn() helper (Shadcn)
     └── analytics.js           # GA4 trackEvent — jedyne miejsce

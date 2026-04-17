@@ -202,6 +202,8 @@ WITH CHECK (auth.uid() = user_id);
 
 ### Tier 2: Supabase Auth (Magic Link)
 
+> Materiał referencyjny — nie implementować w Etapie 1.
+
 **Flow:**
 
 1. User enters email
