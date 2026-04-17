@@ -570,6 +570,28 @@ Praca może być prowadzona w trybie spec-driven AI development z rolami. Routin
 
 ---
 
+## Context7 MCP — pomocnicza dokumentacja bibliotek
+
+Projekt ma skonfigurowany Context7 MCP (`.mcp.json`). Służy wyłącznie jako pomocnicze źródło aktualnej dokumentacji zewnętrznych bibliotek.
+
+**Kiedy używać:**
+- React, Vite, Tailwind, Shadcn — API, opcje konfiguracji, wzorce użycia
+- Vercel — deployment options, environment variables
+- Supabase — przygotowanie do Etapu 2
+- GA4 / gtag.js — parametry eventów
+
+**Kiedy nie używać:**
+- logika produktu, typy dnia, mikroakcje — źródło prawdy: `docs/product/`
+- decyzje architektoniczne — źródło prawdy: `AGENTS.md` i `docs/architecture/`
+- bieżący kod repo — czytaj pliki bezpośrednio
+
+**Zasady bezpieczeństwa:**
+- Context7 to pomocnicze źródło, nie nadrzędne — lokalny kod i specyfikacje mają zawsze pierwszeństwo
+- nie dodawaj do `.mcp.json` innych serwerów MCP bez osobnej decyzji
+- korzystaj tylko z zaufanych, znanych serwerów MCP
+
+---
+
 ## Dependency Hygiene
 
 - `package-lock.json` jest źródłem prawdy dla zależności npm i musi być śledzony w repo.
