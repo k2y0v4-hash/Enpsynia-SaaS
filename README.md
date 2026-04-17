@@ -34,7 +34,7 @@ Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ
 
 ```
 src/
-├── App.jsx                    # Routing między ekranami (landing → form → result)
+├── App.jsx                    # Routing między ekranami (landing → form → analysis → result)
 ├── components/
 │   ├── Landing.jsx            # Ekran startowy z CTA
 │   ├── CheckInForm.jsx        # Formularz 2 bloki po 3 pytania
@@ -206,3 +206,4 @@ Wcześniejsze wersje dokumentów, zastąpione przez aktualną specyfikację. Zac
 | [`docs/archive/Resource_Analysis.md`](./docs/archive/Resource_Analysis.md) | Analiza zasobów — czas, budżet, kompetencje dla MVP |
 | [`docs/archive/auth-implementation-plan.md`](./docs/archive/auth-implementation-plan.md) | Plan implementacji autentykacji Supabase (dotyczy Etapu 2) |
 | [`docs/archive/tech-stack-audit.md`](./docs/archive/tech-stack-audit.md) | Audyt tech stacku — analiza opcji autentykacji i hostingu |
+| [`docs/archive/zaimplementowane-plany.md`](./docs/archive/zaimplementowane-plany.md) | Historyczny plan wdrożeniowy z 2026-03-31 — niezrealizowany, linki wewnętrzne nieaktualne |

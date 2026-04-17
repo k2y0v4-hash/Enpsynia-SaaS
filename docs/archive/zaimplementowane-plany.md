@@ -1,10 +1,10 @@
 # Zaimplementowane plany
 
 > **NIEAKTUALNY — plik archiwalny.**
-> Ten dokument opisuje plan z 2026-03-31, który nigdy nie został zrealizowany i referuje zarchiwizowane wersje specyfikacji.
-> **Aktualny plan implementacji:** [`docs/biznes/06-plan-implementacji.md`](biznes/06-plan-implementacji.md)
-> **Aktualny scope MVP:** [`docs/biznes/04-mvp-scope.md`](biznes/04-mvp-scope.md) — formularz ma **6 pytań**, nie 4.
-> Poniższa treść zachowana wyłącznie jako materiał historyczny. Nie traktuj jej jako aktualnych instrukcji.
+> Ten dokument opisuje plan z 2026-03-31, który nigdy nie został zrealizowany.
+> Wszystkie linki wewnętrzne w tym pliku (`docs/biznes/...`) prowadzą do starej struktury katalogów, która nie istnieje w obecnym repo — są nieaktualne i nie należy ich używać.
+> Aktualne dokumenty: [`docs/product/implementation-plan.md`](../product/implementation-plan.md) · [`docs/product/mvp-scope.md`](../product/mvp-scope.md)
+> Poniższa treść zachowana wyłącznie jako materiał historyczny.
 
 ---
 

@@ -78,7 +78,7 @@
 - Implementacja reguł if/else w `src/utils/analysisLogic.js`
   (Projekt używa JavaScript z JSX — rozszerzenie `.js`, nie `.ts`)
 - 5 typów dnia: Działania, Wyciszenia, Odbudowy, Kontaktu, Przeciążenia
-- Minimum 2 mikroakcje na typ dnia (wybierana deterministycznie na podstawie jednej zmiennej pomocniczej — per reguły z `05-logika-analizy.md`)
+- Minimum 2 mikroakcje na typ dnia (wybierana deterministycznie na podstawie jednej zmiennej pomocniczej — per reguły z `docs/product/analysis-logic.md`)
 - Pełne pokrycie: każda kombinacja odpowiedzi zwraca wynik
 
 **Ważne:** Typ dnia ma charakter pomocniczy — jest podpowiedzią dla użytkownika, nie diagnozą medyczną ani psychologiczną. Komunikacja w UI musi to odzwierciedlać (np. "Twój dzień wygląda jak…", nie "Masz typ dnia…").
@@ -98,7 +98,7 @@
 
 **Zakres:**
 - Wyświetlenie: podsumowanie stanu (1 linia) + typ dnia (duży) + uzasadnienie wyniku (1 zdanie pod typem dnia) + mikroakcja (konkretna)
-- Uzasadnienie wyniku (1 zdanie pod typem dnia) — teksty per typ w `05-logika-analizy.md` sekcja 7
+- Uzasadnienie wyniku (1 zdanie pod typem dnia) — teksty per typ w `docs/product/analysis-logic.md` sekcja 7
 - Streak counter: "🔥 X dni z rzędu" (dane z localStorage)
 - Przycisk "Wykonaj ponownie"
 - Przycisk "Czy to pomogło?" (dwie opcje: 👍 / 👎) — wysyła event do GA4; brak zapisu lokalnego, brak backendu
@@ -202,4 +202,4 @@
 | Suwaki trudne w obsłudze na dotyk (za małe, za wrażliwe) | Faza 3 | Przetestować na realnym telefonie przed Fazą 5 |
 | Safari (iOS) czyści localStorage agresywnie | Faza 6 | Nie budować na tym żadnej krytycznej funkcji; streak to nice-to-have, nie blokuje wartości |
 | Streak edge case: użytkownik robi 2 check-iny tego samego dnia | Faza 6 | Zdefiniować przed implementacją: ten sam dzień = streak bez zmiany |
-| ~~Mikroakcje brzmią generycznie~~ | Faza 4 | Rozwiązane — pełne teksty 10 mikroakcji (2 per typ dnia) zdefiniowane w `05-logika-analizy.md` |
+| ~~Mikroakcje brzmią generycznie~~ | Faza 4 | Rozwiązane — pełne teksty 10 mikroakcji (2 per typ dnia) zdefiniowane w `docs/product/analysis-logic.md` |

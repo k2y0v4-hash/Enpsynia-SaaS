@@ -12,7 +12,7 @@ export const DAY_TYPES = {
   PRZECIAZENIA:'Przeciążenia',
 }
 
-// ─── Mikroakcje (05-logika-analizy.md sekcja 5) ───────────────────────────────
+// ─── Mikroakcje (docs/product/analysis-logic.md sekcja 5) ───────────────────────────────
 
 const MICROACTIONS = {
   [DAY_TYPES.DZIALANIA]: {
@@ -37,7 +37,7 @@ const MICROACTIONS = {
   },
 }
 
-// ─── Teksty UI (05-logika-analizy.md sekcje 6 i 7) ───────────────────────────
+// ─── Teksty UI (docs/product/analysis-logic.md sekcje 6 i 7) ───────────────────────────
 
 const SUMMARY_TEXTS = {
   [DAY_TYPES.DZIALANIA]:    'Masz dziś wyraźnie więcej energii i sprawczości niż zwykle.',
@@ -57,7 +57,7 @@ const JUSTIFICATION_TEXTS = {
   SPECIAL_FALLBACK:         'Twój stan jest dziś wyrównany — nie ma wyraźnych sygnałów w żadną stronę. Delikatna odbudowa to bezpieczny krok.',
 }
 
-// ─── Wybór mikroakcji (05-logika-analizy.md sekcja 4) ────────────────────────
+// ─── Wybór mikroakcji (docs/product/analysis-logic.md sekcja 4) ────────────────────────
 
 function selectMicroactionKey(dayType, { energy, movement, social, agency }) {
   switch (dayType) {
@@ -72,7 +72,7 @@ function selectMicroactionKey(dayType, { energy, movement, social, agency }) {
 // ─── Główna funkcja API ───────────────────────────────────────────────────────
 
 /**
- * analyzeCheckIn — drzewo priorytetów per 05-logika-analizy.md sekcja 3
+ * analyzeCheckIn — drzewo priorytetów per docs/product/analysis-logic.md sekcja 3
  *
  * @param {{ energy, overload, movement, social, agency, paralysis }} answers
  *   Każda wartość: integer 1–5
@@ -105,7 +105,7 @@ export function analyzeCheckIn({ energy, overload, movement, social, agency, par
   const microactionKey = selectMicroactionKey(dayType, { energy, movement, social, agency })
 
   // Special fallback text — wyłącznie gdy dokładnie wszystkie 6 wartości = 3
-  // (05-logika-analizy.md sekcja 9, decyzja #4)
+  // (docs/product/analysis-logic.md sekcja 9, decyzja #4)
   const isAllThree =
     energy === 3 && overload === 3 && movement === 3 &&
     social === 3 && agency === 3 && paralysis === 3
