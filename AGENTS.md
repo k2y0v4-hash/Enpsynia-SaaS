@@ -568,4 +568,15 @@ Praca może być prowadzona w trybie spec-driven AI development z rolami. Routin
 
 ---
 
+---
+
+## Dependency Hygiene
+
+- `package-lock.json` jest źródłem prawdy dla zależności npm i musi być śledzony w repo.
+- Po każdej zmianie zależności uruchom: `npm audit`, `npm test`, `npm run build`.
+- Alerty bezpieczeństwa zależności są obsługiwane przez GitHub Dependabot (konfiguracja: `.github/dependabot.yml`).
+- CI (`npm audit --audit-level=high`) blokuje tylko podatności o poziomie high/critical.
+
+---
+
 _This document defines the rules for AI Developer Agent working on Enpsyneia Check In project. Implementation specs: `docs/product/`. Context and research: `docs/context/`._
