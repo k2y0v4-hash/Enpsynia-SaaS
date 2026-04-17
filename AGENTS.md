@@ -348,7 +348,7 @@ const getSession = async () => {
 
 ```
 enpsyneia-check-in/
-├── index.html                        # Entry point (Vite) — root HTML shell; GA4 ładowane przez src/lib/analytics.js
+├── index.html                        # Entry point (Vite) — root HTML shell
 ├── src/
 │   ├── components/
 │   │   ├── Landing.jsx               # Ekran startowy z CTA i streak
@@ -356,15 +356,17 @@ enpsyneia-check-in/
 │   │   ├── AnalysisScreen.jsx        # Ekran przejściowy (2s)
 │   │   ├── ResultScreen.jsx          # Ekran wyniku z mikroakcją i feedbackiem
 │   │   ├── ProgressBar.jsx           # "Blok X z 2"
+│   │   ├── ConsentBanner.jsx         # Baner zgody analytics (fixed bottom, jednorazowy)
 │   │   └── ui/button.jsx             # Shadcn Button (nie edytować)
 │   ├── hooks/
-│   │   └── useLocalStorage.js        # Odczyt/zapis localStorage: historia + streak
+│   │   ├── useLocalStorage.js        # Odczyt/zapis localStorage: historia + streak
+│   │   └── useConsent.js             # Stan zgody analytics (accepted/rejected/null)
 │   ├── utils/
 │   │   ├── analysisLogic.js          # Logika analizy — pure function
 │   │   └── analysisLogic.test.js     # 16 przypadków testowych (npm test)
 │   ├── lib/
 │   │   ├── utils.js                  # cn() helper (Shadcn)
-│   │   └── analytics.js             # GA4 trackEvent — jedyne miejsce
+│   │   └── analytics.js              # GA4: initGA4() (po zgodzie) + trackEvent()
 │   ├── App.jsx                       # Routing: landing → form → analysis → result
 │   ├── main.jsx                      # React root
 │   └── index.css                     # Tailwind + fonty

@@ -134,6 +134,8 @@
 
 ### Faza 7 — QA i deploy
 
+> **Stan:** Zrealizowana. Produkcja działa na `checkin.enpsyneia.org`. Po wdrożeniu dodano mechanizm zgody analytics (baner + `useConsent`). Aktualny stan wdrożenia opisuje `README.md`.
+
 **Cel:** Aplikacja działa poprawnie na urządzeniach mobilnych i jest publicznie dostępna.
 
 **Zakres:**
