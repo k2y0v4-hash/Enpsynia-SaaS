@@ -432,6 +432,21 @@ enpsyneia-check-in/
 
 ---
 
+## 🔒 Security Assumptions — Etap 1
+
+Minimalne zasady bezpieczeństwa dla bieżącego etapu:
+
+- Etap 1 nie przechowuje sekretów, haseł ani tokenów dostępowych.
+- `localStorage` służy wyłącznie do danych lokalnych użytkownika, takich jak historia check-inów i streak.
+- `localStorage` nie może być traktowany jako miejsce dla autoryzacji ani sesji bezpieczeństwa.
+- Do analytics nie wysyłamy pełnych odpowiedzi z check-inu ani innych danych pozwalających odtworzyć stan użytkownika.
+- Jedynym zewnętrznym skryptem dopuszczonym w Etapie 1 jest GA4, ładowany przez `src/lib/analytics.js`.
+- Każdy nowy input tekstowy od użytkownika wymaga osobnego przeglądu pod kątem XSS.
+- Nie dodajemy `dangerouslySetInnerHTML` bez osobnej decyzji bezpieczeństwowej.
+- Etap 2 wymaga osobnego przeglądu bezpieczeństwa przed wdrożeniem auth i trwałych danych użytkownika.
+
+---
+
 ## ⚠️ Critical Rules
 
 ### DO's

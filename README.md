@@ -108,6 +108,28 @@ Vercel automatycznie wykrywa projekt Vite. Wystarczy połączyć repozytorium:
 
 ---
 
+## Prywatność i bezpieczeństwo
+
+Etap 1 działa bez kont użytkowników i bez backendu. Aplikacja zapisuje lokalnie w przeglądarce tylko:
+- historię ostatnich 5 check-inów
+- streak counter
+- uproszczony wynik check-inu
+
+Dane te są przechowywane w `localStorage`, więc:
+- pozostają na tym urządzeniu i w tej przeglądarce
+- mogą zostać utracone po wyczyszczeniu danych przeglądarki
+- nie powinny być traktowane jako miejsce na dane szczególnie wrażliwe
+
+Google Analytics 4 jest opcjonalne i ładowane tylko wtedy, gdy ustawione jest `VITE_GA4_ID`.
+
+Zasada projektu:
+- do GA4 wysyłamy tylko minimalne eventy produktowe, takie jak `form_start`, `result_shown`, `feedback_helpful`
+- nie wysyłamy pełnych odpowiedzi check-inu
+- nie wysyłamy historii check-inów
+- nie wysyłamy treści mikroakcji jako danych analitycznych
+
+---
+
 ## Dokumentacja projektu
 
 ### Źródła prawdy (implementacja)
