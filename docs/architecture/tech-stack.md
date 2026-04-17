@@ -12,7 +12,7 @@
 | Stylowanie | Tailwind CSS v4 + Shadcn UI (Base UI) | Mobile-first |
 | Stan | localStorage | Brak backendu w Etapie 1 |
 | Hosting | Vercel | Auto-deploy z main |
-| Analityka | Google Analytics 4 | Wymagana od Fazy 7 |
+| Analityka | Google Analytics 4 | Ładowana po zgodzie użytkownika (baner przy pierwszej wizycie) |
 
 Brak backendu, brak kont użytkowników, koszt $0/mies.
 
@@ -37,10 +37,11 @@ src/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
 │   └── analysisLogic.test.js  # Testy jednostkowe (npm test)
 ├── hooks/
-│   └── useLocalStorage.js     # Odczyt/zapis localStorage: historia + streak
+│   ├── useLocalStorage.js     # Odczyt/zapis localStorage: historia + streak
+│   └── useConsent.js          # Stan zgody analytics (accepted/rejected/null)
 └── lib/
     ├── utils.js               # cn() helper (Shadcn)
-    └── analytics.js           # GA4 trackEvent — jedyne miejsce inicjalizacji
+    └── analytics.js           # GA4: initGA4() (po zgodzie) + trackEvent()
 ```
 
 ---
@@ -69,6 +70,9 @@ src/
   "currentStreak": 7,
   "lastCheckIn": "2026-04-14"
 }
+
+// Zgoda analytics
+"enpsyneia_analytics_consent": "accepted" | "rejected"
 ```
 
 Logika streak: wczoraj → streak +1 · dziś ponownie → bez zmiany · dawniej → reset do 1.

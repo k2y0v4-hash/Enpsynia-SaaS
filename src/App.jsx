@@ -1,16 +1,26 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { Landing } from '@/components/Landing'
 import { CheckInForm } from '@/components/CheckInForm'
 import { AnalysisScreen } from '@/components/AnalysisScreen'
 import { ResultScreen } from '@/components/ResultScreen'
+import { ConsentBanner } from '@/components/ConsentBanner'
 import { analyzeCheckIn } from '@/utils/analysisLogic'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { trackEvent } from '@/lib/analytics'
+import { useConsent } from '@/hooks/useConsent'
+import { initGA4, trackEvent } from '@/lib/analytics'
+import { useState } from 'react'
 
 function App() {
   const [screen, setScreen] = useState('landing')
   const [result, setResult] = useState(null)
   const { streak, saveCheckIn } = useLocalStorage()
+  const { consent, accept, reject } = useConsent()
+
+  useEffect(() => {
+    if (consent === 'accepted') {
+      initGA4()
+    }
+  }, [consent])
 
   function handleStart() {
     trackEvent('form_start', {})
@@ -32,19 +42,15 @@ function App() {
     setScreen('form')
   }
 
-  if (screen === 'landing') {
-    return <Landing onStart={handleStart} streak={streak} />
-  }
-
-  if (screen === 'form') {
-    return <CheckInForm onComplete={handleFormComplete} />
-  }
-
-  if (screen === 'analysis') {
-    return <AnalysisScreen onComplete={handleAnalysisComplete} />
-  }
-
-  return <ResultScreen result={result} streak={streak} onReset={handleReset} />
+  return (
+    <>
+      {screen === 'landing' && <Landing onStart={handleStart} streak={streak} />}
+      {screen === 'form' && <CheckInForm onComplete={handleFormComplete} />}
+      {screen === 'analysis' && <AnalysisScreen onComplete={handleAnalysisComplete} />}
+      {screen === 'result' && <ResultScreen result={result} streak={streak} onReset={handleReset} />}
+      {consent === null && <ConsentBanner onAccept={accept} onReject={reject} />}
+    </>
+  )
 }
 
 export default App

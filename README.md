@@ -90,7 +90,13 @@ npm test
 ## Konfiguracja GA4
 
 Aplikacja wysyła trzy eventy do Google Analytics 4: `form_start`, `result_shown`, `feedback_helpful`.
-Eventy są wysyłane tylko gdy `VITE_GA4_ID` jest ustawiony — brak zmiennej nie powoduje błędów.
+
+**GA4 ładuje się dopiero po wyrażeniu zgody przez użytkownika.** Przed zgodą analytics nie jest aktywne — żaden skrypt GA4 nie jest pobierany.
+
+Decyzja użytkownika (akceptacja lub odrzucenie) jest zapisywana w `localStorage` pod kluczem `enpsyneia_analytics_consent`. Baner zgody pojawia się tylko raz, przy pierwszym odwiedzeniu aplikacji.
+
+Jeśli użytkownik odrzuci analytics — GA4 nie ładuje się wcale.
+Jeśli `VITE_GA4_ID` nie jest ustawione — GA4 nigdy nie jest ładowane, niezależnie od zgody.
 
 **Dev / lokalnie:**
 
@@ -128,7 +134,7 @@ Dane te są przechowywane w `localStorage`, więc:
 - mogą zostać utracone po wyczyszczeniu danych przeglądarki
 - nie powinny być traktowane jako miejsce na dane szczególnie wrażliwe
 
-Google Analytics 4 jest opcjonalne i ładowane tylko wtedy, gdy ustawione jest `VITE_GA4_ID`.
+Google Analytics 4 jest opcjonalne. GA4 ładuje się wyłącznie po wyrażeniu zgody przez użytkownika w banerze zgody. Przed zgodą lub po odrzuceniu żaden skrypt analityczny nie jest ładowany. Decyzja użytkownika jest zapisywana lokalnie w `localStorage`.
 
 Zasada projektu:
 - do GA4 wysyłamy tylko minimalne eventy produktowe, takie jak `form_start`, `result_shown`, `feedback_helpful`
