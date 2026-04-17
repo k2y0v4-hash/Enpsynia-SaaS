@@ -74,6 +74,7 @@
 - Suwaki działają na dotyk i myszce
 - Help text widoczny zawsze — nie ukryty za ikoną
 - Układ przewijalny — priorytet to wygoda i odstępy, nie upychanie na jednym ekranie
+- **Przycisk akcji (Dalej / Zobacz wynik) jest przyklejony do dolnej krawędzi viewportu** — użytkownik widzi go bez przewijania niezależnie od długości listy pytań. CTA jest elementem prowadzącym, nie ostatnim elementem listy. Implementacja: `sticky bottom-0` z tłem, padding zapobiega zasłonieniu ostatniego suwaka.
 
 ---
 

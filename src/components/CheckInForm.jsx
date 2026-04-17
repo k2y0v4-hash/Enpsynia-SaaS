@@ -151,7 +151,7 @@ export function CheckInForm({ onComplete }) {
         <ProgressBar current={block + 1} total={BLOCKS.length} />
       </div>
 
-      <div className="flex flex-1 flex-col space-y-8">
+      <div className="flex flex-col space-y-8 pb-28">
         {currentBlock.questions.map(question => (
           <SliderQuestion
             key={question.id}
@@ -162,7 +162,7 @@ export function CheckInForm({ onComplete }) {
         ))}
       </div>
 
-      <div className="mt-10 flex gap-3">
+      <div className="sticky bottom-0 bg-background pt-3 pb-6 flex gap-3">
         {block > 0 && (
           <Button variant="outline" className="flex-1" onClick={handleBack}>
             Wstecz
