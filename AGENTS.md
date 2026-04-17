@@ -346,7 +346,7 @@ const getSession = async () => {
 
 ```
 enpsyneia-check-in/
-├── index.html                        # Entry point (Vite) — zawiera inicjalizację GA4
+├── index.html                        # Entry point (Vite) — root HTML shell; GA4 ładowane przez src/lib/analytics.js
 ├── src/
 │   ├── components/
 │   │   ├── Landing.jsx               # Ekran startowy z CTA i streak
