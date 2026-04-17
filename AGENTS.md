@@ -210,6 +210,8 @@ WITH CHECK (auth.uid() = user_id);
 4. Session stored in localStorage
 5. On other device: send Magic Link again
 
+> ⚠️ **Przed implementacją Etapu 2:** model przechowywania sesji wymaga osobnego przeglądu bezpieczeństwa. `localStorage` nie może być automatycznie przyjęty jako domyślne miejsce dla tokenów auth — wymagana osobna decyzja przed wdrożeniem.
+
 **Why Magic Link?**
 
 - No password = less friction
@@ -560,13 +562,9 @@ The AI Agent is successful when:
 
 ---
 
----
-
 ## System ról
 
 Praca może być prowadzona w trybie spec-driven AI development z rolami. Routing i lista ról: [`agents/ROUTING.md`](./agents/ROUTING.md)
-
----
 
 ---
 

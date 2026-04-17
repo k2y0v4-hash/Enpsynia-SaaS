@@ -2,9 +2,9 @@
 
 ## Aktualizacja README
 
-Przy każdej zmianie stanu projektu zaktualizuj `README.md`:
+Przy każdej zmianie stanu projektu zaktualizuj `README.md`.
 
--# Zasady pracy w repo
+## Zasady pracy w repo
 
 To repozytorium rozwijamy zgodnie z ustaloną strukturą i dokumentacją.
 Najpierw czytaj dokumenty, potem zmieniaj kod.

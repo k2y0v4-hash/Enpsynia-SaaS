@@ -22,19 +22,25 @@ Brak backendu, brak kont użytkowników, koszt $0/mies.
 
 ```
 src/
-├── App.jsx                    # Routing: landing → form → result
+├── App.jsx                    # Routing: landing → form → analysis → result
+├── main.jsx                   # React root
+├── index.css                  # Tailwind + fonty
 ├── components/
 │   ├── Landing.jsx            # Ekran startowy
 │   ├── CheckInForm.jsx        # Formularz 6 pytań
+│   ├── AnalysisScreen.jsx     # Ekran przejściowy (2s)
+│   ├── ResultScreen.jsx       # Ekran wyniku z mikroakcją
 │   ├── ProgressBar.jsx        # Pasek postępu
 │   └── ui/                    # Komponenty Shadcn (biblioteczne, nie edytować)
 │       └── button.jsx
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
-│   └── analysisLogic.test.js  # Testy jednostkowe
-├── hooks/                     # useLocalStorage.js (Faza 6)
+│   └── analysisLogic.test.js  # Testy jednostkowe (npm test)
+├── hooks/
+│   └── useLocalStorage.js     # Odczyt/zapis localStorage: historia + streak
 └── lib/
-    └── utils.js               # Helpery Shadcn
+    ├── utils.js               # cn() helper (Shadcn)
+    └── analytics.js           # GA4 trackEvent — jedyne miejsce inicjalizacji
 ```
 
 ---
