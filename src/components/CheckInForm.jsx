@@ -1,92 +1,95 @@
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { ProgressBar } from '@/components/ProgressBar'
 
-// Kolejność i brzmienie per docs/product/mvp-scope.md
-// Grupowanie per docs/ui/screens.md — Ekran 2
+// Kolory per pytanie (docs/product/ux-specification.md sekcja 5.3)
+const QUESTION_COLORS = {
+  energy:    { active: '#1D6B5F', track: '#DDEDE8' },
+  overload:  { active: '#2D6F8F', track: '#E2EDF3' },
+  paralysis: { active: '#7A6A43', track: '#EDE7D8' },
+  movement:  { active: '#6F7D3B', track: '#E8ECD8' },
+  social:    { active: '#A0674E', track: '#F0E2D9' },
+  agency:    { active: '#7156A3', track: '#E8E0F2' },
+}
+
 const BLOCKS = [
   {
-    label: 'Blok 1',
     questions: [
       {
         id: 'energy',
         text: 'Poziom energii',
         leftLabel: 'wyczerpany',
         rightLabel: 'pełen energii',
-        helpText: 'Chodzi o energię fizyczną i umysłową — nie o nastrój ani motywację.',
       },
       {
         id: 'overload',
         text: 'Przeciążenie bodźcami',
-        leftLabel: 'spokojnie',
-        rightLabel: 'przebodźcowany',
-        helpText: 'Ile rzeczy na ciebie działa: dźwięki, ekrany, rozmowy, decyzje, wiadomości.',
+        leftLabel: 'przebodźcowany',
+        rightLabel: 'wyciszenie',
       },
       {
         id: 'paralysis',
         text: 'Utknięcie w analizie',
-        leftLabel: 'działam',
-        rightLabel: 'myślę bez końca',
-        helpText: 'Czy działasz i decydujesz, czy kręcisz się w kółko w głowie bez decyzji?',
+        leftLabel: 'myślę bez końca',
+        rightLabel: 'działam',
       },
     ],
   },
   {
-    label: 'Blok 2',
     questions: [
       {
         id: 'movement',
         text: 'Potrzeba ruchu vs odpoczynku',
         leftLabel: 'potrzebuję odpocząć',
-        rightLabel: 'potrzebuję ruchu',
-        helpText: 'Czy ciało prosi teraz o aktywność fizyczną, czy raczej o spokój i bezruch?',
+        rightLabel: 'chcę ruchu',
       },
       {
         id: 'social',
         text: 'Potrzeba samotności vs kontaktu',
         leftLabel: 'chcę być sam',
         rightLabel: 'chcę być z ludźmi',
-        helpText: 'Chodzi o kontakt z ludźmi — nie o pracę ani obowiązki zawodowe.',
       },
       {
         id: 'agency',
         text: 'Poczucie sprawczości',
         leftLabel: 'nic nie mogę',
         rightLabel: 'mogę wszystko',
-        helpText: 'Czy masz teraz poczucie, że możesz coś realnie zrobić i na coś wpłynąć?',
       },
     ],
   },
 ]
 
-const DEFAULT_ANSWERS = {
-  energy: 3,
-  overload: 3,
-  movement: 3,
-  social: 3,
-  agency: 3,
-  paralysis: 3,
+const DEFAULT_VALUES = {
+  energy: 3, overload: 3, paralysis: 3,
+  movement: 3, social: 3, agency: 3,
 }
 
-// Przelicza wartość (1–5) na procent wypełnienia tracka (0–100%)
+const DEFAULT_TOUCHED = {
+  energy: false, overload: false, paralysis: false,
+  movement: false, social: false, agency: false,
+}
+
+const HELP_TEXT = 'Oceń swój stan przesuwając suwak.'
+
 function fillPercent(value) {
   return ((value - 1) / 4) * 100
 }
 
-function SliderQuestion({ question, value, onChange }) {
+function SliderQuestion({ question, value, touched, onChange }) {
+  const colors = QUESTION_COLORS[question.id]
   const pct = fillPercent(value)
-  const trackStyle = {
-    background: `linear-gradient(to right, var(--primary) ${pct}%, #e2e2e2 ${pct}%)`,
-  }
 
-  // Pozycje markerów dla wartości 1–5
+  // Nieruszony: tylko szary track; ruszony: kolor aktywny + tło tracka (D21)
+  const trackStyle = touched
+    ? { background: `linear-gradient(to right, ${colors.active} ${pct}%, ${colors.track} ${pct}%)` }
+    : { background: '#D9D0C5' }
+
   const markers = [0, 25, 50, 75, 100]
 
   return (
     <div className="space-y-2">
       <div>
         <p className="text-base font-semibold leading-snug">{question.text}</p>
-        <p className="mt-0.5 text-sm text-muted-foreground">{question.helpText}</p>
+        <p className="mt-0.5 text-sm text-muted-foreground">{HELP_TEXT}</p>
       </div>
 
       <div className="space-y-1.5 pt-1">
@@ -99,16 +102,11 @@ function SliderQuestion({ question, value, onChange }) {
             value={value}
             onChange={e => onChange(question.id, Number(e.target.value))}
             className="w-full"
-            style={trackStyle}
+            style={{ '--thumb-color': colors.active, ...trackStyle }}
           />
-          {/* Markery skali — 5 subtelnych kresek */}
           <div className="relative mt-0.5 flex justify-between px-[11px]">
             {markers.map(pos => (
-              <span
-                key={pos}
-                className="h-1 w-px bg-border"
-                aria-hidden="true"
-              />
+              <span key={pos} className="h-1 w-px bg-border" aria-hidden="true" />
             ))}
           </div>
         </div>
@@ -122,20 +120,30 @@ function SliderQuestion({ question, value, onChange }) {
   )
 }
 
-export function CheckInForm({ onComplete }) {
+export function CheckInForm({ onComplete, onInsufficientAnswers }) {
   const [block, setBlock] = useState(0)
-  const [answers, setAnswers] = useState(DEFAULT_ANSWERS)
+  const [values, setValues] = useState(DEFAULT_VALUES)
+  const [touched, setTouched] = useState(DEFAULT_TOUCHED)
 
   const currentBlock = BLOCKS[block]
   const isLast = block === BLOCKS.length - 1
 
   function handleChange(id, value) {
-    setAnswers(prev => ({ ...prev, [id]: value }))
+    setValues(prev => ({ ...prev, [id]: value }))
+    setTouched(prev => ({ ...prev, [id]: true }))
+  }
+
+  function countTouched() {
+    return Object.values(touched).filter(Boolean).length
   }
 
   function handleNext() {
     if (isLast) {
-      onComplete(answers)
+      if (countTouched() < 3) {
+        onInsufficientAnswers(values, touched)
+      } else {
+        onComplete(values)
+      }
     } else {
       setBlock(b => b + 1)
     }
@@ -147,16 +155,13 @@ export function CheckInForm({ onComplete }) {
 
   return (
     <main className="flex min-h-screen flex-col px-6 py-8">
-      <div className="mb-8">
-        <ProgressBar current={block + 1} total={BLOCKS.length} />
-      </div>
-
       <div className="flex flex-col space-y-8 pb-28">
         {currentBlock.questions.map(question => (
           <SliderQuestion
             key={question.id}
             question={question}
-            value={answers[question.id]}
+            value={values[question.id]}
+            touched={touched[question.id]}
             onChange={handleChange}
           />
         ))}
@@ -169,7 +174,7 @@ export function CheckInForm({ onComplete }) {
           </Button>
         )}
         <Button className="flex-1" onClick={handleNext}>
-          {isLast ? 'Zobacz wynik' : 'Dalej'}
+          {isLast ? 'Wynik' : 'Dalej'}
         </Button>
       </div>
     </main>

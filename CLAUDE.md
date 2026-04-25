@@ -14,9 +14,10 @@ Najpierw czytaj dokumenty, potem zmieniaj kod.
 1. CLAUDE.md
 2. AGENTS.md
 3. README.md
-4. docs/product/mvp-scope.md
+4. docs/product/ux-specification.md  ← aktualna specyfikacja UX/UI
 5. docs/product/analysis-logic.md
 6. docs/product/implementation-plan.md
+7. docs/product/mvp-scope.md  ← materiał historyczny
 
 ## Mapa odpowiedzialności katalogów
 
@@ -54,12 +55,14 @@ Najpierw czytaj dokumenty, potem zmieniaj kod.
 
 Przy konflikcie informacji obowiązuje kolejność:
 
-1. docs/product/mvp-scope.md
-2. docs/product/analysis-logic.md
-3. docs/product/implementation-plan.md
-4. AGENTS.md
-5. README.md
-6. pozostałe dokumenty
+1. **Figma** — UX/UI, ekrany, copy, kolory, layout, flow
+2. docs/product/ux-specification.md — funkcjonalności niewidoczne w Figmie + decyzje produktowe
+3. docs/product/analysis-logic.md — logika analizy (algorytm, typy dnia, mikroakcje)
+4. docs/product/implementation-plan.md
+5. AGENTS.md
+6. README.md
+7. docs/product/mvp-scope.md — materiał historyczny
+8. docs/ui/screens.md — materiał historyczny
 
 ## Zasady implementacji
 
