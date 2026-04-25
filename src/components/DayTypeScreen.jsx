@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 import { DAY_TYPES } from '@/utils/analysisLogic'
 import { trackEvent } from '@/lib/analytics'
 
 const DAY_META = {
-  [DAY_TYPES.DZIALANIA]:    { emoji: '⚡', label: 'Dzień Działania' },
-  [DAY_TYPES.WYCISZENIA]:   { emoji: '🌿', label: 'Dzień Wyciszenia' },
-  [DAY_TYPES.ODBUDOWY]:     { emoji: '🌱', label: 'Dzień Odbudowy' },
-  [DAY_TYPES.KONTAKTU]:     { emoji: '🤝', label: 'Dzień Kontaktu' },
-  [DAY_TYPES.PRZECIAZENIA]: { emoji: '🌀', label: 'Dzień Przeciążenia' },
+  [DAY_TYPES.DZIALANIA]:    { label: 'Dzień działania' },
+  [DAY_TYPES.WYCISZENIA]:   { label: 'Dzień wyciszenia' },
+  [DAY_TYPES.ODBUDOWY]:     { label: 'Dzień odbudowy' },
+  [DAY_TYPES.KONTAKTU]:     { label: 'Dzień kontaktu' },
+  [DAY_TYPES.PRZECIAZENIA]: { label: 'Dzień przeciążenia' },
 }
 
 export function DayTypeScreen({ result, onNext }) {
@@ -20,31 +20,49 @@ export function DayTypeScreen({ result, onNext }) {
   }, [dayType])
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-10">
-      <div className="mx-auto w-full max-w-sm flex flex-col space-y-6 pb-28">
-        <div>
-          <p className="text-5xl leading-none">{meta.emoji}</p>
-          <h1 className="mt-3 text-2xl font-bold leading-tight tracking-tight">
-            {meta.label}
-          </h1>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            {justificationText}
-          </p>
-        </div>
+    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
-        <div className="rounded-xl border border-border bg-card px-5 py-4">
-          <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide mb-1">
-            Mikro-akcja
+      <div className="px-[22px] pt-[18px]">
+        <Hamburger />
+      </div>
+
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">
+        Twój typ dnia:
+      </h1>
+
+      {/* Karta wyniku */}
+      <div className="mx-6 mt-5 bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-12 pb-10">
+        {/* Nazwa typu dnia */}
+        <p className="text-[30px] font-bold text-[#1F2523] text-center leading-[38px]">
+          {meta.label}
+        </p>
+
+        {/* Uzasadnienie */}
+        <p className="text-[15px] text-[#66716C] text-center leading-[20px] mt-4 mx-2">
+          {justificationText}
+        </p>
+
+        {/* Teaser mikroakcji */}
+        <div
+          className="rounded-[18px] px-5 py-[18px] mt-8 mx-2"
+          style={{ backgroundColor: '#DDEDE8' }}
+        >
+          <p className="text-[14px] font-semibold text-[#1D6B5F] text-center leading-[18px]">
+            Mikro-akcja: {microaction.title}
           </p>
-          <p className="text-base font-semibold leading-snug">{microaction.title}</p>
         </div>
       </div>
 
-      <div className="sticky bottom-0 bg-background pt-3 pb-6">
-        <Button className="w-full" onClick={onNext}>
+      <div className="flex-1" />
+
+      {/* CTA */}
+      <div className="flex justify-center mb-6">
+        <ActionButton size="wide" variant="primary" onClick={onNext}>
           Zobacz mikro-akcję
-        </Button>
+        </ActionButton>
       </div>
-    </main>
+
+      <ScreenFooter />
+    </div>
   )
 }

@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
+@import "@fontsource/dm-sans/300.css";
 
 @theme inline {
   --font-sans: 'Inter Variable', sans-serif;
@@ -9,63 +10,36 @@
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
   --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
 }
 
 @layer base {
   :root {
     --background: #F7F4EF;
     --foreground: #1F2523;
-    --card: #FFFCF7;
-    --card-foreground: #1F2523;
-    --popover: #FFFCF7;
-    --popover-foreground: #1F2523;
     --primary: #1D6B5F;
     --primary-foreground: #FFFFFF;
-    --secondary: #EDE7D8;
-    --secondary-foreground: #1F2523;
-    --muted: #EDE7D8;
     --muted-foreground: #66716C;
-    --accent: #EDE7D8;
-    --accent-foreground: #1F2523;
-    --destructive: oklch(0.577 0.245 27.325);
     --border: #D9D0C5;
-    --input: #D9D0C5;
-    --ring: #1D6B5F;
     --radius: 0.75rem;
   }
 
   * {
-    @apply border-border outline-ring/50;
+    @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
+    font-family: 'Inter Variable', sans-serif;
   }
 
-  /* Slider — touch-friendly, per-question color via CSS custom properties */
+  /* Slider — 8px track, per-question thumb color via CSS custom property */
   input[type='range'] {
     -webkit-appearance: none;
     appearance: none;
@@ -75,34 +49,34 @@
     width: 100%;
   }
   input[type='range']::-webkit-slider-runnable-track {
-    height: 4px;
-    border-radius: 9999px;
-    background: transparent; /* wypełnienie zarządzane przez inline style */
+    height: 8px;
+    border-radius: 8px;
+    background: transparent;
   }
   input[type='range']::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: 9999px;
-    background: var(--thumb-color, var(--primary));
-    margin-top: -9px;
+    background: var(--thumb-color, #1D6B5F);
+    margin-top: -8px;
     cursor: pointer;
-    border: 2px solid var(--background);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 2px solid #F7F4EF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   }
   input[type='range']::-moz-range-track {
-    height: 4px;
-    border-radius: 9999px;
+    height: 8px;
+    border-radius: 8px;
     background: transparent;
   }
   input[type='range']::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: 24px;
+    height: 24px;
     border-radius: 9999px;
-    background: var(--thumb-color, var(--primary));
-    border: 2px solid var(--background);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    background: var(--thumb-color, #1D6B5F);
+    border: 2px solid #F7F4EF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
     cursor: pointer;
   }
 }

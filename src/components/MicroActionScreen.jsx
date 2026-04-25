@@ -1,25 +1,6 @@
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
+import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 import { trackEvent } from '@/lib/analytics'
-
-// Stany przycisku feedbacku: 'idle' | 'active' | 'dimmed'
-function FeedbackButton({ label, state, onClick }) {
-  const base = 'flex-1 rounded-xl border py-3 text-sm font-medium transition-colors'
-  const styles = {
-    idle:   'border-border hover:border-primary/50 text-foreground',
-    active: 'border-primary bg-primary text-primary-foreground',
-    dimmed: 'border-border text-muted-foreground opacity-40 cursor-default',
-  }
-  return (
-    <button
-      onClick={state === 'idle' ? onClick : undefined}
-      disabled={state === 'dimmed'}
-      className={`${base} ${styles[state]}`}
-    >
-      {label}
-    </button>
-  )
-}
 
 export function MicroActionScreen({ result, onReset }) {
   const { microaction } = result
@@ -31,11 +12,6 @@ export function MicroActionScreen({ result, onReset }) {
     trackEvent('feedback_helpful', { value })
   }
 
-  function handleReset() {
-    setFeedback(null)
-    onReset()
-  }
-
   const feedbackOptions = [
     { key: 'tak',    label: 'Tak' },
     { key: 'troche', label: 'Trochę' },
@@ -43,48 +19,65 @@ export function MicroActionScreen({ result, onReset }) {
   ]
 
   return (
-    <main className="flex min-h-screen flex-col px-6 py-10">
-      <div className="mx-auto w-full max-w-sm flex flex-col space-y-6 pb-28">
-        <h1 className="text-xl font-bold leading-tight tracking-tight">
+    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+
+      <div className="px-[22px] pt-[18px]">
+        <Hamburger />
+      </div>
+
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">
+        Mikro-akcja
+      </h1>
+
+      {/* Karta z krokami */}
+      <div className="mx-6 mt-5 bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-9 pb-9">
+        <p className="text-[22px] font-bold text-[#1F2523] text-center leading-[28px] mb-8">
           {microaction.title}
-        </h1>
+        </p>
 
-        <ol className="space-y-3">
+        <div className="flex flex-col gap-[62px]">
           {microaction.steps.map((step, i) => (
-            <li key={i} className="flex gap-3">
-              <span className="flex-none w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-semibold flex items-center justify-center mt-0.5">
-                {i + 1}
+            <div key={i} className="flex gap-[10px]">
+              <span className="text-[16px] font-bold text-[#1D6B5F] leading-[20px] w-[28px] flex-none text-left">
+                {i + 1}.
               </span>
-              <p className="text-sm leading-relaxed text-foreground">{step}</p>
-            </li>
+              <p className="text-[16px] font-semibold text-[#1F2523] leading-[20px]">
+                {step}
+              </p>
+            </div>
           ))}
-        </ol>
+        </div>
+      </div>
 
-        <div className="space-y-2 pt-2">
-          <p className="text-xs text-muted-foreground text-center">Czy to pomogło?</p>
-          <div className="flex gap-2">
+      <div className="flex-1" />
+
+      {/* Feedback lub "Nowy check-in" — zamiana po kliknięciu (D19) */}
+      {feedback === null ? (
+        <div className="px-6 mb-6">
+          <p className="text-[15px] font-semibold text-[#1F2523] text-center leading-[19px] mb-4">
+            Czy ta propozycja była trafna?
+          </p>
+          <div className="flex justify-between px-0">
             {feedbackOptions.map(({ key, label }) => (
-              <FeedbackButton
+              <button
                 key={key}
-                label={label}
-                state={
-                  feedback === null ? 'idle'
-                  : feedback === key ? 'active'
-                  : 'dimmed'
-                }
                 onClick={() => handleFeedback(key)}
-              />
+                className="w-[113px] h-[46px] rounded-[23px] bg-[#FFFCF7] border border-[#D9D0C5] text-[#1D6B5F] text-[13px] font-semibold"
+              >
+                {label}
+              </button>
             ))}
           </div>
         </div>
-
-        {/* Przycisk „Nowy check-in" pojawia się dynamicznie po feedbacku (D19) */}
-        {feedback !== null && (
-          <Button className="w-full" onClick={handleReset}>
+      ) : (
+        <div className="flex justify-center mb-6">
+          <ActionButton size="wide" variant="primary" onClick={onReset}>
             Nowy check-in
-          </Button>
-        )}
-      </div>
-    </main>
+          </ActionButton>
+        </div>
+      )}
+
+      <ScreenFooter />
+    </div>
   )
 }
