@@ -1,6 +1,6 @@
 import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
-export function TermsScreen({ onMenu, onBackToPrivacy, onNewCheckIn }) {
+export function TermsScreen({ onMenu, onBackToPrivacy, onNewCheckIn, backLabel = 'Wróć do ustawień prywatności' }) {
   return (
     <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
@@ -42,7 +42,7 @@ export function TermsScreen({ onMenu, onBackToPrivacy, onNewCheckIn }) {
         onClick={onBackToPrivacy}
         className="text-[13px] font-semibold text-[#1D6B5F] text-center mt-5"
       >
-        Wróć do ustawień prywatności
+        {backLabel}
       </button>
 
       <div className="flex-1" />

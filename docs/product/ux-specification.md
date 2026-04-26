@@ -1,6 +1,6 @@
 # Specyfikacja UX/UI — Enpsyneia Check-In
 
-**Wersja:** 1.6
+**Wersja:** 1.7
 **Data:** 2026-04-25
 **Status:** Obowiązujący dokument uzupełniający Figmę
 
@@ -30,7 +30,8 @@ Ramka bazowa: 390 × 844 px (iPhone 14 / 390px)
 
 | Nr | Nazwa w Figmie | Rola |
 |----|----------------|------|
-| 01 | Start natychmiastowy check-in | Landing — wejście do aplikacji, zgoda cookies |
+| 0 | Cookies (bramka) | **Decyzja produktowa poza Figmą:** osobny ekran z pytaniem o cookies pokazywany przed Landing przy `consent === null` |
+| 01 | Start natychmiastowy check-in | Landing — wejście do aplikacji (po zgodzie cookies) |
 | 02 | Check-in blok 1 z 2 | Formularz — pytania 1–3 (Energia, Przeciążenie, Analiza) |
 | 03 | Check-in blok 2 z 2 | Formularz — pytania 4–6 (Ruch, Kontakt, Sprawczość) |
 | 04 | Brak odpowiedzi — ekran warunkowy | Ostrzeżenie gdy użytkownik nie dotknął co najmniej jednego suwaka |
@@ -66,12 +67,13 @@ Pełny zakres opisany w sekcji 7.
 ### Ścieżka główna
 
 ```
+[0 Cookies — bramka]  ← pokazywany tylko gdy `consent === null`
+  — Hamburger widoczny, disabled (D17)
+  — link „Polityka prywatności" → [14 Regulamin]
+  ↓ klik „Akceptuję" / „Odrzucam"
 [01 Start]
-  — CTA „Zacznij check-in" nieaktywny do czasu decyzji cookies (D16)
-  — Hamburger menu widoczny, ale nieaktywny do czasu decyzji cookies (D17)
-  — link „Polityka prywatności" → [14 Regulamin i polityka prywatności]
-  ↓ użytkownik podejmuje decyzję cookies (Akceptuję / Odrzucam)
-  ↓ klik „Zacznij check-in" (teraz aktywny)
+  — link „Polityka prywatności" już niewidoczny (cookies załatwione)
+  ↓ klik „Zacznij check-in"
 [02 Blok 1 — pytania 1–3]
   ↓ klik „Dalej" → zawsze przechodzi do bloku 2
 [03 Blok 2 — pytania 4–6]
@@ -114,10 +116,13 @@ Pełny zakres opisany w sekcji 7.
 ### Ścieżka cookies (pierwsze wejście)
 
 ```
-[01 Start] — baner cookies widoczny, CTA i hamburger nieaktywne
-  ├── klik „Akceptuję" → cookies zapisane, GA4 włączone, CTA i hamburger aktywne
-  └── klik „Odrzucam" → tylko cookies funkcjonalne (historia lokalna), GA4 nie inicjalizowane, CTA i hamburger aktywne
+[0 Cookies — bramka] (pełnoekranowa karta z pytaniem o cookies)
+  ├── klik „Akceptuję" → cookies zapisane, GA4 włączone, → [01 Start]
+  ├── klik „Odrzucam" → cookies funkcjonalne (historia), GA4 nie inicjalizowane, → [01 Start]
+  └── klik „Polityka prywatności" → [14 Regulamin] → „Wróć" → [0]
 ```
+
+Ekran 0 nie wyświetla się ponownie dopóki zgoda jest w localStorage (`enpsyneia_analytics_consent`).
 
 **Stage 2 — „Kontynuuj bez konta"** (ekran 07 Logowanie): klik → zawsze przechodzi do bloku 1 check-inu (ekran 02).
 
@@ -142,10 +147,10 @@ Elementy rozstrzygnięte przez projekt — nie wymagają dyskusji przed implemen
 | D11 | Feedback mikroakcji | 3 opcje: **Tak / Trochę / Nie** |
 | D12 | Streak counter | **Nie istnieje** — nigdzie w Figmie ani w kodzie. Element wycięty z zakresu MVP definitywnie |
 | D13 | Nawigacja | Hamburger menu obecne w ekranach poza Landing |
-| D14 | Cookies | Baner wbudowany w ekran 01 — nie jako oddzielny modal/overlay |
+| D14 | Cookies | **Osobny ekran 0 (bramka)** — decyzja produktowa poza Figmą. Figma pokazuje cookies jako kartę na ekranie 01; w MVP zdecydowano o wydzieleniu na osobny ekran dla czytelniejszego flow (decyzja 2026-04-26) |
 | D15 | Przycisk restartu | Etykieta: **„Nowy check-in"** (nie „Wykonaj ponownie") |
-| D16 | CTA na ekranie 01 przed cookies | „Zacznij check-in" jest **nieaktywny** (disabled) dopóki użytkownik nie podejmie decyzji o cookies |
-| D17 | Hamburger przed cookies | Hamburger menu jest **widoczny, ale nieaktywny** (disabled) do czasu decyzji cookies |
+| D16 | CTA na ekranie 01 przed cookies | **N/A** — Landing dostępny dopiero po decyzji cookies (D14: bramka 0). CTA zawsze aktywny |
+| D17 | Hamburger przed cookies | Hamburger widoczny, ale **disabled** wyłącznie na ekranie 0 (bramka cookies). Po decyzji aktywny na wszystkich ekranach |
 | D18 | Przycisk „Wróć" na ekranie 04 | Zawsze wraca do **bloku 1** (ekran 02) — niezależnie od bloku z problemem |
 | D19 | „Nowy check-in" na ekranie 06 | Przycisk pojawia się **dynamicznie po kliknięciu feedbacku** — niewidoczny przed wyborem |
 | D20 | Wynik w historii („3/5") | Średnia arytmetyczna wszystkich 6 suwaków, zaokrąglona do **pełnej liczby** |
@@ -357,6 +362,8 @@ Ekran 10 zawiera:
 
 **Mechanizm feedbacku oceniającego:** Kliknięcie jednego z przycisków (Tak / Częściowo / Nie) dołącza wartość do wiadomości jako informację — np. „[Ocena: Tak]" — na końcu pola komentarza. Nie nawiguje. Wysyłka następuje po kliknięciu „Wyślij sugestię". Endpoint wysyłki: do ustalenia (E11 otwarte).
 
+**Zachowanie placeholderów:** Tekst podpowiedzi w polu komentarza („Wpisz komentarz…") oraz w polu e-mail („E-mail opcjonalnie") znika **przy fokusie** (kliknięcie/tap na pole), nie tylko przy pisaniu. Wraca po blur z pustym polem. Decyzja produktowa 2026-04-26 — czytelniejsze UX niż natywne zachowanie HTML.
+
 ### 5.12 Copyright
 
 Każdy ekran zawiera stopkę „© Krzysztof Kowalski". W MVP to element statyczny. Docelowo (Stage 2+) będzie to link prowadzący do profilu autora na LinkedIn.
@@ -446,3 +453,4 @@ Elementy jawnie wykluczone — nie implementować bez zmiany tego dokumentu.
 | 2026-04-25 | Wersja 1.4 — audyt IV: poprawki dokumentacji po pełnym audycie Figmy: hamburger dostępny na ekranach 04 i 14 (dodane do sekcji 3); D1 uzupełnione o DM Sans Light dla stopki; D24 uzupełnione o info o komponencie „Stopka / Copyright" |
 | 2026-04-25 | Wersja 1.5 — audyt V: mapa przepływu zgodna z Figmą: usunięto ekran przejściowy (E6 było zamknięte, ale linia pozostała); wyjaśniono że 04 triggeruje tylko z bloku 2, nie bloku 1; dodano link „Polityka prywatności" → 14 na ekranie 01 |
 | 2026-04-26 | Wersja 1.6 — definitywne usunięcie streak counter z dokumentacji (D12 uściślone, sekcja 8 uzupełniona); ekran 12 Menu udokumentowany w pełni (sekcja 5.13) z 5 pozycjami zgodnymi z Figmą; zaktualizowana mapa nawigacji menu; dodane ekrany 08b, 12 do tabeli sekcji 2 |
+| 2026-04-26 | Wersja 1.7 — dodany ekran 0 (bramka cookies) jako decyzja produktowa poza Figmą; zaktualizowane D14, D16, D17 i flow cookies; dodana notka o zachowaniu placeholderów w sekcji 5.11 (focus zamiast natywnego HTML) |

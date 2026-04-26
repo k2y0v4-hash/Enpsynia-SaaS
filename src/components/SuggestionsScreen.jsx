@@ -11,6 +11,8 @@ export function SuggestionsScreen({ onMenu, onSubmit }) {
   const [comment, setComment] = useState('')
   const [rating, setRating]   = useState(null)
   const [email, setEmail]     = useState('')
+  const [commentFocused, setCommentFocused] = useState(false)
+  const [emailFocused, setEmailFocused]     = useState(false)
 
   function handleSubmit() {
     onSubmit({ comment, rating, email })
@@ -39,10 +41,13 @@ export function SuggestionsScreen({ onMenu, onSubmit }) {
           Np. opis suwaka, nazwa stanu albo brakująca propozycja mikro-akcji.
         </p>
         <div className="h-px bg-[#D9D0C5] my-3" />
+        {/* Placeholder znika po kliknięciu (focus) — nie tylko przy pisaniu */}
         <textarea
           value={comment}
           onChange={e => setComment(e.target.value)}
-          placeholder="Wpisz komentarz…"
+          onFocus={() => setCommentFocused(true)}
+          onBlur={() => setCommentFocused(false)}
+          placeholder={commentFocused ? '' : 'Wpisz komentarz…'}
           rows={2}
           className="w-full text-[13px] text-[#1F2523] placeholder:text-[#66716C] bg-transparent outline-none resize-none"
         />
@@ -77,7 +82,9 @@ export function SuggestionsScreen({ onMenu, onSubmit }) {
           type="email"
           value={email}
           onChange={e => setEmail(e.target.value)}
-          placeholder="E-mail opcjonalnie"
+          onFocus={() => setEmailFocused(true)}
+          onBlur={() => setEmailFocused(false)}
+          placeholder={emailFocused ? '' : 'E-mail opcjonalnie'}
           className="w-full bg-[#FFFCF7] border border-[#D9D0C5] rounded-[18px] h-[54px] px-6 text-[14px] text-[#1F2523] placeholder:text-[#66716C] outline-none"
         />
       </div>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { CookiesScreen } from '@/components/CookiesScreen'
 import { Landing } from '@/components/Landing'
 import { CheckInForm } from '@/components/CheckInForm'
 import { MissingAnswersScreen } from '@/components/MissingAnswersScreen'
@@ -16,8 +17,9 @@ import { useConsent } from '@/hooks/useConsent'
 import { initGA4, trackEvent } from '@/lib/analytics'
 
 function App() {
-  const [screen, setScreen] = useState('landing')
+  const [screen, setScreen] = useState('cookies')
   const [menuReturn, setMenuReturn] = useState('landing')
+  const [termsReturn, setTermsReturn] = useState('cookies')
   const [result, setResult] = useState(null)
   const [pendingAnswers, setPendingAnswers] = useState(null)
   const [pendingTouched, setPendingTouched] = useState(null)
@@ -28,7 +30,16 @@ function App() {
     if (consent === 'accepted') initGA4()
   }, [consent])
 
-  // Menu — hamburger zapamiętuje ekran wywołujący, „Wróć" do niego wraca
+  // Po pierwszym wpisaniu zgody — przejdź z bramki cookies na Landing
+  function handleAccept() {
+    accept()
+    if (screen === 'cookies') setScreen('landing')
+  }
+  function handleReject() {
+    reject()
+    if (screen === 'cookies') setScreen('landing')
+  }
+
   function openMenu() {
     setMenuReturn(screen)
     setScreen('menu')
@@ -41,7 +52,7 @@ function App() {
     setResult(null)
     setPendingAnswers(null)
     setPendingTouched(null)
-    setScreen('form')
+    setScreen(consent === null ? 'cookies' : 'form')
   }
 
   function handleStart() {
@@ -69,16 +80,29 @@ function App() {
     setScreen('daytype')
   }
 
+  function openTermsFromPrivacy() {
+    setTermsReturn('privacy')
+    setScreen('terms')
+  }
+
+  function backFromTerms() {
+    setScreen(termsReturn === 'privacy' ? 'privacy' : 'landing')
+  }
+
   return (
     <>
-      {screen === 'landing' && (
-        <Landing
-          onStart={handleStart}
-          consentPending={consent === null}
-          onAccept={accept}
-          onReject={reject}
-          onTerms={() => setScreen('terms')}
+      {screen === 'cookies' && (
+        <CookiesScreen
+          onAccept={handleAccept}
+          onReject={handleReject}
+          onTerms={() => {
+            setTermsReturn('cookies')
+            setScreen('terms')
+          }}
         />
+      )}
+      {screen === 'landing' && (
+        <Landing onStart={handleStart} onMenu={openMenu} />
       )}
       {screen === 'form' && (
         <CheckInForm
@@ -124,10 +148,7 @@ function App() {
         />
       )}
       {screen === 'about' && (
-        <AboutScreen
-          onMenu={openMenu}
-          onBack={startNewCheckIn}
-        />
+        <AboutScreen onMenu={openMenu} onBack={startNewCheckIn} />
       )}
       {screen === 'suggestions' && (
         <SuggestionsScreen
@@ -139,14 +160,15 @@ function App() {
         <PrivacyScreen
           onMenu={openMenu}
           onSave={() => setScreen(menuReturn)}
-          onTermsLink={() => setScreen('terms')}
+          onTermsLink={openTermsFromPrivacy}
         />
       )}
       {screen === 'terms' && (
         <TermsScreen
           onMenu={openMenu}
-          onBackToPrivacy={() => setScreen('privacy')}
+          onBackToPrivacy={backFromTerms}
           onNewCheckIn={startNewCheckIn}
+          backLabel={termsReturn === 'privacy' ? 'Wróć do ustawień prywatności' : 'Wróć'}
         />
       )}
     </>
