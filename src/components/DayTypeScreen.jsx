@@ -11,7 +11,7 @@ const DAY_META = {
   [DAY_TYPES.PRZECIAZENIA]: { label: 'Dzień przeciążenia' },
 }
 
-export function DayTypeScreen({ result, onNext }) {
+export function DayTypeScreen({ result, onNext, onMenu }) {
   const { dayType, justificationText, microaction } = result
   const meta = DAY_META[dayType]
 
@@ -23,7 +23,7 @@ export function DayTypeScreen({ result, onNext }) {
     <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
       <div className="px-[22px] pt-[18px]">
-        <Hamburger />
+        <Hamburger onClick={onMenu} />
       </div>
 
       <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">

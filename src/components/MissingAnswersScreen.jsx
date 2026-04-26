@@ -10,12 +10,12 @@ const QUESTION_LABELS = {
 }
 const QUESTION_ORDER = ['energy', 'overload', 'paralysis', 'movement', 'social', 'agency']
 
-export function MissingAnswersScreen({ values, touched, onBack, onContinue }) {
+export function MissingAnswersScreen({ values, touched, onBack, onContinue, onMenu }) {
   return (
     <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
       <div className="px-[22px] pt-[18px]">
-        <Hamburger />
+        <Hamburger onClick={onMenu} />
       </div>
 
       <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">

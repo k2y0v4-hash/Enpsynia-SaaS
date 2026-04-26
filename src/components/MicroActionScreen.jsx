@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 import { trackEvent } from '@/lib/analytics'
 
-export function MicroActionScreen({ result, onReset }) {
+export function MicroActionScreen({ result, onReset, onMenu }) {
   const { microaction } = result
   const [feedback, setFeedback] = useState(null) // null | 'tak' | 'troche' | 'nie'
 
@@ -22,7 +22,7 @@ export function MicroActionScreen({ result, onReset }) {
     <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
       <div className="px-[22px] pt-[18px]">
-        <Hamburger />
+        <Hamburger onClick={onMenu} />
       </div>
 
       <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">

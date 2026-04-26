@@ -1,6 +1,6 @@
 import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
-export function Landing({ onStart, streak = 0, consentPending, onAccept, onReject }) {
+export function Landing({ onStart, consentPending, onAccept, onReject, onTerms }) {
   return (
     <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
 
@@ -17,11 +17,6 @@ export function Landing({ onStart, streak = 0, consentPending, onAccept, onRejec
         <p className="text-[16px] text-[#66716C] text-center leading-[20px] mt-4 mx-2">
           Zatrzymaj się na chwilę, nazwij aktualny stan i wybierz następny mały krok.
         </p>
-        {streak > 0 && (
-          <p className="text-[14px] text-[#1F2523] text-center font-medium mt-4">
-            🔥 {streak} {streak === 1 ? 'dzień' : 'dni'} z rzędu
-          </p>
-        )}
         <div className="flex justify-center mt-8">
           <ActionButton
             size="wide"
@@ -44,13 +39,12 @@ export function Landing({ onStart, streak = 0, consentPending, onAccept, onRejec
             Używamy cookies do ustawień i poprawy działania aplikacji.
           </p>
           <p className="text-center mt-2">
-            <a
-              href="#"
-              onClick={e => e.preventDefault()}
+            <button
+              onClick={onTerms}
               className="text-[12px] font-semibold text-[#1D6B5F]"
             >
               Polityka prywatności
-            </a>
+            </button>
           </p>
           <div className="flex justify-between mt-5">
             <ActionButton variant="outline" size="small" onClick={onReject}>

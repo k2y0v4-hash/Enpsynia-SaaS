@@ -1,77 +1,60 @@
 import { useState } from 'react'
 
 const HISTORY_KEY = 'enpsyneia_history'
-const STREAK_KEY = 'enpsyneia_streak'
+const MAX_ENTRIES = 5
 
-function toDateStr(date) {
-  return date.toISOString().split('T')[0]
-}
-
-function readStreak() {
-  try {
-    const raw = localStorage.getItem(STREAK_KEY)
-    if (!raw) return 0
-    const data = JSON.parse(raw)
-    return typeof data?.currentStreak === 'number' ? data.currentStreak : 0
-  } catch {
-    return 0
-  }
-}
-
-function computeAndSaveStreak() {
-  const today = toDateStr(new Date())
-  try {
-    const raw = localStorage.getItem(STREAK_KEY)
-    const data = raw ? JSON.parse(raw) : {}
-    const lastCheckIn = data?.lastCheckIn ?? null
-    const current = typeof data?.currentStreak === 'number' ? data.currentStreak : 0
-
-    // Ten sam dzień — streak bez zmiany
-    if (lastCheckIn === today) return current
-
-    const yesterday = new Date()
-    yesterday.setDate(yesterday.getDate() - 1)
-    const yesterdayStr = toDateStr(yesterday)
-
-    const newStreak = lastCheckIn === yesterdayStr ? current + 1 : 1
-
-    localStorage.setItem(STREAK_KEY, JSON.stringify({ currentStreak: newStreak, lastCheckIn: today }))
-    return newStreak
-  } catch {
-    return 1
-  }
-}
-
-function saveHistory(answers, result) {
+function readHistory() {
   try {
     const raw = localStorage.getItem(HISTORY_KEY)
-    let history = []
-    if (raw) {
-      const parsed = JSON.parse(raw)
-      if (Array.isArray(parsed)) history = parsed
-    }
-
-    const entry = {
-      id: crypto.randomUUID(),
-      timestamp: new Date().toISOString(),
-      answers,
-      result: { dayType: result.dayType, microAction: result.microaction },
-    }
-
-    localStorage.setItem(HISTORY_KEY, JSON.stringify([entry, ...history].slice(0, 5)))
+    if (!raw) return []
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed : []
   } catch {
-    // Historia to nice-to-have — błąd zapisu nie blokuje działania aplikacji
+    return []
   }
+}
+
+function avgScore(answers) {
+  const values = Object.values(answers)
+  return Math.round(values.reduce((a, b) => a + b, 0) / values.length)
+}
+
+const POLISH_DAYS = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota']
+
+export function relativeDateLabel(timestamp) {
+  const now = new Date()
+  const past = new Date(timestamp)
+  const today = now.toISOString().split('T')[0]
+  const yesterday = new Date(now)
+  yesterday.setDate(yesterday.getDate() - 1)
+  const yesterdayStr = yesterday.toISOString().split('T')[0]
+  const pastStr = past.toISOString().split('T')[0]
+
+  if (pastStr === today) return 'Dziś'
+  if (pastStr === yesterdayStr) return 'Wczoraj'
+  return POLISH_DAYS[past.getDay()]
 }
 
 export function useLocalStorage() {
-  const [streak, setStreak] = useState(readStreak)
+  const [history, setHistory] = useState(readHistory)
 
   function saveCheckIn(answers, result) {
-    saveHistory(answers, result)
-    const newStreak = computeAndSaveStreak()
-    setStreak(newStreak)
+    try {
+      const entry = {
+        id: crypto.randomUUID(),
+        timestamp: new Date().toISOString(),
+        answers,
+        score: avgScore(answers),
+        dayType: result.dayType,
+        microactionTitle: result.microaction.title,
+      }
+      const newHistory = [entry, ...readHistory()].slice(0, MAX_ENTRIES)
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory))
+      setHistory(newHistory)
+    } catch {
+      // Historia to nice-to-have — błąd zapisu nie blokuje flow
+    }
   }
 
-  return { streak, saveCheckIn }
+  return { history, saveCheckIn }
 }

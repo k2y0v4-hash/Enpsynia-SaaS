@@ -73,7 +73,7 @@ function SliderQuestion({ question, value, touched, onChange }) {
   )
 }
 
-export function CheckInForm({ onComplete, onInsufficientAnswers }) {
+export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
   const [block, setBlock]   = useState(0)
   const [values, setValues] = useState(DEFAULT_VALUES)
   const [touched, setTouched] = useState(DEFAULT_TOUCHED)
@@ -109,7 +109,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers }) {
 
       {/* Hamburger */}
       <div className="px-[22px] pt-[18px]">
-        <Hamburger />
+        <Hamburger onClick={onMenu} />
       </div>
 
       {/* Tytuł */}

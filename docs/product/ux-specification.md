@@ -1,6 +1,6 @@
 # Specyfikacja UX/UI — Enpsyneia Check-In
 
-**Wersja:** 1.5
+**Wersja:** 1.6
 **Data:** 2026-04-25
 **Status:** Obowiązujący dokument uzupełniający Figmę
 
@@ -43,19 +43,21 @@ Ramka bazowa: 390 × 844 px (iPhone 14 / 390px)
 | Nr | Nazwa w Figmie | Rola |
 |----|----------------|------|
 | 08 | Historia | Ostatnie check-iny na urządzeniu |
-| 11 | Prywatność | Ustawienia zgód i danych |
-| 14 | Regulamin i Polityka prywatności | Treść regulaminu + polityki prywatności — **jeden połączony ekran** (B7: decyzja 2026-04-25) |
-
-### Ekrany informacyjne (MVP, opcjonalne)
-
-| Nr | Nazwa w Figmie | Rola |
-|----|----------------|------|
-| 09 | O projekcie | Informacje o aplikacji i jej celu |
-| 10 | Sugestie dla autora | Kanał feedbacku od użytkownika do twórcy |
+| 08b | Historia — stan pusty | Wyświetlany gdy `history.length === 0` |
+| 09 | O projekcie | Krótki opis działania aplikacji |
+| 10 | Sugestie dla autora | Formularz opinii o aplikacji |
+| 11 | Prywatność | Trzy toggle: Historia lokalna / Analityka / Przypomnienie |
+| 12 | Menu rozwinięte | Lista 5 pozycji menu — sekcja 5.13 |
+| 14 | Regulamin i Polityka prywatności | Treść regulaminu + polityki prywatności — **jeden połączony ekran** (D22) |
 
 ### Ekrany Stage 2 (w Figmie jako plany, nie implementowane w MVP)
 
-Opisane w sekcji 7.
+| Nr | Nazwa w Figmie | Rola |
+|----|----------------|------|
+| 07 | Logowanie | Magic link + „Kontynuuj bez konta" — Stage 2 |
+| 13 | Zakładanie konta | Rejestracja emailem — Stage 2 |
+
+Pełny zakres opisany w sekcji 7.
 
 ---
 
@@ -90,11 +92,23 @@ Opisane w sekcji 7.
 ### Nawigacja przez menu
 
 ```
-[Hamburger menu] (dostępny z ekranów 02, 03, 04, 05, 06, 08, 09, 10, 11, 14; w Stage 2 także 07 i 13)
-  ├── Historia → [08]
-  ├── Prywatność → [11]
-  ├── O projekcie → [09]
-  └── Sugestie dla autora → [10]
+[Hamburger] (dostępny z ekranów 02, 03, 04, 05, 06, 08, 09, 10, 11, 14)
+  → [12 Menu rozwinięte]
+       ├── Logowanie [Stage 2 — disabled w MVP]
+       ├── Historia → [08] (lub [08b] gdy pusta)
+       │     └── „Nowy check-in" → [02] (reset)
+       ├── O projekcie → [09]
+       │     └── „Wróć do check-inu" → [02] (reset)
+       ├── Sugestie dla autora → [10]
+       │     └── „Wyślij sugestię" → [01 Landing]
+       ├── Prywatność → [11]
+       │     ├── „Polityka prywatności" → [14]
+       │     └── „Zapisz ustawienia" → ekran wywołujący menu (Wróć)
+       └── „Wróć" → ekran wywołujący menu
+
+[14 Regulamin i polityka prywatności]
+  ├── „Wróć do ustawień prywatności" → [11]
+  └── „Nowy check-in" → [02] (reset)
 ```
 
 ### Ścieżka cookies (pierwsze wejście)
@@ -126,7 +140,7 @@ Elementy rozstrzygnięte przez projekt — nie wymagają dyskusji przed implemen
 | D9 | Progress bar | Brak elementu „Blok X z 2" w UI — świadome uproszczenie layoutu |
 | D10 | Struktura wyniku | Dwa osobne ekrany: **05 Typ dnia** → **06 Mikro-akcja** |
 | D11 | Feedback mikroakcji | 3 opcje: **Tak / Trochę / Nie** |
-| D12 | Streak counter | Nie w aktualnym MVP |
+| D12 | Streak counter | **Nie istnieje** — nigdzie w Figmie ani w kodzie. Element wycięty z zakresu MVP definitywnie |
 | D13 | Nawigacja | Hamburger menu obecne w ekranach poza Landing |
 | D14 | Cookies | Baner wbudowany w ekran 01 — nie jako oddzielny modal/overlay |
 | D15 | Przycisk restartu | Etykieta: **„Nowy check-in"** (nie „Wykonaj ponownie") |
@@ -347,17 +361,24 @@ Ekran 10 zawiera:
 
 Każdy ekran zawiera stopkę „© Krzysztof Kowalski". W MVP to element statyczny. Docelowo (Stage 2+) będzie to link prowadzący do profilu autora na LinkedIn.
 
-### 5.13 Mapa menu
+### 5.13 Menu (ekran 12) — pełna specyfikacja zgodna z Figmą
 
-Pozycje hamburger menu w MVP (kolejność do potwierdzenia):
+**Tytuł ekranu:** „Menu"
+**Podtytuł:** „Wybierz sekcję aplikacji."
 
-1. Nowy check-in (→ ekran 02, reset)
-2. Historia (→ ekran 08)
-3. Prywatność (→ ekran 11)
-4. O projekcie (→ ekran 09)
-5. Sugestie dla autora (→ ekran 10)
+**Pozycje menu** (kolejność z Figmy, każda jako karta `bg #FFFCF7` border `#D9D0C5` `rounded-22px` `h=60px` z chevronem `›`):
 
-**Uwaga:** Hamburger jest widoczny na ekranie 01, ale **nieaktywny** (disabled) do czasu podjęcia decyzji cookies. Po decyzji staje się klikalny.
+| # | Tytuł | Podtytuł (11px regular #66716C) | Cel | Status |
+|---|-------|-----------------------------------|------|--------|
+| 1 | Logowanie | dostęp do konta i synchronizacji | ekran 07 | **Stage 2** — nieklikalny w MVP (przezroczystość) |
+| 2 | Historia | ostatnie zapisane check-iny | ekran 08 / 08b | aktywny |
+| 3 | O projekcie | krótki opis działania aplikacji | ekran 09 | aktywny |
+| 4 | Sugestie dla autora | formularz opinii o aplikacji | ekran 10 | aktywny |
+| 5 | Prywatność | ustawienia danych i przypomnień | ekran 11 | aktywny |
+
+**Przycisk u dołu:** „Wróć" (wide 246px, outline biały z tekstem teal `#1D6B5F`) → wraca do ekranu, z którego użytkownik otworzył menu.
+
+**Hamburger:** Otwiera menu. Widoczny na ekranach 01–11 i 14. Na ekranie 01 **nieaktywny** (disabled, linie `#D9D0C5`) do czasu decyzji cookies (D17).
 
 ---
 
@@ -391,7 +412,6 @@ Zaprojektowane w Figmie, nie wchodzą do aktualnego MVP.
 | **07 Logowanie** | Logowanie przez magic link — ekran zaprojektowany w Figmie, **nie implementować w MVP** | Etap 2: >50 aktywnych użytkowników tygodniowo lub >30% powrotów |
 | **13 Zakładanie konta** | Rejestracja emailem — ekran zaprojektowany w Figmie, **nie implementować w MVP** | Jw. |
 | **Toggle „Przypomnienie"** (ekran 11) | Push notyfikacja raz dziennie | Etap 2 lub po weryfikacji technicznej |
-| **Streak counter** | Licznik dni z rzędu | Możliwe w MVP jako opcja, nie priorytet |
 | Historia cross-device | Synchronizacja między urządzeniami | Etap 2 z Supabase |
 
 ---
@@ -404,6 +424,7 @@ Elementy jawnie wykluczone — nie implementować bez zmiany tego dokumentu.
 |---------|-------------|
 | Dark mode | Nie w zakresie MVP |
 | Push notyfikacje | Stage 2 |
+| **Streak counter** | Definitywnie wycięte — nie istnieje w Figmie ani w kodzie (D12) |
 | Udostępnianie wyników | Stage 2+ |
 | Wykresy i wzorce historyczne | Stage 2+ |
 | Personalizacja rekomendacji | Stage 2+ |
@@ -424,3 +445,4 @@ Elementy jawnie wykluczone — nie implementować bez zmiany tego dokumentu.
 | 2026-04-25 | Wersja 1.3 — sekcja 5.6 uzupełniona draftem 9 brakujących wariantów mikroakcji (źródło: analysis-logic.md); warianty jako Figma ekrany usunięte — dokumentacja zamiast ekranów; adnotacja 06 poprawiona (klon screen 06 zamiast ręcznej adnotacji); audyt III przeprowadzony — brak otwartych błędów |
 | 2026-04-25 | Wersja 1.4 — audyt IV: poprawki dokumentacji po pełnym audycie Figmy: hamburger dostępny na ekranach 04 i 14 (dodane do sekcji 3); D1 uzupełnione o DM Sans Light dla stopki; D24 uzupełnione o info o komponencie „Stopka / Copyright" |
 | 2026-04-25 | Wersja 1.5 — audyt V: mapa przepływu zgodna z Figmą: usunięto ekran przejściowy (E6 było zamknięte, ale linia pozostała); wyjaśniono że 04 triggeruje tylko z bloku 2, nie bloku 1; dodano link „Polityka prywatności" → 14 na ekranie 01 |
+| 2026-04-26 | Wersja 1.6 — definitywne usunięcie streak counter z dokumentacji (D12 uściślone, sekcja 8 uzupełniona); ekran 12 Menu udokumentowany w pełni (sekcja 5.13) z 5 pozycjami zgodnymi z Figmą; zaktualizowana mapa nawigacji menu; dodane ekrany 08b, 12 do tabeli sekcji 2 |
