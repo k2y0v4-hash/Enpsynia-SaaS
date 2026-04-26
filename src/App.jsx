@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { CookiesScreen } from '@/components/CookiesScreen'
 import { Landing } from '@/components/Landing'
 import { CheckInForm } from '@/components/CheckInForm'
 import { MissingAnswersScreen } from '@/components/MissingAnswersScreen'
@@ -17,9 +16,9 @@ import { useConsent } from '@/hooks/useConsent'
 import { initGA4, trackEvent } from '@/lib/analytics'
 
 function App() {
-  const [screen, setScreen] = useState('cookies')
+  const [screen, setScreen] = useState('landing')
   const [menuReturn, setMenuReturn] = useState('landing')
-  const [termsReturn, setTermsReturn] = useState('cookies')
+  const [termsReturn, setTermsReturn] = useState('landing')
   const [result, setResult] = useState(null)
   const [pendingAnswers, setPendingAnswers] = useState(null)
   const [pendingTouched, setPendingTouched] = useState(null)
@@ -29,16 +28,6 @@ function App() {
   useEffect(() => {
     if (consent === 'accepted') initGA4()
   }, [consent])
-
-  // Po pierwszym wpisaniu zgody — przejdź z bramki cookies na Landing
-  function handleAccept() {
-    accept()
-    if (screen === 'cookies') setScreen('landing')
-  }
-  function handleReject() {
-    reject()
-    if (screen === 'cookies') setScreen('landing')
-  }
 
   function openMenu() {
     setMenuReturn(screen)
@@ -52,7 +41,7 @@ function App() {
     setResult(null)
     setPendingAnswers(null)
     setPendingTouched(null)
-    setScreen(consent === null ? 'cookies' : 'form')
+    setScreen(consent === null ? 'landing' : 'form')
   }
 
   function handleStart() {
@@ -80,29 +69,29 @@ function App() {
     setScreen('daytype')
   }
 
+  function openTermsFromLanding() {
+    setTermsReturn('landing')
+    setScreen('terms')
+  }
   function openTermsFromPrivacy() {
     setTermsReturn('privacy')
     setScreen('terms')
   }
-
   function backFromTerms() {
-    setScreen(termsReturn === 'privacy' ? 'privacy' : 'landing')
+    setScreen(termsReturn)
   }
 
   return (
     <>
-      {screen === 'cookies' && (
-        <CookiesScreen
-          onAccept={handleAccept}
-          onReject={handleReject}
-          onTerms={() => {
-            setTermsReturn('cookies')
-            setScreen('terms')
-          }}
-        />
-      )}
       {screen === 'landing' && (
-        <Landing onStart={handleStart} onMenu={openMenu} />
+        <Landing
+          onStart={handleStart}
+          consentPending={consent === null}
+          onAccept={accept}
+          onReject={reject}
+          onTerms={openTermsFromLanding}
+          onMenu={openMenu}
+        />
       )}
       {screen === 'form' && (
         <CheckInForm
