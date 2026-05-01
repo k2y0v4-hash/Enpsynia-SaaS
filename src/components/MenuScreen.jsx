@@ -1,4 +1,4 @@
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
 const MENU_ITEMS = [
   { id: 'login',       title: 'Logowanie',          subtitle: 'dostęp do konta i synchronizacji', stage2: true },
@@ -10,7 +10,7 @@ const MENU_ITEMS = [
 
 export function MenuScreen({ onSelect, onBack }) {
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onBack} />
@@ -50,8 +50,7 @@ export function MenuScreen({ onSelect, onBack }) {
         </ActionButton>
       </div>
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }

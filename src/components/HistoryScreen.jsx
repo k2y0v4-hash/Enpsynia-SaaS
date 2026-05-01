@@ -1,4 +1,4 @@
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 import { relativeDateLabel } from '@/hooks/useLocalStorage'
 
 const DAY_TYPE_LABELS = {
@@ -13,7 +13,7 @@ export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
   const isEmpty = history.length === 0
 
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
@@ -68,8 +68,7 @@ export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
         </ActionButton>
       </div>
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }

@@ -1,8 +1,8 @@
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
 export function AboutScreen({ onMenu, onBack }) {
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
@@ -37,8 +37,7 @@ export function AboutScreen({ onMenu, onBack }) {
         </ActionButton>
       </div>
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }

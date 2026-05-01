@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
 // Kolory per pytanie (ux-specification.md sekcja 5.3)
 const QUESTION_COLORS = {
@@ -105,7 +105,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
   }
 
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       {/* Hamburger */}
       <div className="absolute left-[22px] top-[18px]">
@@ -147,8 +147,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
         </ActionButton>
       </div>
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }

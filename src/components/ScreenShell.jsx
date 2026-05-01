@@ -1,5 +1,15 @@
 // Wspólne elementy powtarzające się na każdym ekranie
 
+export function AppScreen({ children }) {
+  return (
+    <div className="min-h-svh bg-[#E8E1D8] flex justify-center">
+      <div className="relative w-full max-w-[390px] min-h-[844px] bg-[#F7F4EF] overflow-hidden sm:rounded-[34px]">
+        {children}
+      </div>
+    </div>
+  )
+}
+
 export function Hamburger({ disabled = false, onClick }) {
   const lineColor = disabled ? '#D9D0C5' : '#1F2523'
   return (
@@ -18,7 +28,7 @@ export function Hamburger({ disabled = false, onClick }) {
 
 export function ScreenFooter() {
   return (
-    <div className="mx-6 pt-4 pb-5">
+    <div className="absolute left-[24px] top-[776px] w-[342px] pt-0 pb-0">
       <div className="h-px bg-[#D9D0C5]" />
       <p
         className="text-[11px] text-[#66716C] text-center mt-[17px]"

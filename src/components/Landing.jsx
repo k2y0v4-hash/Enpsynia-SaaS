@@ -1,4 +1,4 @@
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
 // Ekran 01 — Landing zgodny z Figmą.
 // Stan „cookies" (ekran zero) = pierwsze wejście, gdy `consentPending`:
@@ -8,21 +8,21 @@ import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 // Po decyzji: karta cookies znika, CTA aktywny (teal), hamburger aktywny.
 export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, onMenu }) {
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger disabled={consentPending} onClick={onMenu} />
       </div>
 
       {/* Karta główna */}
-      <div className="mx-6 mt-[88px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-10 pb-10">
+      <div className="absolute left-[24px] top-[88px] w-[342px] h-[292px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-10">
         <h1 className="text-[29px] font-bold text-[#1F2523] text-center leading-[36px]">
           Enpsyneia Check-In
         </h1>
         <p className="text-[16px] text-[#66716C] text-center leading-[20px] mt-4 mx-2">
           Zatrzymaj się na chwilę, nazwij aktualny stan i wybierz następny mały krok.
         </p>
-        <div className="flex justify-center mt-8">
+        <div className="absolute left-[48px] top-[192px]">
           <ActionButton
             size="wide"
             variant="primary"
@@ -36,7 +36,7 @@ export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, 
 
       {/* Karta cookies — widoczna tylko gdy brak decyzji (ekran zero) */}
       {consentPending && (
-        <div className="mx-6 mt-[34px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-5 pb-6">
+        <div className="absolute left-[24px] top-[414px] w-[342px] h-[190px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-5">
           <h2 className="text-[17px] font-bold text-[#1F2523] text-center leading-[21px]">
             Cookies
           </h2>
@@ -51,7 +51,7 @@ export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, 
               Polityka prywatności
             </button>
           </p>
-          <div className="flex justify-between mt-5">
+          <div className="absolute left-[17px] top-[133px] flex gap-[83px]">
             <ActionButton variant="outline" size="small" onClick={onReject}>
               Odrzucam
             </ActionButton>
@@ -62,8 +62,7 @@ export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, 
         </div>
       )}
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
+import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 import { trackEvent } from '@/lib/analytics'
 
 export function MicroActionScreen({ result, onReset, onMenu }) {
@@ -13,13 +13,13 @@ export function MicroActionScreen({ result, onReset, onMenu }) {
   }
 
   const feedbackOptions = [
-    { key: 'tak',    label: 'Tak' },
-    { key: 'troche', label: 'Trochę' },
-    { key: 'nie',    label: 'Nie' },
+    { key: 'tak',    label: 'Tak',    left: 'left-[18px]' },
+    { key: 'troche', label: 'Trochę', left: 'left-[115px]' },
+    { key: 'nie',    label: 'Nie',    left: 'left-[214px]' },
   ]
 
   return (
-    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
+    <AppScreen>
 
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
@@ -30,12 +30,12 @@ export function MicroActionScreen({ result, onReset, onMenu }) {
       </h1>
 
       {/* Karta z krokami */}
-      <div className="mx-6 mt-[41px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-7 pb-9">
+      <div className="absolute left-[24px] top-[118px] w-[342px] h-[344px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-[32px]">
         <p className="text-[22px] font-bold text-[#1F2523] text-center leading-[28px] mb-8">
           {microaction.title}
         </p>
 
-        <div className="flex flex-col gap-[42px]">
+        <div className="flex flex-col gap-[38px]">
           {microaction.steps.map((step, i) => (
             <div key={i} className="flex gap-[10px]">
               <span className="text-[16px] font-bold text-[#1D6B5F] leading-[20px] w-[28px] flex-none text-left">
@@ -51,16 +51,16 @@ export function MicroActionScreen({ result, onReset, onMenu }) {
 
       {/* Feedback lub "Nowy check-in" — zamiana po kliknięciu (D19) */}
       {feedback === null ? (
-        <div className="px-6 mt-[72px] mb-0">
+        <div className="absolute left-[24px] top-[512px] w-[342px]">
           <p className="text-[15px] font-semibold text-[#1F2523] text-center leading-[19px] mb-4">
             Czy ta propozycja była trafna?
           </p>
-          <div className="flex justify-between px-0">
-            {feedbackOptions.map(({ key, label }) => (
+          <div className="relative h-[46px]">
+            {feedbackOptions.map(({ key, label, left }) => (
               <button
                 key={key}
                 onClick={() => handleFeedback(key)}
-                className="w-[113px] h-[46px] rounded-[23px] bg-[#FFFCF7] border border-[#D9D0C5] text-[#1D6B5F] text-[13px] font-semibold"
+                className={`absolute top-0 ${left} w-[113px] h-[46px] rounded-[23px] bg-[#FFFCF7] border border-[#D9D0C5] text-[#1D6B5F] text-[13px] font-semibold`}
               >
                 {label}
               </button>
@@ -68,15 +68,14 @@ export function MicroActionScreen({ result, onReset, onMenu }) {
           </div>
         </div>
       ) : (
-        <div className="flex justify-center mt-[72px] mb-0">
+        <div className="absolute left-[72px] top-[548px]">
           <ActionButton size="wide" variant="primary" onClick={onReset}>
             Nowy check-in
           </ActionButton>
         </div>
       )}
 
-      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
-    </div>
+    </AppScreen>
   )
 }
