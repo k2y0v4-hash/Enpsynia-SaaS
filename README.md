@@ -74,6 +74,23 @@ Dla każdego typu dnia dostępne są 2 mikroakcje (A/B) wybierane deterministycz
 
 ---
 
+## Spec Driven Development
+
+Repozytorium działa w trybie Spec Driven Development: specyfikacja i plan funkcjonalności poprzedzają implementację.
+
+- Każda nowa funkcjonalność wymaga planu `docs/plans/PLAN_*.md`.
+- Implementacja bez planu jest niedozwolona.
+- Plan jest kontraktem zakresu, kryteriów akceptacji i testów.
+- Plany funkcjonalności znajdują się w [`docs/plans`](./docs/plans).
+- Rejestr planów znajduje się w [`implemented_plans.md`](./implemented_plans.md).
+- Rejestr funkcjonalności znajduje się w [`implemented_features.md`](./implemented_features.md).
+- Dokumentacja ról SDD znajduje się w [`docs/roles`](./docs/roles).
+- Architektura i ADR znajdują się w [`docs/architecture`](./docs/architecture).
+
+Dokumenty `docs/product/*` opisują źródła prawdy dla Etapu 1, ale nowe prace implementacyjne przechodzą przez plan w `docs/plans/PLAN_*.md`. Po implementacji trzeba zaktualizować oba rejestry: `implemented_plans.md` i `implemented_features.md`.
+
+---
+
 ## Uruchomienie lokalne
 
 ```bash

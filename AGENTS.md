@@ -37,6 +37,19 @@ Enpsyneia Check In is a lightweight web application that helps users:
 
 ## 📌 Source of Truth & Working Rules
 
+### Spec Driven Development as the working model
+
+Repozytorium pracuje w trybie Spec Driven Development.
+
+Dla każdej nowej funkcjonalności obowiązkową warstwą kontraktu jest plan w `docs/plans/PLAN_*.md`. Plan musi powstać przed implementacją, wskazywać właściwe dokumenty źródłowe i definiować zakres, kryteria akceptacji oraz testy.
+
+Rejestry projektu:
+
+- `implemented_plans.md` — lista planów i ich status implementacji
+- `implemented_features.md` — lista zaimplementowanych funkcjonalności
+
+Dokumenty `docs/product/*` nadal są źródłem prawdy dla Etapu 1, ale nie zastępują planu funkcjonalności. Nowa praca implementacyjna wymaga planu w `docs/plans/PLAN_*.md`.
+
 ### Source of truth for implementation
 
 Implementację Etapu 1 należy prowadzić wyłącznie na podstawie:
@@ -48,13 +61,26 @@ Implementację Etapu 1 należy prowadzić wyłącznie na podstawie:
 
 Pozostałe dokumenty (`01`, `02`, `07`, `08`, `09`, `competitor-audit.md` itd.) mają charakter strategiczny, analityczny lub historyczny. Mogą dostarczać kontekstu, ale nie są źródłem bieżących decyzji implementacyjnych. W razie sprzeczności między nimi a powyższymi czterema — obowiązują powyższe cztery.
 
+### Spec Driven Development rules
+
+- Każda nowa funkcjonalność wymaga najpierw pliku `docs/plans/PLAN_*.md`.
+- Implementacja bez planu jest niedozwolona.
+- Plan jest kontraktem. Nie wolno rozszerzać zakresu implementacji poza plan bez decyzji właściciela.
+- Po implementacji trzeba zaktualizować `implemented_plans.md`.
+- Po implementacji trzeba zaktualizować `implemented_features.md`.
+- Jeśli kod istnieje bez planu, najpierw utwórz plan porządkujący stan obecny, oznaczony jako backfilled.
+- Jeśli dokumentacja i kod są sprzeczne, zatrzymaj pracę i zgłoś sprzeczność.
+- AI nie zastępuje decyzji właściciela, tylko egzekwuje zatwierdzony plan.
+
 ### Working rule before coding
 
 Przed rozpoczęciem kodowania agent ma:
 
-1. **Przygotować plan prac** dla aktualnej fazy na podstawie `docs/product/implementation-plan.md`
-2. **Nie pisać kodu** przed zatwierdzeniem planu przez właściciela projektu
-3. **Zgłosić każdą sprzeczność** między dokumentami source of truth przed implementacją — nie rozstrzygać samodzielnie
+1. **Sprawdzić, czy istnieje plan** w `docs/plans/PLAN_*.md` dla danej funkcjonalności.
+2. Jeśli plan nie istnieje — **najpierw przygotować plan** zgodny z `docs/plans/PLAN_template.md`.
+3. **Nie pisać kodu** przed zatwierdzeniem planu przez właściciela projektu.
+4. **Zgłosić każdą sprzeczność** między planem, dokumentami source of truth i kodem przed implementacją — nie rozstrzygać samodzielnie.
+5. Po implementacji **zaktualizować** `implemented_plans.md` i `implemented_features.md`.
 
 ---
 

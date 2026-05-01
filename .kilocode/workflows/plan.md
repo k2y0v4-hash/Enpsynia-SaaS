@@ -1,285 +1,97 @@
-# Workflow: Planowanie pracy dla Agenta AI Developera
+# Workflow: plan
 
-## 📋 Opis workflowu
+## Cel
 
-Ten workflow definiuje wzorzec planowania pracy dla Agenta AI Developera. Każdy plan dotyczy **jednej małej funkcjonalności**, którą można wdrożyć w jednej sesji agenta AI.
+Utworzyć kompletny plan funkcjonalności SDD przed implementacją.
 
----
+## Wejście
 
-## 🎯 Zasady ogólne
+- Krótki opis funkcjonalności od właściciela projektu.
+- Istniejące źródła prawdy repozytorium.
 
-### Zasada 1: Jedna funkcjonalność = jeden plan
+## Wyjście
 
-- Plan musi dotyczyć **jednej małej funkcjonalności**
-- Jeśli zadanie nie może być zaimplementowane w jednej sesji agenta AI, **odrzuć tworzenie planu**
-- Podziel duże zadania na mniejsze, niezależne funkcjonalności
+- Jeden plik `docs/plans/PLAN_<nazwa_funkcjonalnosci>.md`.
+- Plan zgodny ze strukturą `docs/plans/PLAN_template.md`.
 
-### Zasada 2: Struktura sekcji
+## Zasady
 
-- Każdy plan jest podzielony na **sekcje**
-- Każda sekcja kończy się **ręcznym testowaniem**
+1. Jedna funkcjonalność = jeden plan.
+2. Plan musi być mały i możliwy do wdrożenia jako samodzielny zakres.
+3. Plan jest kontraktem implementacji.
+4. Nie wolno wpisywać funkcji, których nie da się potwierdzić w dokumentacji lub kodzie.
+5. Jeśli wymaganie jest niejasne, wpisz pytanie do właściciela zamiast zgadywać.
+6. Jeśli funkcjonalność wykracza poza Etap 1, oznacz to w sekcji "Nie wchodzi w zakres" albo zatrzymaj pracę.
+7. Nie aktualizuj `implemented_plans.md` ani `implemented_features.md` na etapie samego planowania, chyba że plan porządkuje już istniejący kod jako `backfilled`.
 
-### Zasada 3: Checklisty
-
-- Każdy element planu jest **checkboxem** i jest **numerowany**
-- Format: `- [ ] 1.1 Nazwa zadania`
-
-### Zasada 4: Testowanie po każdej sekcji
-
-- Po każdej sekcji dodaj **ręczne testowanie wdrożenia**
-- Testowanie musi być konkretne i możliwe do wykonania
-
-### Zasada 5: Weryfikacja końcowa
-
-- Po wdrożeniu planu uruchom **testy**
-- Uruchom **budowanie aplikacji**
-- Sprawdź czy **wszystko działa**
-
-### Zasada 6: Dokumentacja
-
-- Zapisz plan w pliku `docs/zaimplementowane-plany.md`
-- Dodaj datę i opis funkcjonalności
-
----
-
-## 📝 Wzorzec planu
-
-### Format pliku: `docs/zaimplementowane-plany.md`
+## Obowiązkowa struktura planu
 
 ```markdown
-# Zaimplementowane plany
+# Nazwa funkcjonalności
 
-## [Data] - [Nazwa funkcjonalności]
+## 1. Cel
 
-**Status:** ✅ Zaimplementowane / 🔄 W trakcie / ❌ Odrzucone
+## 2. Zakres
 
-**Opis:** Krótki opis funkcjonalności (1-2 zdania)
+### Wchodzi w zakres
 
-**Czas implementacji:** [szacowany czas w minutach]
+### Nie wchodzi w zakres
 
-**Powiązane dokumenty:**
+## 3. Wymagania funkcjonalne
 
-- [Link do dokumentu biznesowego jeśli dotyczy]
+## 4. Wymagania niefunkcjonalne
 
----
+## 5. Kontekst techniczny
 
-### Plan implementacji
+## 6. Kroki implementacji
 
-#### Sekcja 1: [Nazwa sekcji]
+## 7. Kryteria akceptacji
 
-- [ ] 1.1 [Zadanie 1]
-- [ ] 1.2 [Zadanie 2]
-- [ ] 1.3 [Zadanie 3]
-
-**🧪 Ręczne testowanie sekcji 1:**
-
-- [ ] Otwórz aplikację w przeglądarce
-- [ ] Sprawdź czy [element] jest widoczny
-- [ ] Kliknij [przycisk] i sprawdź reakcję
-- [ ] Sprawdź responsywność na mobile (375px)
-
----
-
-#### Sekcja 2: [Nazwa sekcji]
-
-- [ ] 2.1 [Zadanie 1]
-- [ ] 2.2 [Zadanie 2]
-- [ ] 2.3 [Zadanie 3]
-
-**🧪 Ręczne testowanie sekcji 2:**
-
-- [ ] [Krok testowy 1]
-- [ ] [Krok testowy 2]
-- [ ] [Krok testowy 3]
-
----
-
-#### Sekcja 3: [Nazwa sekcji] (opcjonalna)
-
-- [ ] 3.1 [Zadanie 1]
-- [ ] 3.2 [Zadanie 2]
-
-**🧪 Ręczne testowanie sekcji 3:**
-
-- [ ] [Krok testowy 1]
-- [ ] [Krok testowy 2]
-
----
-
-### Weryfikacja końcowa
-
-**Uruchom testy:**
-
-- [ ] `npm test` - wszystkie testy przechodzą
-- [ ] `npm run lint` - brak błędów lintowania
-- [ ] `npm run build` - budowanie kończy się sukcesem
-
-**Sprawdź aplikację:**
-
-- [ ] Aplikacja uruchamia się bez błędów
-- [ ] Wszystkie funkcjonalności działają zgodnie z planem
-- [ ] Brak błędów w konsoli przeglądarki
-- [ ] Responsywność działa poprawnie
-
-**Dokumentacja:**
-
-- [ ] Zaktualizowano `docs/zaimplementowane-funkcjonalnosci.md` (jeśli dotyczy)
-- [ ] Dodano komentarze w kodzie (jeśli potrzebne)
-
----
-
-### Podsumowanie
-
-**Co zostało zaimplementowane:**
-
-- [Krótki opis 1]
-- [Krótki opis 2]
-- [Krótki opis 3]
-
-**Napotkane problemy:**
-
-- [Problem 1 i rozwiązanie]
-- [Problem 2 i rozwiązanie]
-
-**Następne kroki:**
-
-- [Co można zrobić dalej]
-- [Ulepszenia do rozważenia]
-
----
-
-**Zatwierdzone przez:** [Nazwa agenta/data]
-**Czas implementacji:** [rzeczywisty czas]
+## 8. Testy
 ```
 
----
+## Proces
 
-## 🔄 Proces tworzenia planu
+1. Przeczytaj wymaganie właściciela.
+2. Sprawdź właściwe dokumenty:
+   - `README.md`
+   - `AGENTS.md`
+   - `docs/product/*`
+   - `docs/business/README.md`
+   - `docs/tech/README.md`
+   - `docs/architecture/*`, jeśli funkcja dotyka architektury
+3. Zweryfikuj, czy zakres jest jedną małą funkcjonalnością.
+4. Utwórz plik w `docs/plans/PLAN_<nazwa>.md`.
+5. Wypełnij wszystkie sekcje.
+6. W sekcji testów wskaż konkretne testy automatyczne i ręczne.
+7. Zakończ statusem:
+   - `gotowe do review`,
+   - `wymaga decyzji właściciela`,
+   - `zablokowane`.
 
-### Krok 1: Analiza zadania
+## Kryteria odrzucenia planu
 
-1. Przeczytaj zadanie użytkownika
-2. Oceń czy zadanie jest **wystarczająco małe** na jedną sesję
-3. Jeśli nie - **odrzuć** i poproś o podział na mniejsze zadania
+Odrzuć lub zatrzymaj planowanie, jeśli:
 
-### Krok 2: Weryfikacja zakresu
+- funkcjonalność jest zbyt duża,
+- brak źródeł do potwierdzenia wymagań,
+- zakres wymaga backendu w Etapie 1,
+- zakres narusza ograniczenia MVP,
+- plan wymaga decyzji właściciela przed opisaniem.
 
-1. Sprawdź dokumenty produktowe (`docs/product/`)
-2. Sprawdź MVP scope (`docs/product/mvp-scope.md`)
-3. Upewnij się że funkcjonalność jest w **Tier 1** (Must-Have) lub **Tier 2** (Should-Have)
+## Rejestry
 
-### Krok 3: Tworzenie planu
-
-1. Utwórz sekcje planu
-2. Dodaj zadania jako checkboxy z numeracją
-3. Dodaj ręczne testowanie po każdej sekcji
-4. Dodaj weryfikację końcową
-
-### Krok 4: Zapisz plan
-
-1. Odczytaj istniejący plik `docs/zaimplementowane-plany.md`
-2. Dodaj nowy plan na końcu pliku
-3. Zachowaj format zgodny z wzorcem
-
-### Krok 5: Wdrożenie
-
-1. Wykonuj zadania sekcja po sekcji
-2. Po każdej sekcji wykonaj ręczne testowanie
-3. Na końcu wykonaj weryfikację końcową
-
----
-
-## ⚠️ Kryteria odrzucenia planu
-
-Odrzuć tworzenie planu jeśli:
-
-1. **Zadanie jest za duże** - nie można zaimplementować w jednej sesji
-2. **Brak dokumentacji** - nie ma jasnych wymagań
-3. **Poza zakresem MVP** - funkcjonalność nie jest w Tier 1 lub Tier 2
-4. **Wymaga backendu** - a jesteśmy w Tier 1 (localStorage only)
-5. **Złożoność wysoka** - wymaga wielu zmian w wielu plikach
-
----
-
-## 📊 Przykłady małych funkcjonalności
-
-### ✅ Dobre przykłady (jedna sesja):
-
-- Dodanie nowego pola formularza
-- Zmiana koloru przycisku
-- Dodanie walidacji formularza
-- Utworzenie nowego komponentu UI
-- Dodanie nowej strony (landing, about)
-- Implementacja localStorage dla jednej funkcji
-
-### ❌ Złe przykłady (za duże):
-
-- Implementacja całego systemu autentykacji
-- Stworzenie całej bazy danych
-- Przepisanie całej aplikacji
-- Dodanie wielu nowych funkcjonalności naraz
-
----
-
-## 🛠️ Narzędzia do testowania
-
-### Testy automatyczne:
-
-```bash
-npm test              # Uruchom testy jednostkowe
-npm run test:e2e      # Uruchom testy end-to-end
-npm run lint          # Sprawdź linting
-npm run build         # Zbuduj aplikację
-```
-
-### Testy ręczne:
-
-- Otwórz aplikację w przeglądarce
-- Sprawdź responsywność (DevTools → Toggle device toolbar)
-- Sprawdź konsolę przeglądarki (F12 → Console)
-- Sprawdź Network tab (F12 → Network)
-- Testuj na różnych przeglądarkach (Chrome, Firefox, Safari)
-
----
-
-## 📝 Szablon szybkiego planu
-
-Jeśli potrzebujesz szybkiego planu, użyj tego skróconego formatu:
+Po zatwierdzeniu planu można dodać go do `implemented_plans.md` jako:
 
 ```markdown
-## [Data] - [Nazwa funkcjonalności]
-
-**Opis:** [Krótki opis]
-
-### Zadania:
-
-- [ ] 1.1 [Zadanie 1]
-- [ ] 1.2 [Zadanie 2]
-- [ ] 1.3 [Zadanie 3]
-
-### Testowanie:
-
-- [ ] [Test 1]
-- [ ] [Test 2]
-- [ ] [Test 3]
-
-### Weryfikacja:
-
-- [ ] `npm test`
-- [ ] `npm run build`
-- [ ] Sprawdź aplikację
+- [ ] docs/plans/PLAN_<nazwa>.md
 ```
 
----
+Po implementacji workflow `implement` zmienia status na `[x]` i aktualizuje `implemented_features.md`.
 
-## 🔗 Powiązane dokumenty
+## Powiązane dokumenty
 
-- [`AGENTS.md`](../../AGENTS.md) - Zasady dla Agenta AI
-- [`docs/product/mvp-scope.md`](../product/mvp-scope.md) - MVP Scope
-- [`docs/architecture/tech-stack.md`](../architecture/tech-stack.md) - Architektura
-- [`docs/archive/zaimplementowane-plany.md`](../archive/zaimplementowane-plany.md) - Archiwalne plany
-
----
-
-**Ostatnia aktualizacja:** 2026-03-31
-**Wersja:** 1.0
+- `docs/plans/PLAN_template.md`
+- `implemented_plans.md`
+- `implemented_features.md`
+- `AGENTS.md`
