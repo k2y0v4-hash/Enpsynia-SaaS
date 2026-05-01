@@ -36,20 +36,20 @@ export function PrivacyScreen({ onMenu, onSave, onTermsLink }) {
   }
 
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
       </div>
 
-      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3">
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px]">
         Prywatność
       </h1>
       <p className="text-[13px] text-[#66716C] text-center leading-[16px] mt-2">
         Minimum danych, maksimum kontroli.
       </p>
 
-      <div className="mx-6 mt-5 flex flex-col gap-[22px]">
+      <div className="mx-6 mt-[41px] flex flex-col gap-[22px]">
         {TOGGLES.map(t => (
           <div key={t.id} className="bg-[#FFFCF7] border border-[#D9D0C5] rounded-[24px] px-6 py-5 flex items-center gap-4">
             <div className="flex-1">
@@ -72,14 +72,13 @@ export function PrivacyScreen({ onMenu, onSave, onTermsLink }) {
         Polityka prywatności
       </button>
 
-      <div className="flex-1" />
-
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mt-[38px] mb-0">
         <ActionButton variant="primary" size="wide" onClick={() => onSave(toggles)}>
           Zapisz ustawienia
         </ActionButton>
       </div>
 
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

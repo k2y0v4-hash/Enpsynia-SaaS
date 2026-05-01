@@ -8,14 +8,14 @@ import { Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 // Po decyzji: karta cookies znika, CTA aktywny (teal), hamburger aktywny.
 export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, onMenu }) {
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger disabled={consentPending} onClick={onMenu} />
       </div>
 
       {/* Karta główna */}
-      <div className="mx-6 mt-[52px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-10 pb-10">
+      <div className="mx-6 mt-[88px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-10 pb-10">
         <h1 className="text-[29px] font-bold text-[#1F2523] text-center leading-[36px]">
           Enpsyneia Check-In
         </h1>
@@ -62,7 +62,7 @@ export function Landing({ onStart, consentPending, onAccept, onReject, onTerms, 
         </div>
       )}
 
-      <div className="flex-1" />
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

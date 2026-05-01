@@ -14,12 +14,16 @@ export function useConsent() {
   const [consent, setConsent] = useState(readConsent)
 
   function accept() {
-    try { localStorage.setItem(CONSENT_KEY, 'accepted') } catch {}
+    try { localStorage.setItem(CONSENT_KEY, 'accepted') } catch {
+      // Consent state still updates in memory when localStorage is unavailable.
+    }
     setConsent('accepted')
   }
 
   function reject() {
-    try { localStorage.setItem(CONSENT_KEY, 'rejected') } catch {}
+    try { localStorage.setItem(CONSENT_KEY, 'rejected') } catch {
+      // Consent state still updates in memory when localStorage is unavailable.
+    }
     setConsent('rejected')
   }
 

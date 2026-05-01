@@ -12,17 +12,17 @@ const QUESTION_ORDER = ['energy', 'overload', 'paralysis', 'movement', 'social',
 
 export function MissingAnswersScreen({ values, touched, onBack, onContinue, onMenu }) {
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
       </div>
 
-      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px] px-6">
         Brakuje odpowiedzi
       </h1>
 
-      <div className="mx-6 mt-5 flex flex-col gap-3 flex-1">
+      <div className="mx-6 mt-[41px] flex flex-col gap-3">
         {/* Karta z listą pytań */}
         <div className="bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-6 pb-6">
           <h2 className="text-[20px] font-bold text-[#1F2523] text-center leading-[25px] mb-4">
@@ -55,7 +55,7 @@ export function MissingAnswersScreen({ values, touched, onBack, onContinue, onMe
       </div>
 
       {/* Przyciski */}
-      <div className="flex justify-between px-[42px] mt-10 mb-6">
+      <div className="flex justify-between px-[42px] mt-[26px] mb-0">
         <ActionButton variant="outline" size="small" onClick={onBack}>
           Wróć
         </ActionButton>
@@ -64,6 +64,7 @@ export function MissingAnswersScreen({ values, touched, onBack, onContinue, onMe
         </ActionButton>
       </div>
 
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

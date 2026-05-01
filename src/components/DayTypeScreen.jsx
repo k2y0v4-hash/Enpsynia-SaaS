@@ -20,18 +20,18 @@ export function DayTypeScreen({ result, onNext, onMenu }) {
   }, [dayType])
 
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
       </div>
 
-      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px] px-6">
         Twój typ dnia:
       </h1>
 
       {/* Karta wyniku */}
-      <div className="mx-6 mt-5 bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-12 pb-10">
+      <div className="mx-6 mt-[41px] bg-[#FFFCF7] border border-[#D9D0C5] rounded-[28px] px-6 pt-11 pb-10">
         {/* Nazwa typu dnia */}
         <p className="text-[30px] font-bold text-[#1F2523] text-center leading-[38px]">
           {meta.label}
@@ -53,15 +53,14 @@ export function DayTypeScreen({ result, onNext, onMenu }) {
         </div>
       </div>
 
-      <div className="flex-1" />
-
       {/* CTA */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mt-[84px] mb-0">
         <ActionButton size="wide" variant="primary" onClick={onNext}>
           Zobacz mikro-akcję
         </ActionButton>
       </div>
 
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

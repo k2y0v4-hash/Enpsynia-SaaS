@@ -13,13 +13,13 @@ export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
   const isEmpty = history.length === 0
 
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
       </div>
 
-      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3">
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px]">
         Historia
       </h1>
       <p className="text-[13px] text-[#66716C] text-center leading-[16px] mt-2">
@@ -62,14 +62,13 @@ export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
         </div>
       )}
 
-      <div className="flex-1" />
-
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mt-[56px] mb-0">
         <ActionButton variant="primary" size="wide" onClick={onNewCheckIn}>
           Nowy check-in
         </ActionButton>
       </div>
 
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

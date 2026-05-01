@@ -105,15 +105,15 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
   }
 
   return (
-    <div className="min-h-svh bg-[#F7F4EF] flex flex-col">
+    <div className="relative min-h-svh bg-[#F7F4EF] flex flex-col">
 
       {/* Hamburger */}
-      <div className="px-[22px] pt-[18px]">
+      <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onMenu} />
       </div>
 
       {/* Tytuł */}
-      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-3 px-6">
+      <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px] px-6">
         Check-in
       </h1>
 
@@ -123,7 +123,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
       </p>
 
       {/* Suwaki */}
-      <div className="px-[30px] mt-6 flex flex-col gap-[64px] flex-1">
+      <div className="px-[30px] mt-[14px] flex flex-col gap-[64px]">
         {currentBlock.questions.map(question => (
           <SliderQuestion
             key={question.id}
@@ -136,7 +136,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
       </div>
 
       {/* Przyciski akcji */}
-      <div className={`flex mt-10 mb-6 ${block > 0 ? 'justify-between px-[42px]' : 'justify-end pr-[39px]'}`}>
+      <div className={`flex mt-[76px] mb-0 ${block > 0 ? 'justify-between px-[42px]' : 'justify-end pr-[39px]'}`}>
         {block > 0 && (
           <ActionButton variant="outline" size="small" onClick={handleBack}>
             Wstecz
@@ -147,6 +147,7 @@ export function CheckInForm({ onComplete, onInsufficientAnswers, onMenu }) {
         </ActionButton>
       </div>
 
+      <div className="flex-1 min-h-[32px]" />
       <ScreenFooter />
     </div>
   )

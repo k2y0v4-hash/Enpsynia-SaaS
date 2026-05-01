@@ -34,3 +34,8 @@
 - status: DONE
 - plan: docs/plans/PLAN_vercel_deploy.md
 - opis: aplikacja jest wdrożona na Vercel i dostępna produkcyjnie
+
+## Figma UI Alignment
+- status: DONE
+- plan: docs/plans/PLAN_figma_ui_alignment.md
+- opis: ekrany MVP są dopasowane wizualnie do aktualnego projektu Figma bez zmiany logiki aplikacji

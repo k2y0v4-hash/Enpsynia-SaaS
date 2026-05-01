@@ -13,4 +13,4 @@
 - [x] docs/plans/PLAN_local_storage.md
 - [x] docs/plans/PLAN_ga4_consent.md
 - [x] docs/plans/PLAN_vercel_deploy.md
-- [ ] docs/plans/PLAN_figma_ui_alignment.md
+- [x] docs/plans/PLAN_figma_ui_alignment.md

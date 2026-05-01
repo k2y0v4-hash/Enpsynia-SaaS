@@ -1,6 +1,6 @@
 # Figma UI Alignment
 
-Status: planned / not implemented.
+Status: implemented.
 
 ## 1. Cel
 
