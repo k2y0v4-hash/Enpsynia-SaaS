@@ -15,7 +15,7 @@ Użytkownik po check-inie widzi wynik, uzasadnienie i konkretną mikroakcję do 
 - Prezentacja mikroakcji.
 - Feedback użytkownika po mikroakcji.
 - Możliwość rozpoczęcia nowego check-inu.
-- Streak: Do potwierdzenia w kodzie.
+- Aktualny kod nie wyświetla streak countera na ekranie wyniku.
 
 ### Nie wchodzi w zakres
 

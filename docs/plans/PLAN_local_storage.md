@@ -13,7 +13,7 @@ Aplikacja zachowuje lokalną historię check-inów i dane pomocnicze Etapu 1 bez
 - Zapis historii ostatnich 5 check-inów.
 - Odczyt historii z localStorage.
 - Odporność na brak lub uszkodzone dane localStorage.
-- Streak lokalny: Do potwierdzenia w kodzie.
+- Aktualny kod nie implementuje streak countera; localStorage obejmuje historię check-inów i zgodę analytics.
 - Zgoda analytics jako osobny klucz localStorage.
 
 ### Nie wchodzi w zakres

@@ -28,7 +28,7 @@ Aplikacja deterministycznie przypisuje użytkownikowi typ dnia i mikroakcję na 
 - Funkcja zwraca typ dnia, uzasadnienie, mikroakcję i klucz mikroakcji.
 - Każda kombinacja wartości 1-5 musi zwrócić wynik.
 - Kolejność priorytetów ma być zgodna z `docs/product/analysis-logic.md`.
-- API `summaryText`: Do potwierdzenia w kodzie.
+- Aktualny kod nie zwraca `summaryText`; ekran wyniku używa `justificationText`, `dayType`, `microaction` i `microactionKey`.
 
 ## 4. Wymagania niefunkcjonalne
 

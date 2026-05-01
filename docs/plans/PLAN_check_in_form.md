@@ -14,7 +14,7 @@ Użytkownik odpowiada na 6 pytań dotyczących aktualnego stanu, aby aplikacja m
 - Dwa bloki formularza po 3 pytania.
 - Domyślne wartości na środku skali.
 - Etykiety na krańcach skali.
-- Stan dotknięcia suwaka, jeśli wymagany przez aktualny UX.
+- Stan dotknięcia suwaka (`touched`) dla każdego pytania.
 - Przejście do wyniku po drugim bloku.
 
 ### Nie wchodzi w zakres
@@ -31,7 +31,7 @@ Użytkownik odpowiada na 6 pytań dotyczących aktualnego stanu, aby aplikacja m
 - Użytkownik może przejść z bloku 1 do bloku 2.
 - Użytkownik może wrócić do poprzedniego bloku.
 - Formularz przekazuje odpowiedzi do logiki analizy.
-- Obsługa brakujących lub nieruszonych suwaków: Do potwierdzenia w kodzie.
+- Jeśli mniej niż 3 suwaki mają `touched = true` po kliknięciu wyniku, użytkownik trafia na ekran brakujących odpowiedzi i może wrócić albo kontynuować.
 
 ## 4. Wymagania niefunkcjonalne
 
