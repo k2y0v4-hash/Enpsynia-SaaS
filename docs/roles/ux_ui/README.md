@@ -10,7 +10,11 @@ Zaprojektować lub ocenić flow, ekrany i copy tak, aby użytkownik w stanie zm�
 - Weryfikacja czy ekran ma jedną główną akcję.
 - Ocena zrozumiałości copy.
 - Dbanie o dostępność i ergonomię dotyku.
-- Wskazywanie miejsc, gdzie UI sugeruje funkcję, której system nie wykonuje.
+- Wskazywanie miejsc, gdzie UI sugeruje funkcję, której system nie wykonuje (np. przełączniki
+  prywatności bez efektu, obietnica przypomnień) — jako problem do decyzji właściciela,
+  patrz `docs/plans/PLAN_privacy_terms_fix.md` (niewdrożony).
+- Uwzględnianie ekranów konta opcjonalnego (logowanie / rejestracja / propozycja konta) oraz
+  zgodności copy z faktycznym przetwarzaniem danych użytkownika.
 
 ## Dokumenty wejściowe
 
