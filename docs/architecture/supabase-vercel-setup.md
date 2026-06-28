@@ -15,8 +15,13 @@ wdrożonej w `docs/plans/PLAN_supabase_auth_and_checkins.md` / `adr_003_supabase
   nie polegamy na domyślnych przywilejach Supabase.
 - **Auth (Site URL / Redirect / Confirm email):** do ustawienia RĘCZNIE w panelu (MCP nie zmienia
   ustawień Auth) — patrz sekcja 1.
-- **Vercel (zmienne + deploy):** do wykonania RĘCZNIE (brak dostępu do Vercel z tego środowiska) —
+- **Vercel:** projekt `project-1pcvr` jest podłączony do repo GitHub i **automatycznie** buduje
+  preview z każdego pushu/PR (deployment dla `feat/supabase-auth-and-checkins` przeszedł).
+  RĘCZNIE pozostaje tylko ustawienie **zmiennych środowiskowych** (Preview + Production) i redeploy —
   patrz sekcja 3.
+- **GitHub Actions `build`:** czerwony z powodu kroku `npm audit --audit-level=high` (prexystujący gate
+  z commita `cd7bea9`), który zgłasza podatności w **dev-toolchain** (`vite`, `hono` przez `shadcn` CLI).
+  Nie dotyczy bundla produkcyjnego ani warstwy Supabase; do osobnej decyzji o aktualizacji zależności.
 
 ---
 
@@ -55,13 +60,19 @@ cp .env.example .env.local
 # uzupełnij VITE_SUPABASE_URL i VITE_SUPABASE_PUBLISHABLE_KEY (oraz VITE_GA4_ID jeśli używasz)
 ```
 
-### Vercel (produkcja)
+### Vercel (produkcja + preview)
 
-Project Settings → Environment Variables → dodaj:
-- `VITE_SUPABASE_URL`
-- `VITE_SUPABASE_PUBLISHABLE_KEY`
+Vercel jest podłączony do repo i sam tworzy deploymenty z gałęzi i PR-ów (nie używamy Vercel CLI).
+Ręcznie ustaw tylko zmienne: **Project `project-1pcvr` → Settings → Environment Variables → Add**:
+- `VITE_SUPABASE_URL` = `https://zxqqeouwydseelbtcwmd.supabase.co`
+- `VITE_SUPABASE_PUBLISHABLE_KEY` = klucz publishable z Project Settings → API
 
-Po dodaniu zmiennych wykonaj redeploy (push na gałąź produkcyjną lub „Redeploy").
+Zaznacz oba środowiska: **Preview** i **Production**. Po zapisaniu wykonaj **Redeploy** (zmienne
+build-time `VITE_*` są wczytywane podczas builda, więc istniejący preview ich nie ma do czasu redeployu).
+
+Adres preview (gałąź `feat/supabase-auth-and-checkins`):
+`https://project-1pcvr-git-feat-supabase-au-2e300d-k2y0v4-hashs-projects.vercel.app`
+— dodaj go (lub jego wzorzec) do **Supabase → Auth → Redirect URLs**, gdy konfigurujesz Auth.
 
 > Bez tych zmiennych aplikacja nadal działa anonimowo (localStorage). Funkcje konta są wtedy
 > ukryte (`isSupabaseConfigured = false`).
