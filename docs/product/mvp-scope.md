@@ -44,27 +44,33 @@ Brak backendu. Brak konta użytkownika. Koszt: $0/mies.
 
 ---
 
-## Etap 2 — Supabase
+## Etap 2 — Supabase (model hybrydowy)
 
-Etap 2 startuje gdy spełniony jest co najmniej jeden z warunków:
-- >50 aktywnych użytkowników tygodniowo
-- >30% użytkowników wraca po pierwszym użyciu
-- Pojawia się feedback: "chcę historię na innym urządzeniu"
+> **Status (2026-06-28):** Uruchomiony decyzją właściciela przed osiągnięciem poniższych progów.
+> Pierwotne warunki (>50 użytkowników/tydz., >30% powrotów, feedback "chcę historię na innym
+> urządzeniu") pozostają jako kontekst, ale nie były warunkiem wdrożenia. Szczegóły: ADR 003 i
+> `docs/plans/PLAN_supabase_auth_and_checkins.md`.
 
 ### Co wchodzi
 
 | Element | Opis |
 |---------|------|
-| Supabase Auth | Magic Link — bez hasła |
-| Baza danych | PostgreSQL + RLS, zapis check-inów |
-| Historia pełna | Wszystkie check-iny przypisane do konta |
-| Cross-device sync | Historia dostępna na każdym urządzeniu |
-| Feedback loop | Zapis odpowiedzi "Czy mikroakcja pomogła?" do bazy (Supabase) — odrębny od Etap 1 GA4 feedback event; w Etapie 2 dane są trwałe i przypisane do konta |
-| Email (Resend) | Magic Link delivery |
+| Supabase Auth | **E-mail + hasło** z potwierdzeniem e-maila (NIE Magic Link) |
+| Konto opcjonalne | Hybryda: anon → localStorage; zalogowany → Supabase; propozycja konta po 2. check-inie |
+| Baza danych | PostgreSQL + RLS; zapis i odczyt wyłącznie własnych check-inów (SELECT/INSERT) |
+| Historia pełna | Wszystkie check-iny konta (bez limitu 5, który dotyczy tylko historii anonimowej) |
+| Cross-device sync | Historia konta dostępna na każdym urządzeniu po zalogowaniu |
+
+### Poza zakresem Etapu 2 (ten etap)
+
+Reset hasła, magic link, OAuth, telefon, anonymous sign-in, account linking, edycja/usuwanie konta
+i nicknamea, edycja/usuwanie check-inów, migracja historii lokalnej do konta, streaki w bazie,
+Resend, Edge Functions, własny serwer.
 
 ### Tech stack
 
-Jak Etap 1 + Supabase (Auth + PostgreSQL) + Resend.
+Jak Etap 1 + Supabase (Auth e-mail/hasło + PostgreSQL + RLS). Bez Resend (potwierdzenie e-maila
+obsługuje domyślny mailer Supabase).
 
 ---
 

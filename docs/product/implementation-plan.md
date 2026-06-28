@@ -185,14 +185,17 @@
 > | `result_shown` | Ekran wyniku wyświetlony | `day_type: string` |
 > | `feedback_helpful` | Użytkownik klika 👍 lub 👎 | `helpful: true/false` |
 
-### Etap 2 (po walidacji Etapu 1)
+### Etap 2 — model hybrydowy (uruchomiony 2026-06-28)
 
-| Integracja | Krytyczność | Trudność | Koszt | Szac. czas | Ryzyka |
-|------------|-------------|----------|-------|------------|--------|
-| Supabase Auth | 🔴 Krytyczna dla Etapu 2 | Średnia | $0 | 1.5 d | Konfiguracja Magic Link, DKIM |
-| Supabase Database | 🔴 Krytyczna dla Etapu 2 | Niska | $0 | 0.5 d | RLS wymaga konfiguracji |
-| Resend (e-mail) | 🟡 Opcjonalna | Niska | $0 | 0.5 d | E-mail deliverability |
-| Sentry | 🟢 Opcjonalna | Niska | $0 | 0.25 d | — |
+> Plan wykonawczy i kontrakt zakresu: `docs/plans/PLAN_supabase_auth_and_checkins.md`.
+> Decyzje architektoniczne: ADR 003. Kolejność wdrożenia (12 kroków) jest w planie, sekcja 9.
+
+| Integracja | Krytyczność | Trudność | Koszt | Ryzyka |
+|------------|-------------|----------|-------|--------|
+| Supabase Auth (e-mail + hasło) | 🔴 Krytyczna dla Etapu 2 | Średnia | $0 | Potwierdzenie e-maila, sesja w localStorage (XSS — ADR 003) |
+| Supabase Database + RLS | 🔴 Krytyczna dla Etapu 2 | Niska | $0 | Polityki RLS wymagają testu dwóch użytkowników |
+| ~~Resend~~ | poza zakresem | — | — | Potwierdzenie e-maila obsługuje domyślny mailer Supabase |
+| ~~Magic Link~~ | poza zakresem | — | — | Zastąpiony e-mail + hasło (decyzja właściciela) |
 
 ---
 

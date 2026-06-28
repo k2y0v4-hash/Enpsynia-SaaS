@@ -9,8 +9,13 @@ const DAY_TYPE_LABELS = {
   'Przeciążenia': 'Dzień przeciążenia',
 }
 
-export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
+export function HistoryScreen({ history, loading = false, error = null, isLoggedIn = false, onMenu, onNewCheckIn }) {
   const isEmpty = history.length === 0
+
+  // Notka o ograniczeniach (decyzja właściciela: brak migracji historii lokalnej).
+  const subtitle = isLoggedIn
+    ? 'Check-iny zapisane na Twoim koncie — dostępne też na innym urządzeniu.'
+    : 'Te check-iny są zapisane tylko w tej przeglądarce.'
 
   return (
     <AppScreen>
@@ -22,11 +27,24 @@ export function HistoryScreen({ history, onMenu, onNewCheckIn }) {
       <h1 className="text-[25px] font-bold text-[#1F2523] text-center leading-[31px] mt-[54px]">
         Historia
       </h1>
-      <p className="text-[13px] text-[#66716C] text-center leading-[16px] mt-2">
-        Ostatnie check-iny na tym urządzeniu.
+      <p className="text-[13px] text-[#66716C] text-center leading-[16px] mt-2 px-6">
+        {subtitle}
       </p>
+      {isLoggedIn && (
+        <p className="text-[11px] text-[#66716C] text-center leading-[15px] mt-1 px-8">
+          Wcześniejsze check-iny zapisane lokalnie nie są przenoszone na konto.
+        </p>
+      )}
 
-      {isEmpty ? (
+      {loading ? (
+        <p className="text-[14px] text-[#66716C] text-center leading-[19px] mt-10">
+          Wczytuję historię…
+        </p>
+      ) : error ? (
+        <p className="text-[14px] text-[#A0674E] text-center leading-[19px] mt-10 px-8" role="alert">
+          {error}
+        </p>
+      ) : isEmpty ? (
         // Stan pusty — ekran 08b
         <div className="mx-6 mt-5 bg-[#FFFCF7] rounded-[12px] py-10 px-6 flex flex-col items-center">
           <div className="w-[84px] h-[84px] bg-[#F0EDE8] rounded-full flex items-center justify-center">

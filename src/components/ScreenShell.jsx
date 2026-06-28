@@ -40,6 +40,37 @@ export function ScreenFooter() {
   )
 }
 
+// Pole tekstowe formularzy auth — spójne ze stylem aplikacji.
+export function TextField({ id, label, type = 'text', value, onChange, autoComplete, placeholder, disabled = false }) {
+  return (
+    <div className="flex flex-col">
+      <label htmlFor={id} className="text-[13px] font-semibold text-[#1F2523] leading-[17px] mb-2">
+        {label}
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={e => onChange(e.target.value)}
+        autoComplete={autoComplete}
+        placeholder={placeholder}
+        disabled={disabled}
+        className="h-[46px] rounded-[14px] bg-[#FFFCF7] border border-[#D9D0C5] px-4 text-[15px] text-[#1F2523] outline-none focus:border-[#1D6B5F] disabled:opacity-50"
+      />
+    </div>
+  )
+}
+
+// Komunikat błędu formularza.
+export function FormError({ children }) {
+  if (!children) return null
+  return (
+    <p className="text-[13px] text-[#A0674E] leading-[17px] text-center" role="alert">
+      {children}
+    </p>
+  )
+}
+
 // Przyciski akcji na dole ekranu
 // variant="primary" → teal; variant="outline" → białe z obramowaniem
 export function ActionButton({ children, onClick, variant = 'primary', size = 'small', disabled = false }) {

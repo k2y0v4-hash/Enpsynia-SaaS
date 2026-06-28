@@ -30,14 +30,25 @@ Oba raporty zostały zarchiwizowane jako materiał historyczny. Nie są dokument
 
 ---
 
+## Aktualizacja 2026-06-28 — przejście do modelu hybrydowego (Supabase)
+
+Właściciel zdecydował o wcześniejszym (przed progami walidacji) wprowadzeniu kont i trwałego
+przechowywania check-inów w Supabase, w modelu hybrydowym: anonimowy → localStorage, zalogowany →
+Supabase, z opcjonalną propozycją konta po 2. check-inie. Decyzje D1–D7 oraz pełny kontekst:
+`docs/plans/PLAN_supabase_auth_and_checkins.md` i ADR 003 (`docs/architecture/adr_003_supabase_accounts.md`).
+Auth: e-mail + hasło z potwierdzeniem (NIE Magic Link). Znane ograniczenia: brak resetu hasła,
+brak migracji historii lokalnej.
+
+---
+
 ## Aktualna wersja produktu
 
 | Element | Decyzja |
 |---------|---------|
-| Etap 1 | React + localStorage, brak konta, brak backendu |
-| Etap 2 | Supabase Auth + PostgreSQL, po walidacji Etapu 1 i potwierdzeniu potrzeby kont przez użytkowników |
+| Model danych | Hybrydowy: anon → localStorage; zalogowany → Supabase (ADR 003) |
+| Auth | Supabase Auth — e-mail + hasło + potwierdzenie e-maila; konto opcjonalne |
 | Formularz | 6 pytań (energy, overload, movement, social, agency, paralysis) |
-| Streak counter | Etap 1 — localStorage, bez konta |
+| Streak counter | Poza zakresem (nieobecny w kodzie) |
 | Share buttons | Poza zakresem MVP |
 | Mechanizm nawykowy | Hipoteza do walidacji — nie założenie |
 

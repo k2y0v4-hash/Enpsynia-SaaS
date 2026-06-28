@@ -102,7 +102,7 @@ Przed rozpoczęciem kodowania agent ma:
 | ---------------- | ------------------------ | --------- | ---------------------------- |
 | **Frontend**     | React                    | Latest    | Same as Tier 1               |
 | **Styling**      | Tailwind CSS + Shadcn UI | Latest    | Same as Tier 1               |
-| **Backend/Auth** | Supabase                 | Free Tier | Magic Link auth, PostgreSQL  |
+| **Backend/Auth** | Supabase                 | Free Tier | **E-mail + hasło** (NIE Magic Link), PostgreSQL |
 | **Database**     | PostgreSQL (Supabase)    | Latest    | Relational data, RLS         |
 | **Email**        | Resend                   | Free Tier | Transactional emails         |
 | **Hosting**      | Vercel                   | Free Tier | Same as Tier 1               |
@@ -126,9 +126,18 @@ Przed rozpoczęciem kodowania agent ma:
 
 ---
 
-## 📊 Database Schema (Tier 2 only — nie budować w Tier 1)
+## 📊 Database Schema
 
-> Ta sekcja dokumentuje schemat Supabase do użycia w Tier 2. W Tier 1 nie ma bazy danych.
+> ⚠️ **NIEAKTUALNE — materiał historyczny.** Poniższy schemat NIE jest źródłem prawdy.
+> Obowiązujący, zaimplementowany schemat (model hybrydowy) jest w:
+> - migracji `supabase/migrations/0001_init_auth_and_checkins.sql`
+> - `docs/architecture/adr_003_supabase_accounts.md`
+> - `docs/architecture/tech-stack.md`
+>
+> Różnice względem poniższego: brak `email`, `streak_count`, `last_check_in`,
+> `total_social_replacements`, `micro_action_completed` i tabeli `daily_streaks`; nazwy kolumn
+> odpowiedzi to `energy/overload/paralysis/movement/social/agency` (nie `energy_level` itd.);
+> klucz `check_ins.id` to `bigint identity`; zapis wyniku to `day_type` + `microaction_title`.
 
 ### Tables
 
@@ -226,11 +235,21 @@ WITH CHECK (auth.uid() = user_id);
 - History limited to last 5 entries
 - No cross-device sync
 
-### Tier 2: Supabase Auth (Magic Link)
+### Tier 2: Supabase Auth (e-mail + hasło) — model hybrydowy
 
-> Materiał referencyjny — nie implementować w Etapie 1.
+> ⚠️ Wcześniejszy plan zakładał Magic Link — **zastąpiony e-mail + hasło** (decyzja właściciela).
+> Obowiązujący opis: `docs/architecture/adr_003_supabase_accounts.md` i
+> `docs/plans/PLAN_supabase_auth_and_checkins.md`. Poniższy stary flow jest historyczny.
 
-**Flow:**
+**Flow (obowiązujący):**
+
+1. Rejestracja: nickname + e-mail + hasło → potwierdzenie e-maila.
+2. Logowanie: e-mail + hasło (przed potwierdzeniem zablokowane).
+3. Sesja utrzymywana domyślnym mechanizmem supabase-js (localStorage).
+4. Konto opcjonalne: anon → localStorage; zalogowany → Supabase; propozycja konta po 2. check-inie.
+5. Brak resetu hasła, magic linku, OAuth, telefonu, anonymous sign-in, account linkingu.
+
+**Historyczny flow Magic Link (nieaktualny):**
 
 1. User enters email
 2. System sends Magic Link (Supabase)
@@ -326,10 +345,9 @@ const getSession = async () => {
 
 #### State Management
 
-- **Tier 1:** localStorage only
-- **Tier 2:** Supabase + React Context for auth state
-- **No Redux** (overkill for this project)
-- **No Zustand** (localStorage is sufficient for MVP)
+- **Anon:** localStorage only
+- **Zalogowany:** Supabase; stan auth przez hook `useAuth` (bez globalnego state managera/routera)
+- **No Redux / No Zustand** (overkill dla tego projektu)
 
 ---
 

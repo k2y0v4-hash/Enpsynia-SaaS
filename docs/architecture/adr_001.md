@@ -2,7 +2,9 @@
 
 ## Status
 
-Accepted for Etap 1.
+Accepted for Etap 1. **Superseded by ADR 003** (`adr_003_supabase_accounts.md`, 2026-06-28)
+w części dotyczącej trwałości danych — aplikacja działa teraz hybrydowo (anon → localStorage,
+zalogowany → Supabase). Ten dokument pozostaje jako materiał historyczny.
 
 ## Decyzja
 
