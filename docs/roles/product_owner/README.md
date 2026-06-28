@@ -6,11 +6,15 @@ Porządkować zakres, priorytety i decyzje produktowe tak, aby właściciel proj
 
 ## Odpowiedzialności
 
-- Weryfikacja, czy funkcjonalność mieści się w Etapie 1 lub powinna czekać.
+- Weryfikacja, czy funkcjonalność mieści się w aktualnym zakresie produktu (model hybrydowy:
+  konto opcjonalne — anon → localStorage, zalogowany → Supabase) lub powinna czekać.
 - Opis problemu użytkownika i metryki sukcesu.
+- Dbanie o spójność obietnic UI z realnym działaniem aplikacji oraz o właściwe traktowanie danych
+  użytkownika (konto przechowuje e-mail w Supabase Auth; minimalizacja danych).
 - Rozdzielanie faktów z dokumentacji od rekomendacji.
 - Wskazywanie sprzeczności między zakresem, UX i kodem.
-- Przygotowanie decyzji dla właściciela, bez podejmowania jej za niego.
+- Przygotowanie decyzji dla właściciela, bez podejmowania jej za niego — w szczególności przy
+  prywatności i regulaminie (patrz `docs/plans/PLAN_privacy_terms_fix.md`, status: wymaga decyzji właściciela).
 
 ## Dokumenty wejściowe
 
