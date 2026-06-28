@@ -6,17 +6,75 @@ Celem repozytorium jest tworzenie narzędzi cyfrowych, które nie tylko rozwiąz
 
 ---
 
-## Aktualnie rozwijany projekt: Enpsynea Check In
+## O projekcie
 
-Aplikacja webowa wspierająca codzienną samoobserwację, rozpoznawanie aktualnego stanu oraz wybór małego, adekwatnego działania na tu i teraz.
+Aktualnie rozwijany projekt w repozytorium to **Enpsyneia Check In**.
 
-Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ dnia i jedną konkretną mikroakcję dopasowaną do jego stanu.
+### Produkt
 
-**Stack:** React 19 + Vite + Tailwind CSS v4 + Shadcn UI (Base UI) + Supabase (Auth + PostgreSQL)
+Enpsyneia Check In to aplikacja webowa wspierająca krótką samoocenę aktualnego stanu użytkownika oraz
+dobór jednej adekwatnej mikroakcji możliwej do wykonania od razu. Użytkownik odpowiada na sześć pytań
+(suwaki, skala 1–5), a aplikacja na podstawie deterministycznej logiki wskazuje typ dnia i proponuje
+niewielkie działanie wspierające samoregulację. Konto jest opcjonalne — aplikacji można używać bez logowania.
 
-Aplikacja działa w **modelu hybrydowym** (ADR 003): bez konta dane zapisują się lokalnie
-(localStorage), a po założeniu konta (e-mail + hasło) — trwale w Supabase, z dostępem na wielu
-urządzeniach. Konto jest opcjonalne.
+### Architektura i technologie
+
+- **Frontend:** React 19 + Vite + Tailwind CSS v4 + Shadcn UI (Base UI).
+- **Backend i dane:** Supabase Auth (e-mail + hasło) + PostgreSQL + Row Level Security (RLS).
+- **Model hybrydowy** (ADR 003): użytkownik anonimowy → `localStorage`; użytkownik zalogowany → Supabase
+  (trwała historia, dostęp na wielu urządzeniach).
+- **Hosting:** Vercel — automatyczne wdrożenia produkcyjne (z `main`) i preview (z pull requestów).
+
+### Figma i UI
+
+Interfejs użytkownika zaimplementowano na podstawie projektu przygotowanego w **Figmie** — Figma była
+źródłem projektu ekranów i przepływów UI. Implementacja zachowuje podejście **mobile-first**, a zgodność
+interfejsu z projektem opisuje dokumentacja (`docs/product/ux-specification.md`,
+`docs/plans/PLAN_figma_ui_alignment.md`).
+
+### AI-driven development i role agentów
+
+Projekt rozwijano z użyciem agentów AI o rozdzielonych rolach: **Product Owner, UX/UI, System Architect,
+Implementation Planner, Developer, Tester, DevOps** (routing: `agents/ROUTING.md`). Agenci analizowali
+wymagania, przygotowywali plany, weryfikowali zgodność kodu z dokumentacją, wykonywali testy i wspierali
+wdrożenia. Ostateczne decyzje pozostawały po stronie właściciela projektu — agenci nie rozszerzają
+samodzielnie zatwierdzonego zakresu.
+
+### Serwery MCP (Model Context Protocol)
+
+W pracy nad projektem wykorzystano serwery MCP dające agentom dostęp do rzeczywistego kontekstu:
+
+- **Supabase MCP** — weryfikacja rzeczywistego schematu bazy, tabel, indeksów, triggerów, polityk RLS i uprawnień.
+- **Context7 MCP** — dostęp do aktualnej dokumentacji bibliotek i technologii wykorzystywanych w projekcie.
+- **Figma MCP** — dostęp agentów do projektu interfejsu, struktury ekranów, komponentów i kontekstu
+  projektowego potrzebnego do zachowania zgodności implementacji z projektem UI.
+
+GitHub i Vercel nie są serwerami MCP — pełnią rolę integracji i narzędzi procesu (repozytorium, pull requesty, CI, wdrożenia).
+
+### Bezpieczeństwo
+
+- **RLS** na danych kont; użytkownik widzi i dodaje wyłącznie własne rekordy; brak anonimowego dostępu do danych kont.
+- **Minimalne uprawnienia**; brak `UPDATE`/`DELETE` check-inów przez klienta; ograniczony dostęp do funkcji bazy (trigger profilu).
+- Oddzielenie publicznego klucza frontendowego (publishable) od sekretów administracyjnych; **zakaz**
+  używania `service_role`, `sb_secret_*`, hasła bazy i connection stringa we frontendzie.
+- Nagłówki bezpieczeństwa: **CSP**, ochrona przed osadzaniem w ramkach (`frame-ancestors`/X-Frame-Options),
+  **HSTS**, **X-Content-Type-Options**.
+- **GA4 ładowane dopiero po zgodzie** użytkownika; bez wysyłki odpowiedzi check-inu, e-maila, nicknamea i danych auth.
+
+Szczegóły: `docs/architecture/adr_003_supabase_accounts.md`, `docs/architecture/supabase-vercel-setup.md`,
+`vercel.json` oraz sekcja „Prywatność i bezpieczeństwo" poniżej.
+
+### Spec Driven Development
+
+Projekt prowadzono zgodnie ze **Spec Driven Development**. Repozytorium zawiera m.in.: plany funkcjonalności
+(`docs/plans/`) z kryteriami akceptacji i scenariuszami testowymi, rejestr planów (`implemented_plans.md`),
+rejestr zaimplementowanych funkcji (`implemented_features.md`), role agentów (`docs/roles/`), workflow
+planowania i implementacji (`docs/workflows/`), decyzje architektoniczne (ADR), dokumentację biznesową
+(`docs/business/`), techniczną (`docs/tech/`) i wdrożeniową, a także audyt zgodności dokumentacji ze stanem
+faktycznym.
+
+Zmiany trafiały przez osobne gałęzie i pull requesty; przed merge wykonywano testy, lint i build.
+Repozytorium jest źródłem prawdy, a agenci nie rozszerzają samodzielnie zatwierdzonego zakresu.
 
 ---
 
