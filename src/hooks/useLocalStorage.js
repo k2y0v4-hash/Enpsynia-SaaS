@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 const HISTORY_KEY = 'enpsyneia_history'
+const COUNT_KEY = 'enpsyneia_checkin_count'
 const MAX_ENTRIES = 5
 
 function readHistory() {
@@ -11,6 +12,19 @@ function readHistory() {
     return Array.isArray(parsed) ? parsed : []
   } catch {
     return []
+  }
+}
+
+// Łączna liczba ukończonych anonimowych check-inów.
+// Liczona osobno od historii (która jest przycinana do 5) — używana jako próg
+// jednorazowej propozycji konta (src/lib/accountPrompt.js).
+function readCheckinCount() {
+  try {
+    const raw = localStorage.getItem(COUNT_KEY)
+    const n = Number.parseInt(raw, 10)
+    return Number.isFinite(n) && n > 0 ? n : 0
+  } catch {
+    return 0
   }
 }
 
@@ -37,7 +51,10 @@ export function relativeDateLabel(timestamp) {
 
 export function useLocalStorage() {
   const [history, setHistory] = useState(readHistory)
+  const [checkinCount, setCheckinCount] = useState(readCheckinCount)
 
+  // Zapis check-inu użytkownika ANONIMOWEGO (lokalnie). Zalogowany użytkownik
+  // zapisuje do Supabase i NIE przechodzi tędy (App.jsx rozróżnia oba przypadki).
   function saveCheckIn(answers, result) {
     try {
       const entry = {
@@ -51,10 +68,14 @@ export function useLocalStorage() {
       const newHistory = [entry, ...readHistory()].slice(0, MAX_ENTRIES)
       localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory))
       setHistory(newHistory)
+
+      const newCount = readCheckinCount() + 1
+      localStorage.setItem(COUNT_KEY, String(newCount))
+      setCheckinCount(newCount)
     } catch {
       // Historia to nice-to-have — błąd zapisu nie blokuje flow
     }
   }
 
-  return { history, saveCheckIn }
+  return { history, checkinCount, saveCheckIn }
 }

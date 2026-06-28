@@ -12,7 +12,11 @@ Aplikacja webowa wspierająca codzienną samoobserwację, rozpoznawanie aktualne
 
 Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ dnia i jedną konkretną mikroakcję dopasowaną do jego stanu.
 
-**Stack:** React 19 + Vite + Tailwind CSS v4 + Shadcn UI (Base UI)
+**Stack:** React 19 + Vite + Tailwind CSS v4 + Shadcn UI (Base UI) + Supabase (Auth + PostgreSQL)
+
+Aplikacja działa w **modelu hybrydowym** (ADR 003): bez konta dane zapisują się lokalnie
+(localStorage), a po założeniu konta (e-mail + hasło) — trwale w Supabase, z dostępem na wielu
+urządzeniach. Konto jest opcjonalne.
 
 ---
 
@@ -27,6 +31,7 @@ Użytkownik wypełnia 6 pytań na suwakach (skala 1–5), a aplikacja zwraca typ
 | Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Ukonczona |
 | Faza 6 — localStorage | Historia 5 check-inów, streak counter | Ukonczona |
 | Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Ukończona |
+| Etap 2 — Supabase Auth + trwałe check-iny (model hybrydowy) | Konta e-mail+hasło, RLS, historia konta | Kod gotowy — wymaga konfiguracji Supabase/Vercel |
 
 ---
 
@@ -46,21 +51,31 @@ src/
 ├── components/
 │   ├── Landing.jsx            # Ekran startowy z CTA
 │   ├── CheckInForm.jsx        # Formularz 2 bloki po 3 pytania
-│   ├── AnalysisScreen.jsx     # Ekran przejściowy "Analizuję..."
-│   ├── ResultScreen.jsx       # Ekran wyniku z mikroakcją i feedbackiem
-│   ├── ProgressBar.jsx        # Pasek postępu "Blok X z 2"
-│   ├── ConsentBanner.jsx      # Baner zgody analytics (jednorazowy)
+│   ├── DayTypeScreen.jsx      # Ekran typu dnia
+│   ├── MicroActionScreen.jsx  # Ekran mikroakcji i feedbacku
+│   ├── SignUpScreen.jsx       # Rejestracja (nickname + e-mail + hasło)
+│   ├── SignInScreen.jsx       # Logowanie (e-mail + hasło)
+│   ├── AccountPromptScreen.jsx# Propozycja konta po 2. anon check-inie
+│   ├── SaveStatusScreens.jsx  # Zapis do Supabase: loading + błąd
 │   └── ui/button.jsx          # Komponent Shadcn
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
 │   └── analysisLogic.test.js  # 16 przypadków testowych (npm test)
 ├── hooks/
-│   ├── useLocalStorage.js     # Historia 5 check-inów + streak counter
+│   ├── useLocalStorage.js     # Anon: historia (limit 5) + licznik check-inów
+│   ├── useAuth.js             # Supabase Auth: signUp/signIn/signOut + sesja
 │   └── useConsent.js          # Stan zgody analytics (accepted/rejected/null)
 └── lib/
     ├── utils.js               # cn() helper (Shadcn)
-    └── analytics.js           # GA4 trackEvent — jedyne miejsce
+    ├── analytics.js           # GA4 trackEvent — jedyne miejsce
+    ├── supabaseClient.js      # Klient Supabase (null-safe; klucz publishable)
+    ├── checkinMapping.js      # Czyste mapowanie danych (+ testy)
+    ├── checkins.js            # Supabase: insert/fetch check-inów (zalogowany)
+    └── accountPrompt.js       # Logika propozycji konta (+ testy)
 ```
+
+> Schemat bazy, RLS i kroki konfiguracji: `docs/architecture/adr_003_supabase_accounts.md`
+> oraz `docs/architecture/supabase-vercel-setup.md`. Migracja: `supabase/migrations/0001_init_auth_and_checkins.sql`.
 
 **Logika analizy** ([`src/utils/analysisLogic.js`](./src/utils/analysisLogic.js)) działa na drzewie priorytetów per [`docs/product/analysis-logic.md`](./docs/product/analysis-logic.md):
 
@@ -132,6 +147,26 @@ cp .env.example .env.local
 
 ---
 
+## Konfiguracja Supabase (konta + trwałe check-iny)
+
+Pełna instrukcja krok po kroku i testy ręczne (RLS, dwóch użytkowników, potwierdzenie e-maila):
+[`docs/architecture/supabase-vercel-setup.md`](./docs/architecture/supabase-vercel-setup.md).
+
+Frontend używa wyłącznie dwóch zmiennych (klucz **publishable**, nigdy sekret):
+
+```bash
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_xxxxxxxxxxxx
+```
+
+Ustaw je w `.env.local` (dev) oraz w Vercel → Project Settings → Environment Variables (produkcja).
+Bez nich aplikacja działa anonimowo (localStorage), a funkcje konta są ukryte.
+Migrację bazy uruchom z `supabase/migrations/0001_init_auth_and_checkins.sql`.
+
+> **Zakaz:** `service_role`, `sb_secret_*`, hasło bazy i connection string nigdy nie trafiają do frontendu ani repo.
+
+---
+
 ## Deploy na Vercel
 
 Vercel automatycznie wykrywa projekt Vite. Wystarczy połączyć repozytorium:
@@ -146,15 +181,24 @@ Vercel automatycznie wykrywa projekt Vite. Wystarczy połączyć repozytorium:
 
 ## Prywatność i bezpieczeństwo
 
-Etap 1 działa bez kont użytkowników i bez backendu. Aplikacja zapisuje lokalnie w przeglądarce tylko:
+Aplikacja działa hybrydowo. Konto jest opcjonalne.
+
+**Bez konta (anonimowo)** aplikacja zapisuje lokalnie w przeglądarce tylko:
 - historię ostatnich 5 check-inów
-- streak counter
 - uproszczony wynik check-inu
 
-Dane te są przechowywane w `localStorage`, więc:
+Dane lokalne (`localStorage`):
 - pozostają na tym urządzeniu i w tej przeglądarce
 - mogą zostać utracone po wyczyszczeniu danych przeglądarki
 - nie powinny być traktowane jako miejsce na dane szczególnie wrażliwe
+
+**Z kontem (e-mail + hasło)** check-iny zapisują się trwale w Supabase (PostgreSQL + RLS):
+- użytkownik widzi i dodaje wyłącznie własne check-iny (RLS); brak edycji i usuwania
+- Supabase Auth przechowuje e-mail, hash hasła, identyfikator i dane sesji (nie tworzymy własnej tabeli haseł)
+- sesja jest utrzymywana domyślnym mechanizmem supabase-js (localStorage)
+
+Znane ograniczenia tego etapu: **brak resetu hasła** (utrata hasła = utrata dostępu do konta) oraz
+**brak migracji** historii lokalnej do konta (historia anonimowa zostaje lokalnie).
 
 Google Analytics 4 jest opcjonalne. GA4 ładuje się wyłącznie po wyrażeniu zgody przez użytkownika w banerze zgody. Przed zgodą lub po odrzuceniu żaden skrypt analityczny nie jest ładowany. Decyzja użytkownika jest zapisywana lokalnie w `localStorage`.
 

@@ -1,17 +1,32 @@
 import { AppScreen, Hamburger, ScreenFooter, ActionButton } from '@/components/ScreenShell'
 
-const MENU_ITEMS = [
-  { id: 'login',       title: 'Logowanie',          subtitle: 'dostęp do konta i synchronizacji', stage2: true },
-  { id: 'history',     title: 'Historia',           subtitle: 'ostatnie zapisane check-iny' },
-  { id: 'about',       title: 'O projekcie',        subtitle: 'krótki opis działania aplikacji' },
+const BASE_ITEMS = [
+  { id: 'history',     title: 'Historia',            subtitle: 'ostatnie zapisane check-iny' },
+  { id: 'about',       title: 'O projekcie',         subtitle: 'krótki opis działania aplikacji' },
   { id: 'suggestions', title: 'Sugestie dla autora', subtitle: 'formularz opinii o aplikacji' },
-  { id: 'privacy',     title: 'Prywatność',         subtitle: 'ustawienia danych i przypomnień' },
+  { id: 'privacy',     title: 'Prywatność',          subtitle: 'ustawienia danych i przypomnień' },
 ]
 
-export function MenuScreen({ onSelect, onBack }) {
+// Menu zależne od stanu auth (decyzja właściciela D7 — konto opcjonalne, dostępne z menu).
+export function MenuScreen({ onSelect, onBack, isLoggedIn, supabaseConfigured, onSignOut }) {
+  const authItems = !supabaseConfigured
+    ? []
+    : isLoggedIn
+      ? [{ id: 'signout', title: 'Wyloguj się', subtitle: 'zakończ sesję na tym urządzeniu' }]
+      : [
+          { id: 'signin', title: 'Zaloguj się', subtitle: 'dostęp do konta i synchronizacji' },
+          { id: 'signup', title: 'Załóż konto', subtitle: 'zachowaj historię poza tą przeglądarką' },
+        ]
+
+  const items = [...authItems, ...BASE_ITEMS]
+
+  function handleClick(id) {
+    if (id === 'signout') onSignOut()
+    else onSelect(id)
+  }
+
   return (
     <AppScreen>
-
       <div className="absolute left-[22px] top-[18px]">
         <Hamburger onClick={onBack} />
       </div>
@@ -24,12 +39,11 @@ export function MenuScreen({ onSelect, onBack }) {
       </p>
 
       <div className="mx-6 mt-[29px] flex flex-col gap-[16px]">
-        {MENU_ITEMS.map(item => (
+        {items.map(item => (
           <button
             key={item.id}
-            onClick={item.stage2 ? undefined : () => onSelect(item.id)}
-            disabled={item.stage2}
-            className="bg-[#FFFCF7] border border-[#D9D0C5] rounded-[22px] h-[60px] px-6 flex items-center justify-between text-left disabled:opacity-50"
+            onClick={() => handleClick(item.id)}
+            className="bg-[#FFFCF7] border border-[#D9D0C5] rounded-[22px] h-[60px] px-6 flex items-center justify-between text-left"
           >
             <div className="flex-1">
               <p className="text-[15px] font-semibold text-[#1F2523] leading-[19px]">
