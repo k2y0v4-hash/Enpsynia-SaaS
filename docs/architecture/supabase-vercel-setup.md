@@ -114,11 +114,11 @@ Rozdzielone wg dowodu:
     `authenticated`/`anon`, fixture dwóch użytkowników w `auth.users`, dane testowe usunięte):
     A czyta tylko swoje `profiles`/`check_ins`; INSERT z cudzym `user_id` odrzucony; UPDATE/DELETE
     odrzucone (brak grantu i polityki); `anon` bez dostępu. Wynik: zgodny z założeniami.
-- **Zweryfikowane ręcznie przez właściciela (2026-06-28):** logowanie i pojawianie się funkcji konta
-  w produkcji (źródło: właściciel).
-- **Do ręcznego testu końcowego właściciela (wymaga skrzynki e-mail):** pełny flow rejestracja →
-  potwierdzenie e-maila → logowanie → zapis check-inu → historia z Supabase → wylogowanie.
-  Poniższe checklisty pozostają jako procedura tego testu.
+- **Zweryfikowane ręcznie przez właściciela 2026-06-28** (na produkcji `https://checkin.enpsyneia.org`):
+  pełny flow — rejestracja → otrzymanie i użycie linku potwierdzającego e-mail → logowanie →
+  zapis check-inu → trwałe wyświetlenie wpisu w historii → wylogowanie. Działa.
+  To weryfikacja ręczna właściciela, nie test automatyczny ani niezależny test agenta.
+  Poniższe checklisty pozostają jako procedura odtworzenia tego testu (np. po zmianach).
 
 ### Auth
 

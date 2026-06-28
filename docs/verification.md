@@ -88,7 +88,11 @@ Full step-by-step manual procedure and checklists: `docs/architecture/supabase-v
 - Trigger `handle_new_user` is `security definer` with `search_path = ''`; EXECUTE granted only to
   `postgres` (not callable via REST RPC).
 
-### Auth flow (manual owner test — requires a real mailbox)
+### Auth flow (zweryfikowane ręcznie przez właściciela 2026-06-28)
+
+Pełny flow został potwierdzony ręcznie przez właściciela 2026-06-28 na produkcji
+(`https://checkin.enpsyneia.org`) — działa. To weryfikacja ręczna właściciela, nie test
+automatyczny ani niezależny test agenta. Procedura odtworzenia (wymaga prawdziwej skrzynki):
 
 1. Sign up (nickname + email + password) → "Sprawdź swoją skrzynkę" screen.
 2. Attempt login before confirmation → rejected with a readable error.

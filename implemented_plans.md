@@ -15,3 +15,4 @@
 - [x] docs/plans/PLAN_vercel_deploy.md
 - [x] docs/plans/PLAN_figma_ui_alignment.md
 - [x] docs/plans/PLAN_supabase_auth_and_checkins.md
+- [ ] docs/plans/PLAN_privacy_terms_fix.md

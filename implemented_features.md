@@ -46,5 +46,5 @@
 - adr: docs/architecture/adr_003_supabase_accounts.md
 - opis: konto opcjonalne (e-mail + hasło + potwierdzenie e-maila); anon → localStorage, zalogowany → Supabase (PostgreSQL + RLS, SELECT/INSERT własnych check-inów); jednorazowa propozycja konta po 2. anonimowym check-inie; bez resetu hasła i bez migracji historii lokalnej
 - wdrożenie: migracja zastosowana w projekcie Supabase `zxqqeouwydseelbtcwmd`; zmienne `VITE_SUPABASE_*` ustawione w Vercel (Preview + Production); CSP `connect-src` dopuszcza host Supabase
-- testy: `npm test`/`lint`/`build` zielone; testy RLS dwóch użytkowników zweryfikowane przez Supabase MCP (2026-06-28). Pełny flow z potwierdzeniem e-maila — ręczny test końcowy właściciela
+- testy: `npm test`/`lint`/`build` zielone; testy RLS dwóch użytkowników zweryfikowane przez Supabase MCP (2026-06-28); pełny flow produkcyjny (rejestracja → potwierdzenie e-maila → logowanie → zapis check-inu → trwała historia → wylogowanie) — zweryfikowane ręcznie przez właściciela 2026-06-28 na `https://checkin.enpsyneia.org`
 - konfiguracja i status: docs/architecture/supabase-vercel-setup.md
