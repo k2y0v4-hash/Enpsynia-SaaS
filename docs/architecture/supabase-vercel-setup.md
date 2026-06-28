@@ -3,8 +3,20 @@
 Dokument operacyjny dla właściciela. Krok po kroku uruchomienie warstwy kont i trwałych check-inów
 wdrożonej w `docs/plans/PLAN_supabase_auth_and_checkins.md` / `adr_003_supabase_accounts.md`.
 
-> Te kroki wymagają ręcznego działania właściciela — Claude nie uruchamia migracji w projekcie
-> Supabase ani nie zapisuje prawdziwych kluczy.
+> Część kroków wymaga ręcznego działania właściciela. Nie zapisujemy prawdziwych kluczy w repo.
+
+### Status wdrożenia (2026-06-28)
+
+- **Projekt Supabase:** `Enpsyneia checkin`, project_ref `zxqqeouwydseelbtcwmd`, region `eu-west-1`.
+  Project URL: `https://zxqqeouwydseelbtcwmd.supabase.co`.
+- **Migracja bazy:** ZASTOSOWANA przez MCP (tabele, indeks, trigger, RLS, polityki, granty zweryfikowane).
+  Migracja `0001` zawiera teraz **jawne, minimalne granty** (`authenticated`: SELECT na `profiles`,
+  SELECT+INSERT na `check_ins`; `anon`: brak) oraz `revoke execute` na funkcji triggera —
+  nie polegamy na domyślnych przywilejach Supabase.
+- **Auth (Site URL / Redirect / Confirm email):** do ustawienia RĘCZNIE w panelu (MCP nie zmienia
+  ustawień Auth) — patrz sekcja 1.
+- **Vercel (zmienne + deploy):** do wykonania RĘCZNIE (brak dostępu do Vercel z tego środowiska) —
+  patrz sekcja 3.
 
 ---
 
@@ -53,6 +65,12 @@ Po dodaniu zmiennych wykonaj redeploy (push na gałąź produkcyjną lub „Rede
 
 > Bez tych zmiennych aplikacja nadal działa anonimowo (localStorage). Funkcje konta są wtedy
 > ukryte (`isSupabaseConfigured = false`).
+
+### CSP (`vercel.json`) — wymagane dla Supabase
+
+`vercel.json` musi zezwalać przeglądarce na połączenia do hosta Supabase, inaczej CSP zablokuje
+wszystkie żądania Auth/REST. W dyrektywie `connect-src` znajduje się host projektu:
+`https://zxqqeouwydseelbtcwmd.supabase.co`. Przy zmianie projektu Supabase zaktualizuj ten wpis.
 
 ---
 

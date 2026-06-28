@@ -38,7 +38,22 @@ create table if not exists public.check_ins (
 create index if not exists check_ins_user_created_idx
   on public.check_ins (user_id, created_at desc);
 
--- 3. RLS -------------------------------------------------------------------
+-- 3. Granty (minimalne) ----------------------------------------------------
+-- Nie polegamy na domyślnych przywilejach Supabase (mogą nie nadać DML rolom
+-- anon/authenticated w zależności od roli wykonującej migrację). Nadajemy
+-- jawnie i wyłącznie to, czego wymaga aplikacja:
+--   authenticated: SELECT na profiles; SELECT + INSERT na check_ins.
+--   anon: brak jakichkolwiek przywilejów na danych (brak dostępu).
+-- Najpierw odbieramy wszystko (kasuje też zbędne REFERENCES/TRIGGER/TRUNCATE),
+-- potem nadajemy minimalny zestaw. Brak UPDATE/DELETE => zgodnie z ADR 003.
+-- Profil tworzy trigger handle_new_user (security definer), niezależnie od tych grantów.
+revoke all on public.profiles  from anon, authenticated;
+revoke all on public.check_ins from anon, authenticated;
+
+grant select          on public.profiles  to authenticated;
+grant select, insert  on public.check_ins to authenticated;
+
+-- 4. RLS -------------------------------------------------------------------
 alter table public.profiles  enable row level security;
 alter table public.check_ins enable row level security;
 
@@ -63,7 +78,7 @@ create policy "check_ins_insert_own"
   to authenticated
   with check (auth.uid() = user_id);
 
--- 4. Trigger tworzący profil po rejestracji --------------------------------
+-- 5. Trigger tworzący profil po rejestracji --------------------------------
 -- security definer: zapis profilu omija RLS (klient nie ma INSERT na profiles).
 -- search_path = '' + pełne kwalifikacje nazw => brak ryzyka przejęcia search_path.
 -- nickname pochodzi z metadanych przekazanych przy signUp({ options: { data: { nickname } } }).
@@ -87,3 +102,8 @@ drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute function public.handle_new_user();
+
+-- Funkcja działa wyłącznie jako trigger (wykonuje się z prawami właściciela niezależnie
+-- od EXECUTE). Odbieramy EXECUTE, aby nie była wywoływalna przez REST RPC dla anon/authenticated
+-- (usuwa ostrzeżenia security lint 0028/0029 „Public/Signed-In can execute SECURITY DEFINER function").
+revoke execute on function public.handle_new_user() from public, anon, authenticated;
