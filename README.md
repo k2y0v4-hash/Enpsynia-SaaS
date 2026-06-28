@@ -45,7 +45,7 @@ samodzielnie zatwierdzonego zakresu.
 W pracy nad projektem wykorzystano serwery MCP dające agentom dostęp do rzeczywistego kontekstu:
 
 - **Supabase MCP** — weryfikacja rzeczywistego schematu bazy, tabel, indeksów, triggerów, polityk RLS i uprawnień.
-- **Context7 MCP** — dostęp do aktualnej dokumentacji bibliotek i technologii (skonfigurowany w `.mcp.json`).
+- **Context7 MCP** — dostęp do aktualnej dokumentacji bibliotek i technologii wykorzystywanych w projekcie.
 - **Figma MCP** — dostęp agentów do projektu interfejsu, struktury ekranów, komponentów i kontekstu
   projektowego potrzebnego do zachowania zgodności implementacji z projektem UI.
 
