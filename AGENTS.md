@@ -86,6 +86,18 @@ Przed rozpoczęciem kodowania agent ma:
 
 ## 🏗️ Tech Stack & Architecture
 
+> ⚠️ **Aktualizacja (ADR 003, 2026-06-28).** Tabele „Current/Future Stack" poniżej opisują pierwotny
+> podział Tier 1 / Tier 2. **Stan faktyczny jest dalej:** Supabase (Auth e-mail+hasło + PostgreSQL +
+> RLS) jest **wdrożony na produkcję** w modelu hybrydowym — nie jest już „przyszłym Tier 2 po progach
+> walidacji". Różnice względem tabel poniżej:
+> - **Supabase** = element aktualnego stacku (nie „after validation"). Źródło prawdy: `docs/architecture/adr_003_supabase_accounts.md`, `docs/architecture/tech-stack.md`.
+> - **Resend** = NIE jest używany; potwierdzenie e-maila obsługuje domyślny mailer Supabase.
+> - **localStorage-first** = zastąpiony modelem hybrydowym dla trwałości danych (ADR 001 Superseded).
+> - **Streak counter** = ostatecznie **poza zakresem, nieobecny w kodzie** (patrz `docs/context/decision-log.md`); wzmianki o streaku poniżej traktuj jako historyczne.
+> - **Magic Link** = zastąpiony e-mail + hasło.
+>
+> Materiał poniżej pozostaje jako zapis pierwotnej decyzji architektonicznej.
+
 ### Current Stack (MVP - Tier 1)
 
 | Layer        | Technology               | Version   | Notes                             |
@@ -562,13 +574,16 @@ Minimalne zasady bezpieczeństwa dla bieżącego etapu:
 ### Common Questions
 
 **Q: Should I add a backend?**
-A: Not in Tier 1. Use localStorage. Add Supabase only after validation.
+A: Backend (Supabase: Auth + PostgreSQL + RLS) jest już **wdrożony** w modelu hybrydowym (ADR 003):
+anon → localStorage, zalogowany → Supabase. Wcześniejsze „localStorage only / Supabase after validation"
+jest historyczne (sprzed ADR 003).
 
 **Q: How many questions in the check-in?**
 A: 6 questions in MVP. See `docs/product/mvp-scope.md` for the exact list.
 
 **Q: What about user accounts?**
-A: Tier 1 = no accounts. Tier 2 = Supabase Auth with Magic Link.
+A: Konto **opcjonalne** — Supabase Auth (e-mail + hasło + potwierdzenie e-maila, **NIE** Magic Link).
+Wcześniejsze „Tier 1 = no accounts / Tier 2 = Magic Link" jest historyczne (patrz ADR 003).
 
 **Q: Should I add dark mode?**
 A: No. It's a cut feature (Tier 3). Focus on core functionality.

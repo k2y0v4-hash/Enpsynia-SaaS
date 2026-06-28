@@ -31,15 +31,18 @@ urządzeniach. Konto jest opcjonalne.
 | Faza 5 — Ekran wyniku | Wyświetlenie wyniku, streak, feedback | Ukonczona |
 | Faza 6 — localStorage | Historia 5 check-inów, streak counter | Ukonczona |
 | Faza 7 — QA i deploy | Testy mobilne, GA4, Vercel produkcja | Ukończona |
-| Etap 2 — Supabase Auth + trwałe check-iny (model hybrydowy) | Konta e-mail+hasło, RLS, historia konta | Kod gotowy — wymaga konfiguracji Supabase/Vercel |
+| Etap 2 — Supabase Auth + trwałe check-iny (model hybrydowy) | Konta e-mail+hasło, RLS, historia konta | Wdrożone na produkcję (PR #10 zmergowany 2026-06-28) |
 
 ---
 
 ## Produkcja
 
 - URL produkcyjny: `https://checkin.enpsyneia.org`
-- Hosting: Vercel
+- Hosting: Vercel (auto-deploy z `main`)
 - GA4: skonfigurowane
+- Supabase: skonfigurowany i wdrożony (Auth e-mail+hasło + PostgreSQL + RLS); zmienne
+  `VITE_SUPABASE_URL` i `VITE_SUPABASE_PUBLISHABLE_KEY` ustawione w Vercel (Preview + Production)
+- Status migracji i polityk RLS: `docs/architecture/supabase-vercel-setup.md` (sekcja „Status wdrożenia")
 
 ---
 
@@ -174,8 +177,12 @@ Vercel automatycznie wykrywa projekt Vite. Wystarczy połączyć repozytorium:
 1. Utwórz nowy projekt w Vercel i wskaż to repozytorium.
 2. Build command: `npm run build` (domyślne dla Vite — nie trzeba zmieniać).
 3. Output directory: `dist` (domyślne — nie trzeba zmieniać).
-4. Dodaj zmienną środowiskową `VITE_GA4_ID` (patrz sekcja GA4 powyżej).
-5. Każdy push na `main` uruchamia automatyczny deploy.
+4. Dodaj zmienne środowiskowe: `VITE_GA4_ID` (patrz sekcja GA4) oraz `VITE_SUPABASE_URL`
+   i `VITE_SUPABASE_PUBLISHABLE_KEY` (patrz sekcja Supabase) — dla Preview i Production.
+5. Każdy push na `main` uruchamia automatyczny deploy produkcyjny.
+
+> Stan obecny: repozytorium jest już połączone z Vercel, a powyższe zmienne są ustawione.
+> Powyższe kroki opisują konfigurację od zera (np. przy odtwarzaniu środowiska).
 
 ---
 

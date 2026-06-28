@@ -73,8 +73,38 @@ Expected result:
 6. Corrupt `enpsyneia_history` manually and reload the app.
 7. Confirm the app does not crash and treats history as empty.
 
+## Supabase (logged-in account) verification
+
+Full step-by-step manual procedure and checklists: `docs/architecture/supabase-vercel-setup.md`
+(section 4). Summary of what to verify:
+
+### Schema and RLS (verified via Supabase MCP, 2026-06-28)
+
+- Tables `profiles` and `check_ins` exist with expected columns/types; `check_ins.id` is `bigint`
+  identity; `profiles` has no email.
+- RLS enabled; policies SELECT/INSERT only for `authenticated`; no UPDATE/DELETE; no `anon` policies.
+- Two-user RLS test passed: user A reads only own rows; INSERT with another user's `user_id` rejected;
+  UPDATE/DELETE rejected; `anon` has no access.
+- Trigger `handle_new_user` is `security definer` with `search_path = ''`; EXECUTE granted only to
+  `postgres` (not callable via REST RPC).
+
+### Auth flow (zweryfikowane ręcznie przez właściciela 2026-06-28)
+
+Pełny flow został potwierdzony ręcznie przez właściciela 2026-06-28 na produkcji
+(`https://checkin.enpsyneia.org`) — działa. To weryfikacja ręczna właściciela, nie test
+automatyczny ani niezależny test agenta. Procedura odtworzenia (wymaga prawdziwej skrzynki):
+
+1. Sign up (nickname + email + password) → "Sprawdź swoją skrzynkę" screen.
+2. Attempt login before confirmation → rejected with a readable error.
+3. Confirm via email link → login succeeds.
+4. Save a check-in while logged in → success screen; entry appears in History (from Supabase).
+5. Refresh / other device → entry still present.
+6. Sign out → returns to landing; account history cleared; local history untouched.
+
 ## Privacy checks
 
 - Do not send full check-in answers to GA4.
-- Do not store auth tokens in localStorage.
+- Do not store auth tokens in localStorage beyond the supabase-js default session (ADR 003, D5).
 - Do not add new external scripts without an ADR and owner decision.
+- Known UI/privacy discrepancies pending owner decision are tracked in
+  `docs/plans/PLAN_privacy_terms_fix.md`.

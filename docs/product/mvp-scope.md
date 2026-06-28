@@ -33,6 +33,10 @@ Użytkownik otwiera aplikację, wypełnia 6 pytań i w mniej niż 2 minuty otrzy
 
 > **Ograniczenie streak countera na Safari iOS:** Safari stosuje Intelligent Tracking Prevention (ITP), które czyści localStorage po 7 dniach braku aktywności. Użytkownicy na iOS Safari mogą stracić licznik po tygodniu nieużywania aplikacji. Streak jest elementem wspierającym doświadczenie — nie jest kryterium sukcesu Etapu 1 i nie blokuje wdrożenia. Rozwiązanie (konto użytkownika + backend) wchodzi w Etap 2.
 
+> **Stan po wdrożeniu (2026-06-28):** streak counter został ostatecznie **wycofany z zakresu i nie jest
+> obecny w kodzie** (patrz `docs/context/decision-log.md`). Powyższy wiersz „Streak counter" zachowano
+> jako zapis pierwotnego planu; nie odzwierciedla aktualnego stanu aplikacji.
+
 ### Tech stack
 
 React + Tailwind CSS + Shadcn UI + Vercel + localStorage.

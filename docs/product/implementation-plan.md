@@ -130,6 +130,11 @@
 - Streak resetuje się poprawnie po przerwie dłuższej niż 1 dzień
 - Streak counter na Landing page pojawia się dopiero gdy `enpsyneia_streak.currentStreak > 0`
 
+> **Stan po wdrożeniu (2026-06-28):** funkcja **streak counter** (wzmianki w Fazie 5 i 6 powyżej) została
+> ostatecznie **wycofana z zakresu i nie jest obecna w kodzie** (patrz `docs/context/decision-log.md`).
+> `useLocalStorage` używa kluczy `enpsyneia_history` i `enpsyneia_checkin_count` (bez `enpsyneia_streak`).
+> Opis Fazy 5/6 zachowano jako zapis pierwotnego planu.
+
 ---
 
 ### Faza 7 — QA i deploy

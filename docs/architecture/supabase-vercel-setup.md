@@ -5,23 +5,40 @@ wdrożonej w `docs/plans/PLAN_supabase_auth_and_checkins.md` / `adr_003_supabase
 
 > Część kroków wymaga ręcznego działania właściciela. Nie zapisujemy prawdziwych kluczy w repo.
 
-### Status wdrożenia (2026-06-28)
+### Status wdrożenia (2026-06-28) — WDROŻONE NA PRODUKCJĘ
+
+Funkcja jest na produkcji (`https://checkin.enpsyneia.org`) po zmergowaniu PR #10 do `main`
+(merge commit `9512b38`). Poniższe punkty opisują stan faktyczny; sekcje 1–3 niżej zachowano jako
+instrukcję odtworzenia środowiska od zera.
 
 - **Projekt Supabase:** `Enpsyneia checkin`, project_ref `zxqqeouwydseelbtcwmd`, region `eu-west-1`.
   Project URL: `https://zxqqeouwydseelbtcwmd.supabase.co`.
-- **Migracja bazy:** ZASTOSOWANA przez MCP (tabele, indeks, trigger, RLS, polityki, granty zweryfikowane).
-  Migracja `0001` zawiera teraz **jawne, minimalne granty** (`authenticated`: SELECT na `profiles`,
-  SELECT+INSERT na `check_ins`; `anon`: brak) oraz `revoke execute` na funkcji triggera —
-  nie polegamy na domyślnych przywilejach Supabase.
-- **Auth (Site URL / Redirect / Confirm email):** do ustawienia RĘCZNIE w panelu (MCP nie zmienia
-  ustawień Auth) — patrz sekcja 1.
-- **Vercel:** projekt `project-1pcvr` jest podłączony do repo GitHub i **automatycznie** buduje
-  preview z każdego pushu/PR (deployment dla `feat/supabase-auth-and-checkins` przeszedł).
-  RĘCZNIE pozostaje tylko ustawienie **zmiennych środowiskowych** (Preview + Production) i redeploy —
-  patrz sekcja 3.
+- **Migracja bazy:** ZASTOSOWANA i zweryfikowana przez Supabase MCP. Historia migracji w projekcie:
+  `0001_init_auth_and_checkins`, `0002_minimal_grants`, `0003_revoke_execute_handle_new_user`.
+  W repo te zmiany są skonsolidowane w jednym pliku `0001_init_auth_and_checkins.sql`. Zweryfikowano:
+  tabele `profiles`/`check_ins`, kolumny i typy, indeks `(user_id, created_at desc)`, trigger
+  `handle_new_user` (`security definer`, `search_path=''`, EXECUTE tylko dla `postgres`), RLS włączone,
+  polityki SELECT/INSERT tylko dla `authenticated`, brak UPDATE/DELETE, brak dostępu `anon`,
+  jawne minimalne granty (`authenticated`: SELECT `profiles`, SELECT+INSERT `check_ins`; `anon`: brak).
+- **Auth (Site URL / Redirect / Confirm email / anonymous OFF):** skonfigurowane przez właściciela
+  w panelu Supabase. **Źródło:** potwierdzenie właściciela + obserwacja produkcji (logowanie i funkcje
+  konta działają), 2026-06-28. Ustawień Auth **nie da się odczytać przez Supabase MCP**, więc nie są
+  one tu deklarowane jako niezależnie zweryfikowane przez audyt.
+- **Vercel:** projekt `project-1pcvr` połączony z repo; auto-deploy z `main` (Production) oraz z PR
+  (Preview). Zmienne `VITE_SUPABASE_URL` i `VITE_SUPABASE_PUBLISHABLE_KEY` ustawione dla Preview
+  i Production — potwierdzone obecnością w bundlu produkcyjnym (`zxqqeouwydseelbtcwmd.supabase.co`
+  oraz `sb_publishable_…` w `index-*.js`).
+- **CSP:** `vercel.json` `connect-src` zawiera host Supabase — zweryfikowane na żywo w nagłówku
+  odpowiedzi produkcji.
 - **GitHub Actions `build`:** czerwony z powodu kroku `npm audit --audit-level=high` (prexystujący gate
   z commita `cd7bea9`), który zgłasza podatności w **dev-toolchain** (`vite`, `hono` przez `shadcn` CLI).
-  Nie dotyczy bundla produkcyjnego ani warstwy Supabase; do osobnej decyzji o aktualizacji zależności.
+  Nie dotyczy bundla produkcyjnego ani warstwy Supabase; `main` nie ma branch protection, więc nie był
+  to check blokujący merge. Do osobnej decyzji o aktualizacji zależności.
+
+> **Migracja a powtarzalność:** plik `0001` został już zastosowany do żywego projektu i **nie jest
+> idempotentny** — używa `create policy` (bez `if not exists`). Ponowne uruchomienie na istniejącej
+> bazie zakończy się błędem („policy already exists"). Sekcja 2 niżej dotyczy **świeżego środowiska**
+> (uruchom raz). Na działającej produkcji migracji nie uruchamiamy ponownie.
 
 ---
 
@@ -86,6 +103,22 @@ wszystkie żądania Auth/REST. W dyrektywie `connect-src` znajduje się host pro
 ---
 
 ## 4. Testy ręczne (akceptacyjne)
+
+### Status testów (2026-06-28)
+
+Rozdzielone wg dowodu:
+
+- **Zweryfikowane automatycznie / przez audyt:**
+  - `npm test`, `npm run lint`, `npm run build` — zielone (uruchomione lokalnie).
+  - **Testy RLS dwóch użytkowników** — zweryfikowane przez Supabase MCP (impersonacja ról
+    `authenticated`/`anon`, fixture dwóch użytkowników w `auth.users`, dane testowe usunięte):
+    A czyta tylko swoje `profiles`/`check_ins`; INSERT z cudzym `user_id` odrzucony; UPDATE/DELETE
+    odrzucone (brak grantu i polityki); `anon` bez dostępu. Wynik: zgodny z założeniami.
+- **Zweryfikowane ręcznie przez właściciela 2026-06-28** (na produkcji `https://checkin.enpsyneia.org`):
+  pełny flow — rejestracja → otrzymanie i użycie linku potwierdzającego e-mail → logowanie →
+  zapis check-inu → trwałe wyświetlenie wpisu w historii → wylogowanie. Działa.
+  To weryfikacja ręczna właściciela, nie test automatyczny ani niezależny test agenta.
+  Poniższe checklisty pozostają jako procedura odtworzenia tego testu (np. po zmianach).
 
 ### Auth
 

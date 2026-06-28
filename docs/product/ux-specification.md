@@ -410,6 +410,15 @@ Wymagają decyzji przed rozpoczęciem kodowania.
 
 ## 7. Elementy Stage 2
 
+> **Stan po wdrożeniu (2026-06-28):** Etap 2 (konta + trwałe check-iny) został **wdrożony** w modelu
+> hybrydowym (ADR 003), wcześniej niż zakładały progi walidacyjne poniżej. Różnice względem tej sekcji:
+> - **Logowanie (07)** = **e-mail + hasło** z potwierdzeniem e-maila, **nie** magic link.
+> - **Zakładanie konta (13)** = zaimplementowane (nickname + e-mail + hasło).
+> - **Historia cross-device** = działa dla zalogowanych (Supabase).
+> - **Toggle „Przypomnienie" (ekran 11)** = funkcja push **nadal nieobecna w kodzie**; przełącznik w UI
+>   nie steruje żadnym mechanizmem — patrz `docs/plans/PLAN_privacy_terms_fix.md`.
+> Warunki wejścia (progi) poniżej są już nieaktualne jako bramka; zachowano je jako kontekst.
+
 Zaprojektowane w Figmie, nie wchodzą do aktualnego MVP.
 
 | Ekran / Element | Opis | Warunek wejścia do produktu |
