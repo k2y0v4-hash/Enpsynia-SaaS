@@ -28,21 +28,27 @@ src/
 ├── main.jsx                   # React root
 ├── index.css                  # Tailwind + fonty
 ├── components/
-│   ├── Landing.jsx            # Ekran startowy
-│   ├── CheckInForm.jsx        # Formularz 6 pytań
-│   ├── AnalysisScreen.jsx     # Ekran przejściowy (2s)
-│   ├── ResultScreen.jsx       # Ekran wyniku z mikroakcją
-│   ├── ProgressBar.jsx        # Pasek postępu
+│   ├── Landing.jsx            # Ekran startowy + zgoda analytics
+│   ├── CheckInForm.jsx        # Formularz 6 pytań (2 bloki)
+│   ├── MissingAnswersScreen.jsx # Ekran braków odpowiedzi
+│   ├── DayTypeScreen.jsx      # Ekran typu dnia
+│   ├── MicroActionScreen.jsx  # Ekran mikroakcji + feedback
+│   ├── HistoryScreen.jsx      # Historia (anon: localStorage / zalogowany: Supabase)
+│   ├── MenuScreen.jsx         # Menu (Zaloguj/Załóż konto/Wyloguj wg stanu sesji)
+│   ├── SignUpScreen.jsx       # Rejestracja: nickname + e-mail + hasło
+│   ├── SignInScreen.jsx       # Logowanie: e-mail + hasło
+│   ├── AccountPromptScreen.jsx# Jednorazowa propozycja konta po 2. anon check-inie
+│   ├── SaveStatusScreens.jsx  # SavingScreen + SaveErrorScreen (zapis do Supabase)
+│   ├── AboutScreen.jsx        # O projekcie
+│   ├── SuggestionsScreen.jsx  # Sugestie
+│   ├── PrivacyScreen.jsx      # Ustawienia prywatności
+│   ├── TermsScreen.jsx        # Regulamin i polityka prywatności
+│   ├── ScreenShell.jsx        # Wspólny shell ekranu (layout, hamburger, footer)
 │   └── ui/                    # Komponenty Shadcn (biblioteczne, nie edytować)
 │       └── button.jsx
 ├── utils/
 │   ├── analysisLogic.js       # Logika analizy — 5 typów dnia, mikroakcje
 │   └── analysisLogic.test.js  # Testy jednostkowe (npm test)
-├── components/
-│   ├── SignUpScreen.jsx       # Rejestracja: nickname + e-mail + hasło
-│   ├── SignInScreen.jsx       # Logowanie: e-mail + hasło
-│   ├── AccountPromptScreen.jsx# Jednorazowa propozycja konta po 2. anon check-inie
-│   └── SaveStatusScreens.jsx  # SavingScreen + SaveErrorScreen (zapis do Supabase)
 ├── hooks/
 │   ├── useLocalStorage.js     # Anon: historia (limit 5) + licznik check-inów
 │   ├── useAuth.js             # Supabase Auth: signUp/signIn/signOut + sesja
@@ -77,17 +83,18 @@ src/
   }
 ]
 
-// Streak
-"enpsyneia_streak": {
-  "currentStreak": 7,
-  "lastCheckIn": "2026-04-14"
-}
+// Licznik anonimowych check-inów (próg propozycji konta = 2)
+"enpsyneia_checkin_count": 2
+
+// Decyzja o propozycji konta (po zamknięciu nie pokazuje się ponownie)
+"enpsyneia_account_prompt_dismissed": "true"
 
 // Zgoda analytics
 "enpsyneia_analytics_consent": "accepted" | "rejected"
 ```
 
-Logika streak: wczoraj → streak +1 · dziś ponownie → bez zmiany · dawniej → reset do 1.
+> Streak counter (`enpsyneia_streak`) **nie jest zaimplementowany** — został wycofany z zakresu
+> (patrz `docs/context/decision-log.md`). Klucz `enpsyneia_checkin_count` służy progowi propozycji konta.
 
 ---
 

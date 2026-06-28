@@ -2,7 +2,10 @@
 
 > **Status planu:** ZATWIERDZONY i ZAIMPLEMENTOWANY (2026-06-28) na gałęzi `feat/supabase-auth-and-checkins`.
 > Decyzje D1–D7 zatwierdzone przez właściciela; szczegóły i doprecyzowanie modelu hybrydowego — ADR 003.
-> Wdrożenie produkcyjne wymaga ręcznej konfiguracji Supabase + Vercel (`docs/architecture/supabase-vercel-setup.md`).
+> **Stan po wdrożeniu (2026-06-28):** WDROŻONE NA PRODUKCJĘ — PR #10 zmergowany do `main`; Supabase
+> skonfigurowany, zmienne Vercel ustawione (Preview + Production). Status i dowody:
+> `docs/architecture/supabase-vercel-setup.md` (sekcja „Status wdrożenia"). Treść planu poniżej
+> zachowano bez zmian jako kontrakt zakresu.
 > **Role:** System Architect (główna) + Implementation Planner (pomocnicza)
 > **Data:** 2026-06-28
 > **Podstawa:** decyzja właściciela o przejściu z localStorage do kont użytkowników i trwałego przechowywania w Supabase.

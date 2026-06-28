@@ -41,8 +41,10 @@
 - opis: ekrany MVP są dopasowane wizualnie do aktualnego projektu Figma bez zmiany logiki aplikacji
 
 ## Supabase Auth + trwałe check-iny (model hybrydowy)
-- status: DONE (kod) / wymaga ręcznej konfiguracji Supabase + Vercel przed produkcją
+- status: DONE — wdrożone na produkcję (PR #10 zmergowany do `main` 2026-06-28; auto-deploy Vercel)
 - plan: docs/plans/PLAN_supabase_auth_and_checkins.md
 - adr: docs/architecture/adr_003_supabase_accounts.md
 - opis: konto opcjonalne (e-mail + hasło + potwierdzenie e-maila); anon → localStorage, zalogowany → Supabase (PostgreSQL + RLS, SELECT/INSERT własnych check-inów); jednorazowa propozycja konta po 2. anonimowym check-inie; bez resetu hasła i bez migracji historii lokalnej
-- konfiguracja i testy ręczne: docs/architecture/supabase-vercel-setup.md
+- wdrożenie: migracja zastosowana w projekcie Supabase `zxqqeouwydseelbtcwmd`; zmienne `VITE_SUPABASE_*` ustawione w Vercel (Preview + Production); CSP `connect-src` dopuszcza host Supabase
+- testy: `npm test`/`lint`/`build` zielone; testy RLS dwóch użytkowników zweryfikowane przez Supabase MCP (2026-06-28). Pełny flow z potwierdzeniem e-maila — ręczny test końcowy właściciela
+- konfiguracja i status: docs/architecture/supabase-vercel-setup.md
